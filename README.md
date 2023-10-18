@@ -38,3 +38,12 @@ Lorena Gomez - La Responsable de Finanzas
 Lore es la mente financiera detrás del proyecto. Con una sólida formación en finanzas y una habilidad innata para la gestión de recursos, se asegura de que el negocio sea sostenible desde el punto de vista financiero. Su capacidad para equilibrar presupuestos y tomar decisiones financieras estratégicas es fundamental para el crecimiento del negocio.
 
 //Agregar a Francy con su descripcion.
+
+Referencias:
+https://sembralia.com/
+https://www.latiendaagricola.com/
+https://chelala-garden.business.site/
+https://agro-sustentable.com/
+https://agrofy.com.ar/)https://sembralia.com/
+
+
