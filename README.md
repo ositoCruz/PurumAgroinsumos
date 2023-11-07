@@ -37,7 +37,9 @@ Lorena Gomez - La Responsable de Finanzas
 
 Lore es la mente financiera detrás del proyecto. Con una sólida formación en finanzas y una habilidad innata para la gestión de recursos, se asegura de que el negocio sea sostenible desde el punto de vista financiero. Su capacidad para equilibrar presupuestos y tomar decisiones financieras estratégicas es fundamental para el crecimiento del negocio.
 
-//Agregar a Francy con su descripcion.
+Juan Gabriel Fernandez - Especialista en Control de Calidad
+
+Francy se encarga de controlar la calidad de los productos para que cumplan con los estándares de calidad y seguridad. Realiza pruebas y análisis rigurosos para verificar la eficacia y la pureza de los productos. Además, implementa procedimientos de control de calidad en toda la cadena de suministro, desde la adquisición hasta la entrega.
 
 
 Formato de PurumAgroinsumos:
