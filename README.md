@@ -39,33 +39,6 @@ Lore es la mente financiera detrás del proyecto. Con una sólida formación en 
 
 //Agregar a Francy con su descripcion.
 
-
-Formato de PurumAgroinsumos:
-
-
-Creacion de cuenta:
-
-![create account Purum](https://github.com/lorenang/grupo_5_PURUMAgroInsumos/assets/146954375/ee415c78-8200-4d5a-b688-898d32b8b485)
-
-Logueo:
-
-![loggin Purum](https://github.com/lorenang/grupo_5_PURUMAgroInsumos/assets/146954375/b8f57208-68fb-4053-ab4a-b95ea3ba33f1)
-
-Principal:
-
-![main purum](https://github.com/lorenang/grupo_5_PURUMAgroInsumos/assets/146954375/9d889eca-b424-4558-9fdd-7f1b6a498067)
-
-Carrito:
-
-![Carrito Purum](https://github.com/lorenang/grupo_5_PURUMAgroInsumos/assets/146954375/5a3a97e9-453d-4094-bffd-1ef2a9b1b3f4)
-
-Detalle:
-
-![Copia de Detalle del producto](https://github.com/lorenang/grupo_5_PURUMAgroInsumos/assets/146954375/f8bc115e-a406-48ff-9455-f815d70ba4e1)
-
-
-
-
 Referencias:
 https://sembralia.com/
 Tomamos como referencia principal a ésta página por lo completa que es, ofrece todos los productos de una manera simple y organizada. De colores vivos, en general verde y el naranja resalta. Las imágenes de los productos son muy ilustrativos.
@@ -81,3 +54,7 @@ Esta página tambien es muy interactiva, con muchas animaciones, lo que la vuelv
 
 https://agrofy.com.ar/)https://sembralia.com/
 Agrofy es una página muy simple, con pocas a imágenes. De aquí tomamos como ejemplo que ofrecen mucha actualidad del mundo agro.
+
+
+Link TRELLO:
+https://trello.com/b/Vucq5E0i/purum-agroinsumos
