@@ -19,3 +19,5 @@ app.get('/login', (req,res)=>{
 app.get('/details', (req,res)=>{
     res.sendFile(__dirname + '/views/productDetail.html');
 });
+
+//pude hacer un commit y les voy a comprar un helado a los profes que me ayudaron
