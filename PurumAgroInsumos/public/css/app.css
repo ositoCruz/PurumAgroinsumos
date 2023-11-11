@@ -1,95 +1,175 @@
-:root {
-    --gris-oscuro: #666;
-    --verde: #39b54a;
-
-
-    --black: #000;
-    --white: #fff;
-
-    --font-family: 'Roboto', sans-serif;
-    --size-cuerpo: 12px;
-    --size-titulares: 24px;
-    --size-precios: 18px;
-    --size-descuentos: 16px;
-    --size-descripcion: 16px;
-}
-
-* {
-    margin: 0px;
-    padding: 0px;
-}
-
 body {
-    font-family: var(--font-family);
-}
-
-.top-header {
-    align-items: center;
-    background-color: var(--verde);
+    background-image: url('https://simientedisidente.com/wp-content/uploads/2019/08/field-2572133-1024x683.jpg');
+    background-size: cover;
+    background-position: center; /* Centra la imagen en el fondo */
+    background-attachment: fixed; /* Opcional: Fija la imagen de fondo en su lugar */
+    background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
     display: flex;
-    justify-content: space-between;
-}
-.img-logo {
-    height: 100%;
-    width: 120px;
-}
-
-.burger-menu {
+    justify-content: center;
     align-items: center;
-    display: flex;
-    padding: 1rem;
-}
-#menu-toggle {
-    display: none;
+    height: 100vh;
+    min-height: 100vh; /* Agrega esto para asegurar que el cuerpo tenga al menos la altura de la ventana gráfica (viewport height) */
+    margin: 0;
 }
 
-#menu-icon {
-    display: block;
-    font-size: 30px;
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #b4fea5;
+    padding: 10px;
     text-align: center;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-around; /* Cambiado a space-around para centrar los elementos */
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.img-logo {
+    width: 70px;
+    margin-right: 70px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    margin-right: 15px;
+   
+}
+
+a {
+    text-decoration: none;
+    color: #0a8c04;
+    padding: 8px 15px;
+    border: 1px solid #007bff;
+    border-radius: 3px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+a:hover {
+    background-color: #00ff1e;
+    color: #fff;
+    text-decoration: none;
+}
+
+
+
+
+
+
+.search {
+    margin-top: 10px;
+}
+
+form.form-search {
+    display: flex;
+    align-items: center;
+}
+
+form.form-search input[type="text"] {
+    padding: 8px;
+    margin-right: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+form.form-search button {
+    background-color: #39b54a;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 3px;
     cursor: pointer;
 }
 
-#menu {
-    display: none;
+main {
+    background-color: #fff;
+    border: 2px solid green;
+    border-radius: 5%;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    max-width: 800px; /* Ajusta el tamaño según sea necesario */
+    margin: 20px auto;
+    margin-bottom: 100px;
 }
 
-#menu ul {
-    list-style: none;
-    padding: 0;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
 }
 
-#menu li {
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+button {
+    background-color: #39b54a;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.producto{
+    width: 75px; /* Ajusta el tamaño de la imagen según sea necesario */
+    height: auto; /* Mantiene la proporción original de la imagen */
+    margin-right: 10px;
+    border-radius: 50%; /* Aplica un borde redondeado a la imagen */
+}
+footer {
+    background-color: #6af24f;
     padding: 10px;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+    
 }
-
-@media (max-width: 768px) {
-    #menu-toggle:checked + #menu {
-        display: block;
-    }
-
-    #menu-icon {
-        display: block;
-    }
-
-    #menu ul {
-        text-align: center;
-    }
-
-    #menu li {
-        padding: 10px;
-        display: block;
-    }
+footer p {
+    margin: 5px 0; /* Ajusta el margen según sea necesario */
+    font-size: 14px; /* Ajusta el tamaño de fuente según sea necesario */
+    color: #333; /* Cambia el color del texto según tus preferencias */
+    margin-top: 20px;
+    margin-bottom: 15px
 }
-
-
-
-.form-search {
+.socials,
+.contact {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 20px; /* Ajusta el margen según sea necesario */
+    padding-right: 20px; /* Agrega padding a la derecha para separar de los párrafos */
+    border-right: 1px solid #ccc; /* Línea divisoria entre la sección de redes y el contacto */
+}
+.burger-menu {
     display: flex;
-    justify-content: space-around;
-    margin: 1rem;
+    align-items: center;
 }
-.search input {
-    height: 20px;
-    width: 80%;
+.img-logo {
+    height: 90px;
+    width: auto;
+    margin-right: auto; /* Empuja el icono al extremo izquierdo */
+    margin-left: -200px; /* Agrega un pequeño margen a la izquierda para separarlo del borde */
+    margin-top: 15px;
 }
