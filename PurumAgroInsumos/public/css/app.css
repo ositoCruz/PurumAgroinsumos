@@ -1,3 +1,4 @@
+/**/
 :root {
     --gris-oscuro: #666;
     --verde: #39b54a;
@@ -14,12 +15,14 @@
 }
 
 * {
+    font-family: var(--font-family);
     margin: 0px;
     padding: 0px;
 }
 
 body {
-    font-family: var(--font-family);
+    height: auto;
+    width: 100%;
 }
 
 .top-header {
@@ -33,55 +36,72 @@ body {
     width: 120px;
 }
 
-.burger-menu {
-    align-items: center;
+.burger-menu nav{
     display: flex;
-    padding: 1rem;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 12px;
 }
-#menu-toggle {
-    display: none;
-}
-
-#menu-icon {
-    display: block;
-    font-size: 30px;
-    text-align: center;
-    cursor: pointer;
-}
-
-#menu {
-    display: none;
-}
-
-#menu ul {
+.nav-items {
+    display: flex;
     list-style: none;
+    justify-content: space-between;
+    gap: 12px;
+}
+.nav-items li a {
+    color: var(--black);
+    text-decoration: none;
+} 
+/*input:checked  ~ ul{
+    display:block;
+}
+  
+input {
+    display: none;
+}
+  
+label {
+    box-sizing: border-box;
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-weight: bold;
+    text-align: center;
+    user-select: none;
+}
+  
+/* Estilo del boton cuando se pasa el mouse por encima*/
+/* label:hover{
+    background: var(--white)
+} */
+  
+/* Estilo del boton cuando el menú está expandido*/
+/* input:checked ~ label {
+    background: lightgrey; 
+} */
+  
+/* ul {
+    margin-top:0;
     padding: 0;
-}
-
-#menu li {
+    width: 200px;
+} */
+  
+/* li {
+    display: block;
+    background: lightgrey;
+    margin: 0;
     padding: 10px;
+    list-style: none;
+    border-bottom: 1px solid grey;
 }
-
-@media (max-width: 768px) {
-    #menu-toggle:checked + #menu {
-        display: block;
-    }
-
-    #menu-icon {
-        display: block;
-    }
-
-    #menu ul {
-        text-align: center;
-    }
-
-    #menu li {
-        padding: 10px;
-        display: block;
-    }
-}
-
-
+   */
+/*Estilo cuando el mouse pasa encima de cada link del menu*/
+/* li:hover {
+    filter: brightness(110%);
+} */ 
 
 .form-search {
     display: flex;
@@ -91,4 +111,51 @@ body {
 .search input {
     height: 20px;
     width: 80%;
+}
+
+@media (max-width: 768px) {
+   
+}
+
+
+.articulos {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+    margin-right: 10%;
+    margin-left: 10%;
+    width: 80%;
+}
+.articulos .item {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    text-transform: uppercase;
+}
+.item img {
+    justify-content: center;
+    width: 300px;
+}
+
+@media (max-width: 768px) {
+    .top-header {
+        flex-direction: column;
+    }
+    .burger-menu nav {
+        flex-direction: column;
+    }
+    .nav-items {
+        flex-direction: column;
+        text-align: center;
+    }
+   .articulos {
+    flex-direction: column;
+   }
+
+   .articulos .item img {
+        width: 100%;
+   }
 }
