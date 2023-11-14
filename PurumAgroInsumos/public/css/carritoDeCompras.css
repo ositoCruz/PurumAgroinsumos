@@ -9,7 +9,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    min-height: 100vh; /* Agrega esto para asegurar que el cuerpo tenga al menos la altura de la ventana gráfica (viewport height) */
+    min-height: 100vh; 
     margin: 0;
 }
 
@@ -172,4 +172,52 @@ footer p {
     margin-right: auto; /* Empuja el icono al extremo izquierdo */
     margin-left: -200px; /* Agrega un pequeño margen a la izquierda para separarlo del borde */
     margin-top: 15px;
+}
+@media only screen and (min-width: 769px) {
+    /* Estilos específicos para pantallas con un ancho mínimo de 769px */
+    main {
+        max-width: 60%; /* Ajusta el tamaño según sea necesario */
+    }
+}
+
+@media only screen and (min-width: 361px) {
+    /* Estilos específicos para pantallas con un ancho mínimo de 361px */
+    main {
+        max-width: 80%; /* Ajusta el tamaño según sea necesario */
+    }
+}
+
+@media only screen and (max-width: 360px) {
+    /* Estilos específicos para pantallas con un ancho máximo de 360px */
+    header {
+        padding: 5px;
+    }
+
+    .burger-menu {
+        margin-right: 5px;
+    }
+
+    .img-logo {
+        margin-left: -100px;
+    }
+
+    nav ul {
+        display: none; /* Oculta la navegación en pantallas pequeñas */
+    }
+
+    nav ul.show {
+        display: flex; /* Muestra la navegación cuando se hace clic en el menú hamburguesa */
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #b4fea5;
+        z-index: 1000;
+    }
+
+    nav ul.show li {
+        text-align: center;
+        margin: 5px;
+    }
 }
