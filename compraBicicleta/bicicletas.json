@@ -1,0 +1,60 @@
+{
+    "bicicletasEnStock": [
+      {
+        "id" : 1,
+        "marca": "Fierce",
+        "modelo": "FM18SI29AM211",
+        "rodado": 16,
+        "anioFabricacion": 2019,
+        "color": "Celeste",
+        "pesoKg": 13,
+        "tipo": "Montañera",
+        "precio": 15.000,
+        "vendida": false
+      },
+      { "id" : 2,
+        "marca": "Shifter",
+        "modelo": "FM18F29AM210",
+        "rodado": 26,
+        "anioFabricacion": 2020,
+        "color": "Negro",
+        "pesoKg": 15,
+        "tipo": "Paseo",
+        "precio": 20.000,
+        "vendida": true
+      },
+      { "id" : 3,
+        "marca": "Olmo",
+        "modelo": "Regal",
+        "rodado": 28,
+        "anioFabricacion": 2021,
+        "color": "Amarillo",
+        "pesoKg": 16,
+        "tipo": "Retro",
+        "precio": 20.000,
+        "vendida": false
+      },
+      { "id" : 4,
+        "marca": "Battle",
+        "modelo": "Sunshine",
+        "rodado": 29,
+        "anioFabricacion": 2023,
+        "color": "Verde",
+        "pesoKg": 17,
+        "tipo": "Triatlón",
+        "precio": 30.000,
+        "vendida": true
+      },
+      { "id" : 5,
+        "marca": "TopMega",
+        "modelo": "Techno",
+        "rodado": 28,
+        "anioFabricacion": 2023,
+        "color": "Rosa",
+        "pesoKg": 15,
+        "tipo": "Montañera",
+        "precio": 15.000,
+        "vendida": false
+      }
+    ]
+  }
