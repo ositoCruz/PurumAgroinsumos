@@ -21,3 +21,8 @@ app.get('/carrito', (req,res)=>{
 app.get('/register', (req,res)=>{
     res.sendFile(__dirname + '/views/register.html');
 });
+app.get('/details', (req,res)=>{
+    res.sendFile(__dirname + '/views/productDetail.html');
+});
+
+//pude hacer un commit y les voy a comprar un helado a los profes que me ayudaron
