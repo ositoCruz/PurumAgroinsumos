@@ -1,14 +1,11 @@
  
   .login-container {
-    border: 2px solid  (--verde);
-    border-radius: 5%;
-    background-color: #b4fea5;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    max-width: 400px;
-    width: 70%;
+    width: 40%;
     text-align: center;
+    margin-bottom: 10px;
   }
 
   h1 {
@@ -67,3 +64,9 @@
   text-decoration: none; /* Elimina la subrayado en el hover */
   color: #fff; /* Cambiado a blanco en el hover para mejorar la visibilidad del texto */
 }
+
+@media (max-width: 720px) {
+  .login-container {
+    width: 80%;
+  }   
+ }

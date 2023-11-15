@@ -138,7 +138,8 @@ footer {
     flex-direction: column;
     justify-content: space-between;
     gap: 15px;
-    width: 100%;
+    width: 90%;
+    margin: 5%;
 }
 
 .footer-section-img img {
@@ -169,8 +170,12 @@ footer {
 
 /*----------------------------------------*/
 
-
-/*principales articulos*/
+@media (max-width: 720px) {
+ header, .top-header, .search, .menu ul {
+    align-items: center;
+    flex-direction: column;
+ }   
+}
 
 
 
