@@ -32,12 +32,12 @@ header {
     align-items: center;
 }
 
-.img-logo {
+/* .img-logo {
     width: 70px;
     margin-right: 70px;
-}
+} */
 
-nav ul {
+/* nav ul {
     display: flex;
     list-style: none;
     padding: 0;
@@ -46,9 +46,9 @@ nav ul {
 
 nav ul li {
     margin-right: 15px;
-   
+    
 }
-
+*/
 a {
     text-decoration: none;
     color: #0a8c04;
@@ -166,10 +166,10 @@ footer p {
     display: flex;
     align-items: center;
 }
-.img-logo {
+/* .img-logo {
     height: 90px;
     width: auto;
-    margin-right: auto; /* Empuja el icono al extremo izquierdo */
-    margin-left: -200px; /* Agrega un pequeño margen a la izquierda para separarlo del borde */
+    margin-right: auto; 
+    margin-left: -200px; 
     margin-top: 15px;
-}
+}  */
