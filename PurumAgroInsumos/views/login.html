@@ -1,13 +1,50 @@
 l<!DOCTYPE html>
 <html>
-<head>
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"   rel="stylesheet" >
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="static/css/login.css">
+    <title>PURUM AgroInsumos</title>
+    <link rel="stylesheet" href="static/css/app.css">
+    <link rel="stylesheet" href="static/css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
+    <header>
+        <div class="top-header">
+            <div class="logo">
+                <img src="static/images/purumredondo.png" alt="Logo" class="img-logo">
+                <a href="/login">Iniciar Sesion</a>
+                <a href="/details">Detalles de Producto</a>
+
+            </div>
+
+            <div class="burger-menu">
+                <nav class="menu" id="menu">
+                    <ul>
+                        <li><a href="/">INICIO</a></li>
+                        <li><a href="#">PRODUCTOS</a></li>
+                        <li><a href="/">NOSOTROS</a></li>
+                        <li><a href="#">CONTACTO</a></li>
+                        <li><a href="/login" class="link"><i class="fa-solid fa-right-to-bracket"></i></a></li>
+                        <li><a href="/register" class="link"><i class="fa-solid fa-address-card"></i></a></li>
+                        <li><a href="/carrito"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!--<div class="search">
+            <form action="#" method="GET" class="form-search">
+                <input type="text" placeholder="Buscar">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+        -->
+    </header>
+    <body>
   <div class="login-container">
     <h1>Bienvenidos a Purum</h1>
     <form>
@@ -19,10 +56,36 @@ l<!DOCTYPE html>
 
       <label for="remember">Recordarme <input type="checkbox" id="remember" name="remember"></label>
 
-      <a href="/">Iniciar sesión</a>
+      <a class="buttonDecoration" href="/">Iniciar sesión</a>
     </form>
     <br>
-    <a href="#">¿Olvidaste tu contraseña?</a>
+    <a class="buttonDecoration" href="#">¿Olvidaste tu contraseña?</a>
   </div>
+  <footer>
+    <div class="footer-content">
+        <div class="footer-section-img">
+            <img src="static/images/purumredondo.png" alt="">
+        </div>
+
+        <div class="footer-section-info">
+            <p>Te ofrecemos una amplia gama de agroinsumos para profesionales de la agricultura 
+                y entusiastas del cultivo, ecoligia y de la auto-sustentabilidad.</p>
+        </div>
+            
+        <div class="footer-section-contact">
+            <span><i class="fas fa-phone"></i> &nbsp;123-456-789</span>
+            <span><i class="fas fa-envelope"></i> &nbsp;Purum@gmail.com</span>
+        </div>
+        
+        <div class="footer-section-socials">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+
 </body>
 </html>

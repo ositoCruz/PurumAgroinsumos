@@ -1,22 +1,6 @@
-body {
-    background-image: url('https://simientedisidente.com/wp-content/uploads/2019/08/field-2572133-1024x683.jpg');
-    background-size: cover;
-    background-position: center; /* Centra la imagen en el fondo */
-    background-attachment: fixed; /* Opcional: Fija la imagen de fondo en su lugar */
-    background-repeat: no-repeat;
-    font-family: Arial, sans-serif;
-  
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
-  
-  
  
   .login-container {
-    border: 2px solid  green;
+    border: 2px solid  (--verde);
     border-radius: 5%;
     background-color: #b4fea5;
     padding: 20px;
@@ -28,7 +12,7 @@ body {
   }
 
   h1 {
-    margin-top: 0;
+    margin-top: 10;
   }
   
   form {
@@ -62,7 +46,7 @@ body {
   }
   
  /* Estilos para el enlace botón */
-a {
+.buttonDecoration {
   text-decoration: none;
   color: #fff; /* Cambiado a blanco para mejorar la visibilidad del texto */
   background-color: #007bff; /* Color de fondo similar al botón por defecto de Bootstrap */
