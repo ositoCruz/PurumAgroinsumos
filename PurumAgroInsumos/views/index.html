@@ -13,8 +13,7 @@
 <body>
     <header>
         <div class="top-header">
-            <div class="logo"> 
-                
+            <div class="logo">
                 <img src="static/images/purumredondo.png" alt="Logo" class="img-logo">
                 <a href="/login">Iniciar Sesion</a>
                 <a href="/details">Detalles de Producto</a>
@@ -22,18 +21,15 @@
             </div>
 
             <div class="burger-menu">
-                <input type="checkbox" id="menu-toggle">
-                <label for="menu-toggle" id="menu-icon">-</i></label>
                 <nav id="menu">
                     <ul>
-                        <li><a href="#">INICIO</a></li>
-                        <li><a href="#">SOBRE NOSOTROS</a></li>
+                        <li><a href="/">HOME</a></li>
+                        <li><a href="#">ABOUT</a></li>
                         <li><a href="#">PRODUCTOS</a></li>
                         <li><a href="#">CONTACTO</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="" class="link">Creá tu cuenta</a></li>
-                        <li><a href="" class="link">Ingresá</a></li>
+                        <li><a href="/login" class="link">LOG IN</a></li>
+                        <li><a href="/register" class="link">SING IN</a></li>
+                        <li><a href="/carrito">MI CARRITO</a></li>
                     </ul>
                 </nav>
             </div>
@@ -43,7 +39,28 @@
                 <input type="text" placeholder="Buscar">
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
-        </div> 
+        </div>
     </header>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h1 class="logo-text"><span>LOGO</span>Texto</h1>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
+                    aliquam, purus sit amet volutpat.
+                </p>
+                <div class="contact">
+                    <span><i class="fas fa-phone"></i> &nbsp;123-456-789</span>
+                    <span><i class="fas fa-envelope"></i> &nbsp;info@example.com</span>
+                </div>
+                <div class="socials">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

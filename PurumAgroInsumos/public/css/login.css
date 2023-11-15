@@ -61,13 +61,21 @@ body {
     cursor: pointer;
   }
   
-  a {
-    text-decoration: none;
-    color: #007bff;
-    display: block;
-    margin-top: 10px;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
+ /* Estilos para el enlace botón */
+a {
+  text-decoration: none;
+  color: #fff; /* Cambiado a blanco para mejorar la visibilidad del texto */
+  background-color: #007bff; /* Color de fondo similar al botón por defecto de Bootstrap */
+  padding: 10px 20px; /* Añadido padding para dar espacio alrededor del texto */
+  display: inline-block; /* Hace que el enlace se comporte como un bloque, permitiendo ajustar el ancho y alto */
+  margin-top: 10px;
+  border-radius: 5px; /* Bordes redondeados para dar un aspecto más suave */
+  transition: background-color 0.3s, color 0.3s; /* Transición suave en el cambio de color de fondo y texto */
+}
+
+/* Estilos al pasar el ratón sobre el enlace botón */
+a:hover {
+  background-color: #0056b3; /* Cambiado el color al pasar el ratón para indicar interactividad */
+  text-decoration: none; /* Elimina la subrayado en el hover */
+  color: #fff; /* Cambiado a blanco en el hover para mejorar la visibilidad del texto */
+}
