@@ -2,7 +2,7 @@
 
 Descripción de la Oferta:
 
-Nuestro marketplace se especializa en ofrecer una amplia gama de agroinsumos para profesionales de la agricultura y entusiastas del cultivo, ecoligia y de la auto-sutentabilidad.Los productos que se ofrece incluyen semillas, fertilizantes, pesticidas, fungicidas, herbicidas, herramientas agrícolas, y mucho más. Nuestra misión es facilitar a los productores agropecuarios el acceso a insumos de alta calidad y servicios relacionados que les permitan optimizar sus cultivos y aumentar su rendimiento.
+Nuestro marketplace se especializa en ofrecer una amplia gama de agroinsumos para profesionales de la agricultura y entusiastas del cultivo, ecoligia y de la auto-sustentabilidad.Los productos que se ofrece incluyen semillas, fertilizantes, pesticidas, fungicidas, herbicidas, herramientas agrícolas, y mucho más. Nuestra misión es facilitar a los productores agropecuarios el acceso a insumos de alta calidad y servicios relacionados que les permitan optimizar sus cultivos y aumentar su rendimiento.
 
 Público Objetivo
 

@@ -1,0 +1,81 @@
+body {
+    background-image: url('https://simientedisidente.com/wp-content/uploads/2019/08/field-2572133-1024x683.jpg');
+    background-size: cover;
+    background-position: center; /* Centra la imagen en el fondo */
+    background-attachment: fixed; /* Opcional: Fija la imagen de fondo en su lugar */
+    background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  
+ 
+  .login-container {
+    border: 2px solid  green;
+    border-radius: 5%;
+    background-color: #b4fea5;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 70%;
+    text-align: center;
+  }
+
+  h1 {
+    margin-top: 0;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    text-align: left;
+    margin-bottom: 5px;
+  }
+  
+  input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  input[type="checkbox"] {
+    margin-right: 5px;
+  }
+  
+  button {
+    background-color: #39b54a;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+ /* Estilos para el enlace botón */
+a {
+  text-decoration: none;
+  color: #fff; /* Cambiado a blanco para mejorar la visibilidad del texto */
+  background-color: #007bff; /* Color de fondo similar al botón por defecto de Bootstrap */
+  padding: 10px 20px; /* Añadido padding para dar espacio alrededor del texto */
+  display: inline-block; /* Hace que el enlace se comporte como un bloque, permitiendo ajustar el ancho y alto */
+  margin-top: 10px;
+  border-radius: 5px; /* Bordes redondeados para dar un aspecto más suave */
+  transition: background-color 0.3s, color 0.3s; /* Transición suave en el cambio de color de fondo y texto */
+}
+
+/* Estilos al pasar el ratón sobre el enlace botón */
+a:hover {
+  background-color: #0056b3; /* Cambiado el color al pasar el ratón para indicar interactividad */
+  text-decoration: none; /* Elimina la subrayado en el hover */
+  color: #fff; /* Cambiado a blanco en el hover para mejorar la visibilidad del texto */
+}
