@@ -2,7 +2,7 @@
 
 Descripción de la Oferta:
 
-Nuestro marketplace se especializa en ofrecer una amplia gama de agroinsumos para profesionales de la agricultura y entusiastas del cultivo, ecoligia y de la auto-sutentabilidad.Los productos que se ofrece incluyen semillas, fertilizantes, pesticidas, fungicidas, herbicidas, herramientas agrícolas, y mucho más. Nuestra misión es facilitar a los productores agropecuarios el acceso a insumos de alta calidad y servicios relacionados que les permitan optimizar sus cultivos y aumentar su rendimiento.
+Nuestro marketplace se especializa en ofrecer una amplia gama de agroinsumos para profesionales de la agricultura y entusiastas del cultivo, ecoligia y de la auto-sustentabilidad.Los productos que se ofrece incluyen semillas, fertilizantes, pesticidas, fungicidas, herbicidas, herramientas agrícolas, y mucho más. Nuestra misión es facilitar a los productores agropecuarios el acceso a insumos de alta calidad y servicios relacionados que les permitan optimizar sus cultivos y aumentar su rendimiento.
 
 Público Objetivo
 
@@ -37,34 +37,9 @@ Lorena Gomez - La Responsable de Finanzas
 
 Lore es la mente financiera detrás del proyecto. Con una sólida formación en finanzas y una habilidad innata para la gestión de recursos, se asegura de que el negocio sea sostenible desde el punto de vista financiero. Su capacidad para equilibrar presupuestos y tomar decisiones financieras estratégicas es fundamental para el crecimiento del negocio.
 
-//Agregar a Francy con su descripcion.
+Juan Gabriel Fernandez - Especialista en Control de Calidad
 
-
-Formato de PurumAgroinsumos:
-
-
-Creacion de cuenta:
-
-![create account Purum](https://github.com/lorenang/grupo_5_PURUMAgroInsumos/assets/146954375/ee415c78-8200-4d5a-b688-898d32b8b485)
-
-Logueo:
-
-![loggin Purum](https://github.com/lorenang/grupo_5_PURUMAgroInsumos/assets/146954375/b8f57208-68fb-4053-ab4a-b95ea3ba33f1)
-
-Principal:
-
-![main purum](https://github.com/lorenang/grupo_5_PURUMAgroInsumos/assets/146954375/9d889eca-b424-4558-9fdd-7f1b6a498067)
-
-Carrito:
-
-![Carrito Purum](https://github.com/lorenang/grupo_5_PURUMAgroInsumos/assets/146954375/5a3a97e9-453d-4094-bffd-1ef2a9b1b3f4)
-
-Detalle:
-
-![Copia de Detalle del producto](https://github.com/lorenang/grupo_5_PURUMAgroInsumos/assets/146954375/f8bc115e-a406-48ff-9455-f815d70ba4e1)
-
-
-
+Francy se encarga de controlar la calidad de los productos para que cumplan con los estándares de calidad y seguridad. Realiza pruebas y análisis rigurosos para verificar la eficacia y la pureza de los productos. Además, implementa procedimientos de control de calidad en toda la cadena de suministro, desde la adquisición hasta la entrega.
 
 Referencias:
 https://sembralia.com/
@@ -81,3 +56,7 @@ Esta página tambien es muy interactiva, con muchas animaciones, lo que la vuelv
 
 https://agrofy.com.ar/)https://sembralia.com/
 Agrofy es una página muy simple, con pocas a imágenes. De aquí tomamos como ejemplo que ofrecen mucha actualidad del mundo agro.
+
+
+Link TRELLO:
+https://trello.com/b/Vucq5E0i/purum-agroinsumos
