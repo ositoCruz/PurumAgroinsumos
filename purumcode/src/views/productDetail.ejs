@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include("partials/head")  %>
+<link rel="stylesheet" href="/css/detalle.css">
+ 
+  <body>
+    <%- include("partials/header") %>
+    <main>
+    <title>Detalle del Producto</title>
+    <div class="articulos-principalesdet">
+      <div class="articulo-item">
+        
+        <% if (data.id == 1) { %>
+          <h1>Detalle del producto <%= data.id %> :</h1>
+          <img src="<%- dataabo.pic %>" alt="Imagen del Producto: <%= data.id %>" width="350px">
+          <p>Nombre: <%- dataabo.name %></p>
+          <h3>Precio: $<%- dataabo.precio %></h3>
+          <p><pre>Descripción: <%- dataabo.descripcion %></pre></p>
+          <p>Disponibilidad: <%- dataabo.stock %></p>
+      <% } %>
+
+      <% if (data.id == 2) { %>
+        <h1>Detalle del producto <%= data.id %> :</h1>
+        <img src="<%- datafert.pic %>" alt="Imagen del Producto: <%= data.id %>" width="350px">
+        <p>Nombre: <%- datafert.name %></p>
+        <h3>Precio: $<%- datafert.precio %></h3>
+        <p><pre>Descripción: <%- datafert.descripcion %></pre></p>
+        <p>Disponibilidad: <%- datafert.stock %></p>
+    <% } %>
+
+    <% if (data.id == 3) { %>
+      <h1>Detalle del producto <%= data.id %> :</h1>
+      <img src="<%- dataherb.pic %>" alt="Imagen del Producto: <%= data.id %>" width="350px">
+      <p>Nombre: <%- dataherb.name %></p>
+      <h3>Precio: $<%- dataherb.precio %></h3>
+      <p><pre>Descripción: <%- dataherb.descripcion %></pre></p>
+      <p>Disponibilidad: <%- dataherb.stock %></p>
+  <% } %>
+
+  <% if (data.id == 4) { %>
+    <h1>Detalle del producto <%= data.id %> :</h1>
+    <img src="<%- datainsec.pic %>" alt="Imagen del Producto: <%= data.id %>" width="350px">
+    <p>Nombre: <%- datainsec.name %></p>
+    <h3>Precio: $<%- datainsec.precio %></h3>
+    <p><pre>Descripción: <%- datainsec.descripcion %></pre></p>
+    <p>Disponibilidad: <%- datainsec.stock %></p>
+<% } %>
+
+<% if (data.id == 5) { %>
+  <h1>Detalle del producto <%= data.id %> :</h1>
+  <img src="<%- datasol.pic %>" alt="Imagen del Producto: <%= data.id %>" width="350px">
+  <p>Nombre: <%- datasol.name %></p>
+  <h3>Precio: $<%- datasol.precio %></h3>
+  <p><pre>Descripción: <%- datasol.descripcion %></pre></p>
+  <p>Disponibilidad: <%- datasol.stock %></p>
+<% } %> 
+
+<% if (data.id != 1 && data.id != 2 && data.id != 3 && data.id != 4  && data.id != 5 ) { %>
+  <h1>no encontramos el producto: <%= data.id %></h1>
+  <img src="/images/gato.jpg" alt="Imagen del Producto: <%= data.id %>" width="350px">
+  <h3>Pero te podemos sugerir los siguientes productos</h3>
+<% } %> 
+
+
+
+
+
+
+        
+      </div>
+      <br>
+      <h1>Articulos Relacionados: </h1>
+      <div class="articulosRelacionados">
+       
+        <div class="articulo-itemdet">
+          <img src=<%- datafert.pic %> alt="Imagen del Producto: <%= data.id %>"> 
+          <p>Nombre: <%- datafert.name %></p>
+          <h3>Precio: $<%- datafert.precio  %> </h3>
+          <p>Disponibilidad: <%- datafert.stock  %></p>
+          <a href="/product/2">Ver detalles</a>
+        </div> 
+  
+      <div class="articulo-itemdet">
+        <img src="/images/Herbicida-atrina.jpg" alt="Imagen del Producto">
+        
+        <p>Descripcion: Herbicida-atrina</p>
+        <p>Precio: $980.50</p>
+        <p>Disponibilidad: En stock</p>
+        <a href="/product/3">Ver detalles</a>
+      </div> 
+      <div class="articulo-itemdet">
+        <img src="/images/insecticida-organico.jpg" alt="Imagen del Producto">
+        
+        <p>Descripcion: insecticida-organico</p>
+        <p>Precio: $905.80</p>
+        <p>Disponibilidad: Agotado</p>
+        <a href="/product/4">Ver detalles</a>
+      </div> 
+      <div class="articulo-itemdet">
+        <img src="/images/Solucion-para-fertilizantes.jpg" alt="Imagen del Producto">
+        
+        <p>Descripcion: Solucion-para-fertilizantes</p>
+        <p>Precio: $2000</p>
+        <p>Disponibilidad: En stock</p>
+        <a href="/product/5">Ver detalles</a>
+      </div> 
+      
+    </div>
+      <!-- Puedes añadir más elementos .articulo-item según sea necesario -->
+    </div>
+
+  </main>
+<%- include("partials/footer") %>
+</body>
+</html>
