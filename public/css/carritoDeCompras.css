@@ -1,3 +1,4 @@
+<<<<<<< HEAD:public/css/carritoDeCompras.css
 body {
     background-image: url('https://simientedisidente.com/wp-content/uploads/2019/08/field-2572133-1024x683.jpg');
     background-size: cover;
@@ -63,65 +64,43 @@ a:hover {
     color: #fff;
     text-decoration: none;
 }
+=======
+/*carrito*/
+>>>>>>> d9d2e6efc751a50321dd6ea40e2fed9c13ca6239:PurumAgroInsumos/public/css/carritoDeCompras.css
 
 
-
-
-
-
-.search {
-    margin-top: 10px;
-}
-
-form.form-search {
-    display: flex;
-    align-items: center;
-}
-
-form.form-search input[type="text"] {
-    padding: 8px;
-    margin-right: 5px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
-
-form.form-search button {
-    background-color: #39b54a;
-    color: #fff;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-main {
-    background-color: #fff;
-    border: 2px solid green;
-    border-radius: 5%;
+.shop {
+    height: auto;
+    width: 60%;
+    border: 2px solid var(--verde);
+    border-radius: 1%;
     padding: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    max-width: 800px; /* Ajusta el tamaño según sea necesario */
     margin: 20px auto;
-    margin-bottom: 100px;
 }
 
-table {
+.cart-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.shop table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
 }
 
-th, td {
+.shop table th, td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
 }
 
-th {
+.shop table th {
     background-color: #f2f2f2;
 }
 
-button {
+.btn-delete {
     background-color: #39b54a;
     color: #fff;
     border: none;
@@ -136,6 +115,7 @@ button {
     margin-right: 10px;
     border-radius: 50%; /* Aplica un borde redondeado a la imagen */
 }
+<<<<<<< HEAD:public/css/carritoDeCompras.css
 footer {
     background-color: #126c00;
     padding: 10px;
@@ -221,3 +201,6 @@ footer p {
         margin: 5px;
     }
 }
+=======
+
+>>>>>>> d9d2e6efc751a50321dd6ea40e2fed9c13ca6239:PurumAgroInsumos/public/css/carritoDeCompras.css
