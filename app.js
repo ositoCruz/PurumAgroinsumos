@@ -3,8 +3,11 @@ const app = express();
 
 app.use('/static', express.static(__dirname + '/public'));
 
-app.listen(4000, ()=>{
-    console.log('Servidor funcionando');
+
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`click para dirigirte al sitio: http://localhost:${PORT}/`);
 });
 
 app.get('/', (req,res)=>{
