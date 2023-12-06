@@ -1,3 +1,7 @@
+*ACTUALIZACION SPRINT*
+- Empezar a hacer: mayor comunicacion, mayor participacion de todo el equipo para trabajar de manera eficiente y equitativa. Coordinar horarios.
+
+
 *Organizacion: Nuestra planificación y seguimiento fueron excelentes, lo que permitió que el equipo mantuviera un flujo de trabajo eficiente. Debemos seguir manteniendo esta organización, ya que es fundamental para el éxito continuo.
 *Puntualidad: Cumplir con los plazos es esencial para la satisfacción del cliente y la gestión del proyecto. Continuar cumpliendo los plazos es una prioridad.
 *Creatividad: Nuestra capacidad para encontrar soluciones creativas a los desafíos demostró ser valiosa. La innovación debe seguir siendo una parte integral de nuestro enfoque de trabajo.
