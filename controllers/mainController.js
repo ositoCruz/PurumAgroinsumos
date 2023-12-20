@@ -120,16 +120,8 @@ const controller = {
             if (productImage) {
                 // Asigna el nombre de la nueva imagen al producto
                 product.image = `productImage-${Date.now()}${path.extname(productImage.originalname)}`;
-    
-                // Mueve la nueva imagen al directorio de imágenes
                 const newImagePath = path.join(__dirname, '../public/images/', product.image);
                 fs.renameSync(productImage.path, newImagePath);
-    
-                // Elimina la antigua imagen si existía
-                if (oldImage) {
-                    const oldImagePath = path.join(__dirname, '../public/images/', oldImage);
-                    fs.unlinkSync(oldImagePath);
-                }
             }
     
             // Lee el contenido actual del archivo JSON

@@ -2,18 +2,18 @@
   "products": [
     {
       "id": 1,
-      "name": "probando",
+      "name": "probando 4",
       "description": "probando alta",
       "expiration_date": "10/2/2025",
       "category": "Ecologico",
-      "image": "productImage-1703115194924.jpg",
+      "image": "productImage-1703116356194.jpg",
       "price": "6",
       "stock": "1"
     },
     {
       "id": 2,
       "expiration_date": "10/2/2025",
-      "image": "productImage-1703115194924.jpg",
+      "image": "productImage-1703116183640.jpg",
       "name": "probando",
       "description": "probando alta",
       "category": "Ecologico",
@@ -28,7 +28,7 @@
       "description": "In congue. Etiam justo. Etiam pretium iaculis justo.\n\nIn hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.",
       "stock": 14,
       "category": "",
-      "image": "productImage-1703113856720-318110847.jpg"
+      "image": "productImage-1703116183640.jpg"
     },
     {
       "id": 4,
@@ -38,7 +38,7 @@
       "description": "Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.\n\nCurabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
       "stock": 17,
       "category": "",
-      "image": "productImage-1703113856720-318110847.jpg"
+      "image": "productImage-1703116183640.jpg"
     },
     {
       "id": 5,
@@ -48,7 +48,7 @@
       "description": "Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.",
       "stock": 7,
       "category": "",
-      "image": "productImage-1703113856720-318110847.jpg"
+      "image": "productImage-1703116183640.jpg"
     },
     {
       "id": 6,
@@ -58,7 +58,7 @@
       "description": "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.\n\nPhasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.",
       "stock": 77,
       "category": "",
-      "image": "productImage-1703113856720-318110847.jpg"
+      "image": "productImage-1703116183640.jpg"
     },
     {
       "id": 7,
@@ -68,7 +68,7 @@
       "description": "Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
       "stock": 54,
       "category": "",
-      "image": "productImage-1703113856720-318110847.jpg"
+      "image": "productImage-1703116183640.jpg"
     },
     {
       "id": 8,
@@ -78,7 +78,7 @@
       "description": "Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.\n\nQuisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",
       "stock": 61,
       "category": "",
-      "image": "productImage-1703113856720-318110847.jpg"
+      "image": "productImage-1703116183640.jpg"
     },
     {
       "id": 9,
@@ -88,17 +88,17 @@
       "description": "Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.\n\nCras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\n\nProin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",
       "stock": 69,
       "category": "",
-      "image": "productImage-1703113856720-318110847.jpg"
+      "image": "productImage-1703116183640.jpg"
     },
     {
       "id": 10,
       "name": "Cup - Paper 10oz 92959",
-      "price": 978.22,
+      "price": "12",
       "expiration_date": "9/14/2025",
-      "description": "Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.",
-      "stock": 77,
-      "category": "",
-      "image": "productImage-1703113856720-318110847.jpg"
+      "description": "probando alta",
+      "stock": "5",
+      "category": "Ecologico",
+      "image": "productImage-1703116183640.jpg"
     },
     {
       "id": 11,
@@ -107,7 +107,7 @@
       "category": "Ecologico",
       "price": "90",
       "stock": "9",
-      "image": "productImage-1703113856720-318110847.jpg"
+      "image": "productImage-1703116183640.jpg"
     },
     {
       "id": 12,
@@ -116,7 +116,7 @@
       "category": "Ecologico",
       "price": "78",
       "stock": "7",
-      "image": "productImage-1703113856720-318110847.jpg"
+      "image": "productImage-1703116183640.jpg"
     },
     {
       "id": 13,
@@ -125,7 +125,7 @@
       "category": "Ecologico",
       "price": "898",
       "stock": "8",
-      "image": "productImage-1703113856720-318110847.jpg"
+      "image": "productImage-1703116183640.jpg"
     }
   ]
 }
