@@ -3,7 +3,11 @@ const router = express.Router();
 
 const mainController = require('../controllers/mainController')
 
+
 router.get('/', mainController.index);
+router.get('/products', mainController.products);
+// router.get('/search', mainController.search); 
+// router.get('/about', mainController.aboutController);
 router.get('/login', mainController.login);
 router.get('/register', mainController.register);
 router.get('/carrito', mainController.carrito);
@@ -16,4 +20,10 @@ router.post('/productos/editar/:id', mainController.procesarEdit);
 /*rutas para ver las vistas de las pantallas*/
 router.get('/details', mainController.details);
 router.get('/edit', mainController.edit); 
+
 module.exports = router;
+
+
+// // router.get(routes.homeRoute, controller.homeController);
+
+// module.exports = router;

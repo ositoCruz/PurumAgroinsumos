@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include('../head.ejs') %>
+    <body>
+<body>
+    <%- include('../header.ejs') %>
+    <main>
+        <section class="productos">
+            <div class="div_title">
+                <h1>Lista de Productos</h1>
+            </div>
+            <div class="div-products">
+                <% products.forEach(product => { %>
+                    <div class="div_item_product">
+                        <h3><%= product.name %></h3>
+                        <p><%= product.description %></p>
+                        <p>Precio: $<%= product.price %></p>
+                        <p>Stock: $<%= product.stock %></p>
+                    </div>
+                <% }); %>
+            </div>
+        </section>
+    </main>
+
+    <%- include('../footer.ejs') %>
+</body>
+</html>
