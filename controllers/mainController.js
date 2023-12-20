@@ -1,11 +1,17 @@
 const fs = require('fs');
 const path = require('path');
 
-const productsFilePath = path.join(__dirname, './data/product.json');
+const productsFilePath = path.join(__dirname, '../data/product.json');
 
-
-function getProducts(){
-    return JSON.parse(fs.readFileSync(productsFilePath, "utf-8"))
+function getProducts() {
+    return JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+}
+function getProductById(productId) {
+    // Lee el archivo JSON de productos
+    const productsData = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+    // Busca el producto por ID
+    const product = productsData.products.find(item => item.id === parseInt(productId));
+    return product;
 }
 
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -32,13 +38,17 @@ const controller = {
     altaproducto: (req, res) => {
         return res.render('products/createProduct');
     },
+    detailsProduct: (req, res) => {
+        const productId = req.params.id;
+        // Aquí deberías obtener la información del producto según el productId
+        const product = getProductById(productId); // Implementa esta función según tu lógica
+
+        // Renderiza la vista productDetail.ejs y pasa el objeto del producto
+        res.render('products/productDetail', { product });
+    },
     editProducto: (req, res) => {
         const productId = req.params.id;
         return res.render('products/editProduct', { productId });
-    },
-    detailsProduct: (req, res) => {
-        const productId = req.params.id;
-        return res.render('products/productDetail', { productId });
     },
     
     procesarCreate: (req, res) => {

@@ -4,6 +4,7 @@ const multer = require('multer');
 const path = require('path');
 
 const mainRoutes = require('./routes/mainRoutes');
+const mainController = require('./controllers/mainController');
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -23,10 +24,11 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 app.post('/productos/crear', upload.single('productImage'), (req, res) => {
-  res.redirect('/products');
+  console.log('Procesando creación de producto...');
+  mainController.procesarCreate(req, res);
 });
 
-app.use(express.static('./public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Configurar EJS como motor de plantillas
 app.set('view engine', 'ejs');
