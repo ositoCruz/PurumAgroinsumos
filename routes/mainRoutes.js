@@ -17,15 +17,6 @@ router.get('/details/:id', mainController.detailsProduct);
 router.get('/editproduct/:id', mainController.editProducto); 
 
 router.post('/productos/crear', mainController.procesarCreate);
-router.post('/productos/editar/:id', mainController.procesarEdit);
-
-/*rutas para ver las vistas de las pantallas*/
-// router.get('/details', mainController.details);
-// router.get('/edit', mainController.edit); 
+router.post('/producto/editar/:id', mainController.procesarEdit);
 
 module.exports = router;
-
-
-// // router.get(routes.homeRoute, controller.homeController);
-
-// module.exports = router;

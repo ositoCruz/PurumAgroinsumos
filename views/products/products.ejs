@@ -13,13 +13,13 @@
                     <div class="div_item_product">
                         <img src="/images/<%= product.image %>" alt="<%= product.name %>" class="product-image">
                         <h3><%= product.name %></h3>
-                        <p><%= product.description %></p>
+                        <p>Descripcion: <%= product.description %></p>
                         <p>Precio: $<%= product.price %></p>
                         <p>Stock: $<%= product.stock %></p>
                         
                         <div class="articulo-options">
                             <a href="/details/<%= product.id %>"><i class="fa-solid fa-circle-info"></i></a>
-                            <a href="/edit"><i class="fa-solid fa-square-pen"></i></i></a>
+                            <a href="/editproduct/<%= product.id %>"><i class="fa-solid fa-square-pen"></i></i></a>
                         </div>
                     </div>
                 <% }); %>

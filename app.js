@@ -27,6 +27,10 @@ app.post('/productos/crear', upload.single('productImage'), (req, res) => {
   console.log('Procesando creación de producto...');
   mainController.procesarCreate(req, res);
 });
+app.post('/producto/editar/:id', upload.single('productImage'), (req, res) => {
+  console.log('Procesando edición de producto...');
+  mainController.procesarEdit(req, res);
+});
 
 app.use(express.static(path.join(__dirname, 'public')));
 
