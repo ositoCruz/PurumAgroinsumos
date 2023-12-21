@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const productsFilePath = path.join(__dirname, '../data/product.json');
-
+const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 function getProducts() {
     return JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 }
@@ -56,18 +56,16 @@ const controller = {
     
     procesarCreate: (req, res) => {
         try {
+            
             const { name, description, category, price, stock } = req.body;
             const productImage = req.file;
-
             // Verifica si el archivo product.json existe, si no, crea una estructura inicial
             if (!fs.existsSync(productsFilePath)) {
                 const initialData = { products: [] };
                 fs.writeFileSync(productsFilePath, JSON.stringify(initialData, null, 2));
             }
-
             // Lee el contenido actual del archivo JSON
             const productsData = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-
             // Crea un nuevo objeto de producto
             const newProduct = {
                 id: productsData.products.length + 1, // Asigna un ID único (puedes usar alguna lógica específica)
@@ -78,13 +76,10 @@ const controller = {
                 stock,
                 image: productImage.filename,
             };
-
             // Agrega el nuevo producto al array de productos
             productsData.products.push(newProduct);
-
             // Escribe el nuevo contenido al archivo JSON
             fs.writeFileSync(productsFilePath, JSON.stringify(productsData, null, 2));
-
             res.redirect('/products');
         } catch (error) {
             console.error('Error al procesar la creación del producto:', error);
@@ -162,7 +157,7 @@ const controller = {
           console.error('Error al procesar la eliminación del producto:', error);
           res.status(500).send('Error interno del servidor');
         }
-      },
+    },
 
 }
 

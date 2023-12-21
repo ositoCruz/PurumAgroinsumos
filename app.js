@@ -2,25 +2,11 @@ const express = require('express');
 const app = express();
 const multer = require('multer');
 const path = require('path');
-
 const mainRoutes = require('./routes/mainRoutes');
 const mainController = require('./controllers/mainController');
-
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Configurar EJS como motor de plantillas
-app.set('view engine', 'ejs');
-app.use('/', mainRoutes);
-
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-// Middleware para manejar datos JSON
-app.use(express.json());
-// Middleware para manejar datos de formulario
-app.use(express.urlencoded({ extended: true }));
-
 // Configuración de Multer
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -33,7 +19,6 @@ const storage = multer.diskStorage({
   },
 });
 const upload = multer({ storage: storage });
-
 app.post('/productos/crear', upload.single('productImage'), (req, res) => {
   console.log('Procesando creación de producto...');
   mainController.procesarCreate(req, res);
@@ -42,12 +27,12 @@ app.post('/producto/editar/:id', upload.single('productImage'), (req, res) => {
   console.log('Procesando edición de producto...');
   mainController.procesarEdit(req, res);
 });
-app.post('/productos/eliminar/:id', (req, res) => {
-  mainController.procesarEliminar(req, res);
-});
 
+app.use(express.static(path.join(__dirname, 'public')));
 
-
+// Configurar EJS como motor de plantillas
+app.set('view engine', 'ejs');
+app.use('/', mainRoutes);
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`click para dirigirte al sitio: http://localhost:${PORT}/`);

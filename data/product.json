@@ -126,6 +126,15 @@
       "price": "898",
       "stock": "8",
       "image": "productImage-1703116183640.jpg"
+    },
+    {
+      "id": 14,
+      "name": "a",
+      "description": "a",
+      "category": "a",
+      "price": "78",
+      "stock": "7",
+      "image": "productImage-1703131231287-176065131.jpg"
     }
   ]
 }
