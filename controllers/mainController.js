@@ -136,16 +136,46 @@ const controller = {
 
     procesarEliminar: (req, res) => {
         try {
-          const productId = req.params.id;
-      
-            // Lógica para eliminar el producto
+            const productId = req.params.id;
+    
+            // Obtiene la información actual del producto
             const product = getProductById(productId);
-            // Escribe el nuevo contenido al archivo JSON
-            fs.writeFileSync(productsFilePath, JSON.stringify(product, null, 2));
-            res.redirect('/products');
+    
+            // Verifica si hay una imagen asociada al producto antes de intentar eliminarla
+            if (product && product.image) {
+                const imagePath = path.join(__dirname, '../public/images/', product.image);
+    
+                // Verifica si el archivo existe antes de intentar eliminarlo
+                if (fs.existsSync(imagePath)) {
+                    fs.unlinkSync(imagePath);
+                    console.log(`Archivo eliminado: ${imagePath}`);
+                } else {
+                    console.log(`El archivo no existe: ${imagePath}`);
+                }
+            }
+    
+            // Lee el contenido actual del archivo JSON
+            const productsData = getProducts();
+    
+            // Busca el índice del producto en el array
+            const productIndex = productsData.products.findIndex(item => item.id === parseInt(productId));
+    
+            if (productIndex !== -1) {
+                // Elimina el producto del array de productos
+                productsData.products.splice(productIndex, 1);
+    
+                // Escribe el nuevo contenido al archivo JSON
+                fs.writeFileSync(productsFilePath, JSON.stringify(productsData, null, 2));
+    
+                console.log(`Producto eliminado: ${productId}`);
+                res.redirect('/products');
+            } else {
+                console.error('Producto no encontrado en el array de productos');
+                res.status(500).send('Error interno del servidor');
+            }
         } catch (error) {
-          console.error('Error al procesar la eliminación del producto:', error);
-          res.status(500).send('Error interno del servidor');
+            console.error('Error al procesar la eliminación del producto:', error);
+            res.status(500).send('Error interno del servidor');
         }
     },
 

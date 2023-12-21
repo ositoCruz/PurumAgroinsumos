@@ -27,6 +27,7 @@ app.post('/producto/editar/:id', upload.single('productImage'), (req, res) => {
   console.log('Procesando edición de producto...');
   mainController.procesarEdit(req, res);
 });
+app.post('/producto/eliminar/:id', mainController.procesarEliminar);
 
 app.use(express.static(path.join(__dirname, 'public')));
 

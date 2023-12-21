@@ -1,7 +1,7 @@
 /**/
 :root {
     --gris-oscuro: #666;
-    --verde: #39b54a;
+    --verde: #35803f;
     --verde-claro: #6af24f;
     --black: #000;
     --white: #fff;
@@ -17,6 +17,7 @@
 * {
     box-sizing: border-box;
     font-family: var(--font-family);
+    font-size: 12px;
     
 }
 
@@ -114,7 +115,7 @@ header {
     background-color: var(--verde);
     color: #fff;
     border: none;
-    padding: 8px 15px;
+    padding: 8px 10px;
     border-radius: 3px;
     cursor: pointer;
     margin: 5px;
@@ -145,7 +146,7 @@ main {
 
 /*FOOTER*/
 footer {
-    background-color: #6af24f;
+    background-color: var(--verde);
     width: 100%;  
 }
 
