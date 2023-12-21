@@ -6,6 +6,11 @@ const path = require('path');
 const mainRoutes = require('./routes/mainRoutes');
 const mainController = require('./controllers/mainController');
 
+app.use(express.static(path.join(__dirname, 'public')));
+// Configurar EJS como motor de plantillas
+app.set('view engine', 'ejs');
+app.use('/', mainRoutes);
+
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -31,13 +36,11 @@ app.post('/producto/editar/:id', upload.single('productImage'), (req, res) => {
   console.log('Procesando edición de producto...');
   mainController.procesarEdit(req, res);
 });
+app.post('/productos/eliminar/:id', (req, res) => {
+  mainController.procesarEliminar(req, res);
+});
 
-app.use(express.static(path.join(__dirname, 'public')));
 
-// Configurar EJS como motor de plantillas
-app.set('view engine', 'ejs');
-
-app.use('/', mainRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

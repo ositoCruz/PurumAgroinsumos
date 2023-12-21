@@ -149,6 +149,21 @@ const controller = {
 
     },
 
+    procesarEliminar: (req, res) => {
+        try {
+          const productId = req.params.id;
+      
+            // Lógica para eliminar el producto
+            const product = getProductById(productId);
+            // Escribe el nuevo contenido al archivo JSON
+            fs.writeFileSync(productsFilePath, JSON.stringify(product, null, 2));
+            res.redirect('/products');
+        } catch (error) {
+          console.error('Error al procesar la eliminación del producto:', error);
+          res.status(500).send('Error interno del servidor');
+        }
+      },
+
 }
 
 module.exports = controller;
