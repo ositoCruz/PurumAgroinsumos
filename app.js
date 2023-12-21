@@ -7,6 +7,7 @@ const mainRoutes = require('./routes/mainRoutes');
 const mainController = require('./controllers/mainController');
 
 app.use(express.static(path.join(__dirname, 'public')));
+
 // Configurar EJS como motor de plantillas
 app.set('view engine', 'ejs');
 app.use('/', mainRoutes);
@@ -14,6 +15,11 @@ app.use('/', mainRoutes);
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+// Middleware para manejar datos JSON
+app.use(express.json());
+// Middleware para manejar datos de formulario
+app.use(express.urlencoded({ extended: true }));
 
 // Configuración de Multer
 const storage = multer.diskStorage({
