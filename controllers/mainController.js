@@ -14,8 +14,7 @@ function getProductById(productId) {
     return product;
 }
 
-const controller = {
-    
+const controller = {  
     index: (req, res) => {
         // Lee el archivo JSON de productos
         const productsData = getProducts();
@@ -56,7 +55,6 @@ const controller = {
     
     procesarCreate: (req, res) => {
         try {
-            
             const { name, description, category, price, stock } = req.body;
             const productImage = req.file;
             // Verifica si el archivo product.json existe, si no, crea una estructura inicial
@@ -95,15 +93,7 @@ const controller = {
     
             // Obtiene la información actual del producto
             const product = getProductById(productId);
-    
-            if (!product) {
-                console.error('Producto no encontrado');
-                return res.status(404).send('Producto no encontrado');
-            }
-    
-            // Conserva la imagen actual
-            const oldImage = product.image;
-    
+
             // Actualiza los datos del producto
             product.name = name;
             product.description = description;

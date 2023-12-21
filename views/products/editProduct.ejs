@@ -10,23 +10,23 @@
                 <h2>EDITAR PRODUCTO</h2>
                 <div>
                     <label for="name">Nombre</label>
-                    <input type="text" placeholder="<%= product.name %>" value="" name="name" id="name" >
+                    <input type="text" placeholder="<%= product.name %>" value="<%= product.name %>" name="name" id="name" >
                 </div>
                 <div>
                     <label for="description">Descripcion</label>
-                    <input type="text" placeholder="<%= product.description %>" name="description" id="description" value="">
+                    <input type="text" placeholder="<%= product.description %>" name="description" id="description" value="<%= product.description %>">
                 </div>
                 <div>
                     <label for="category">Categoria</label>
-                    <input type="text" placeholder="<%= product.category %>" name="category" id="category" value="">
+                    <input type="text" placeholder="<%= product.category %>" name="category" id="category" value="<%= product.category %>">
                 </div>
                 <div>
                     <label for="price">Precio</label>
-                    <input type="number" placeholder="<%= product.price %>" name="price" id="price" value="">
+                    <input type="number" placeholder="<%= product.price %>" name="price" id="price" value="<%= product.price %>">
                 </div>
                 <div>
                     <label for="stock">Stock</label>
-                    <input type="number" placeholder="<%= product.stock %>" name="stock" id="stock" value="">
+                    <input type="number" placeholder="<%= product.stock %>" name="stock" id="stock" value="<%= product.stock %>">
                 </div>
                 <div>
                     <img src="/images/<%= product.image %>" alt="">

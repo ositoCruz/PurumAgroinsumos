@@ -111,21 +111,21 @@
     },
     {
       "id": 12,
-      "name": "probando",
+      "name": "probandosi",
       "description": "probando alta",
       "category": "Ecologico",
-      "price": "78",
-      "stock": "7",
-      "image": "productImage-1703116183640.jpg"
+      "price": "12",
+      "stock": "1",
+      "image": "productImage-1703131714296.jpg"
     },
     {
       "id": 13,
       "name": "probando",
       "description": "probando alta",
       "category": "Ecologico",
-      "price": "898",
-      "stock": "8",
-      "image": "productImage-1703116183640.jpg"
+      "price": "56",
+      "stock": "1",
+      "image": "productImage-1703131693201.jpg"
     },
     {
       "id": 14,
@@ -134,7 +134,7 @@
       "category": "a",
       "price": "78",
       "stock": "7",
-      "image": "productImage-1703131231287-176065131.jpg"
+      "image": "productImage-1703131848892.jpg"
     }
   ]
 }
