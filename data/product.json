@@ -111,7 +111,7 @@
     },
     {
       "id": 12,
-      "name": "probandosi",
+      "name": "probandosisis",
       "description": "probando alta",
       "category": "Ecologico",
       "price": "12",
@@ -134,7 +134,16 @@
       "category": "a",
       "price": "78",
       "stock": "7",
-      "image": "productImage-1703131848892.jpg"
+      "image": "productImage-1703132329552.jpg"
+    },
+    {
+      "id": 15,
+      "name": "ultima prueba",
+      "description": "a",
+      "category": "a",
+      "price": "78",
+      "stock": "3",
+      "image": "productImage-1703132361617-812603675.jpg"
     }
   ]
 }
