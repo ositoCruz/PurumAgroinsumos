@@ -8,8 +8,13 @@ router.get('/', mainController.index);
 router.get('/products', mainController.products);
 // router.get('/search', mainController.search); 
 // router.get('/about', mainController.aboutController);
+
 router.get('/login', mainController.login);
+
+
 router.get('/register', mainController.register);
+router.post('/user/register', mainController.procesarRegister);
+
 router.get('/carrito', mainController.carrito);
 router.get('/newproduct', mainController.altaproducto);
 

@@ -1,12 +1,16 @@
 const express = require('express');
 const app = express();
+
 const multer = require('multer');
 const path = require('path');
+
 const mainRoutes = require('./src/routes/mainRoutes');
 const mainController = require('./src/controllers/mainController');
+
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 // Configuración de Multer
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -18,6 +22,7 @@ const storage = multer.diskStorage({
     cb(null, file.fieldname + '-' + uniqueSuffix + fileExtension);
   },
 });
+
 const upload = multer({ storage: storage });
 app.post('/productos/crear', upload.single('productImage'), (req, res) => {
   console.log('Procesando creación de producto...');
@@ -28,6 +33,10 @@ app.post('/producto/editar/:id', upload.single('productImage'), (req, res) => {
   mainController.procesarEdit(req, res);
 });
 app.post('/producto/eliminar/:id', mainController.procesarEliminar);
+app.post('/user/register', upload.single('profileImage'), (req, res) => {
+  console.log('Procesando creacion del usuario...');
+  mainController.procesarRegister(req, res);
+});
 
 app.use(express.static(path.join(__dirname, 'public')));
 
