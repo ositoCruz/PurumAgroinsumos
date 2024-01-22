@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
+//const productsFilePath = path.join(__dirname, '..src/data/product.json');
 const productsFilePath = path.join(__dirname, '../data/product.json');
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 function getProducts() {
