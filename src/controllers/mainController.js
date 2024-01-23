@@ -1,8 +1,12 @@
 const fs = require('fs');
 const path = require('path');
 
+const bcrypt = require('bcrypt');
+
 const productsFilePath = path.join(__dirname, '../data/product.json');
+const usersFilePath = path.join(__dirname, '../data/users.json');
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
 function getProducts() {
     return JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 }
@@ -12,6 +16,16 @@ function getProductById(productId) {
     // Busca el producto por ID
     const product = productsData.products.find(item => item.id === parseInt(productId));
     return product;
+}
+function getUsers() {
+    return JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
+}
+function getUserByUsername(username) {
+    // Lee el archivo JSON de productos
+    const usersData = getUsers();
+    // Busca el producto por ID
+    const user = usersData.users.find(item => item.username === username);
+    return user;
 }
 
 const controller = {  
@@ -32,6 +46,37 @@ const controller = {
     },
     register: (req, res) => {
         return res.render('users/register')
+    },
+    //proceso la creacion de usuario
+    procesarRegister: (req, res) => {
+        try {
+            const { fullname, username, email, password, confirmPassword } = req.body;
+            const profileImage = req.file;
+            // Verifica si el archivo product.json existe, si no, crea una estructura inicial
+            if (!fs.existsSync(usersFilePath)) {
+                const initialData = { users: [] };
+                fs.writeFileSync(usersFilePath, JSON.stringify(initialData, null, 2));
+            }
+            // Lee el contenido actual del archivo JSON
+            const usersData = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
+            // Crea un nuevo objeto de producto
+            const newUser = {
+                id: usersData.users.length + 1, // Asigna un ID único (puedes usar alguna lógica específica)
+                fullname,
+                username,
+                email,
+                password,
+                image: profileImage.filename,
+            };
+            // Agrega el nuevo producto al array de productos
+            usersData.users.push(newUser);
+            // Escribe el nuevo contenido al archivo JSON
+            fs.writeFileSync(usersFilePath, JSON.stringify(usersData, null, 2));
+            res.redirect('/login');
+        } catch (error) {
+            console.error('Error al procesar la creación del producto:', error);
+            res.status(500).send('Error interno del servidor');
+        }
     },
     carrito: (req, res) => {
         return res.render('products/carritoDeCompras')
