@@ -7,6 +7,14 @@
       "email": "lorena.natali18@gmail.com",
       "password": "aaaa",
       "image": "profileImage-1705966599968-706883265.jpg"
+    },
+    {
+      "id": 2,
+      "fullname": "Lorena Gomez",
+      "username": "lorena.natali18@gmail.com",
+      "email": "lorena.natali18@gmail.com",
+      "password": "asd",
+      "image": "profileImage-1706053993897-144885797.jpg"
     }
   ]
 }
