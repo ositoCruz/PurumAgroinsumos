@@ -2,28 +2,35 @@ const express = require('express');
 const router = express.Router();
 
 const mainController = require('../controllers/mainController')
+const { guestMiddleware, authMiddleware } = require('../middlewares/authMiddleware');
 
-
+//rutas accesibles por cualquiera
 router.get('/', mainController.index);
 router.get('/products', mainController.products);
-// router.get('/search', mainController.search); 
-// router.get('/about', mainController.aboutController);
-
-router.get('/login', mainController.login);
-
-
-router.get('/register', mainController.register);
-router.post('/user/register', mainController.procesarRegister);
-
-router.get('/carrito', mainController.carrito);
-router.get('/newproduct', mainController.altaproducto);
-
 router.get('/details/:id', mainController.detailsProduct);
-router.get('/editproduct/:id', mainController.editProducto); 
 
+// Rutas accesibles solo sin login (huéspedes)
+router.get('/guest-route', guestMiddleware, mainController.guestRoute);
+router.get('/login', guestMiddleware, mainController.login);
+router.get('/register', guestMiddleware, mainController.register);
+
+// Rutas accesibles solo con login (usuarios)
+router.get('/user-route', authMiddleware, mainController.userRoute);
+router.get('/profile/:username', authMiddleware, mainController.profile);
+router.get('/logout', authMiddleware, mainController.logout);
+router.get('/carrito', authMiddleware, mainController.carrito);
+router.get('/newproduct', authMiddleware, mainController.altaproducto);
+router.get('/editproduct/:id', authMiddleware, mainController.editProducto); 
+router.post('/producto/eliminar/:id', authMiddleware, mainController.procesarEliminar);
+
+// Otras rutas...
+router.post('/user/login', mainController.procesarLogin);
+router.post('/user/register', mainController.procesarRegister);
 router.post('/productos/crear', mainController.procesarCreate);
 router.post('/producto/editar/:id', mainController.procesarEdit);
-router.post('/producto/eliminar/:id', mainController.procesarEliminar);
 
+
+// router.get('/search', mainController.search); 
+// router.get('/about', mainController.aboutController);
 
 module.exports = router;
