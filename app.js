@@ -1,17 +1,27 @@
 const express = require('express');
 const app = express();
 
-const fs = require('fs');
 const multer = require('multer');
 const path = require('path');
+const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 
 const mainRoutes = require('./src/routes/mainRoutes');
 const mainController = require('./src/controllers/mainController');
 
+const { authMiddleware, guestMiddleware, rememberMiddleware } = require('./src/middlewares/authMiddleware');
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+
+app.use(cookieParser());
+app.use(session({
+    secret: 'tu_secreto_aqui',
+    resave: false,
+    saveUninitialized: true
+}));
 
 // Configuración de Multer
 const storage = multer.diskStorage({
@@ -48,15 +58,11 @@ const storageUser = multer.diskStorage({
   },
 });
 
+// Agrega el middleware de recordar al usuario
+app.use(rememberMiddleware);
 
-const upload = multer({ storage: storage });
-const uploadUser = multer({ storage: storageUser });
 
-app.use(session({
-  secret: 'tu_secreto',
-  resave: false,
-  saveUninitialized: true
-}));
+
 // Middleware para pasar información del usuario a todas las vistas
 app.use((req, res, next) => {
   res.locals.user = req.session.user || null;
@@ -67,6 +73,9 @@ app.use((req, res, next) => {
   res.locals.user = req.session.user || null;
   next();
 });
+
+const upload = multer({ storage: storage });
+const uploadUser = multer({ storage: storageUser });
 
 app.post('/user/register', uploadUser.single('profileImage'), (req, res) => {
   req.body.type = 'user';

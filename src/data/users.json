@@ -22,6 +22,14 @@
       "email": "lorena.natali18@gmail.com",
       "password": "$2b$10$5RknUf4xOWr2ccO5IBsjAepWhsA7dHChJxwdAkezGDLwrANmuUK56",
       "image": "profileImage-1706142090152-39362420.jpg"
+    },
+    {
+      "id": 4,
+      "fullname": "Lorena Gomez",
+      "username": "ffgomez89",
+      "email": "lorena.natali18@gmail.com",
+      "password": "$2b$10$ai06hNN/LKQRjkeqNctnw.EnIbU/jdj3LfDSS7VOqtmZyWqlU3UF6",
+      "image": "profileImage-1706162259316-513899966.jpg"
     }
   ]
 }

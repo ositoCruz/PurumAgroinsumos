@@ -17,13 +17,13 @@ router.get('/register', guestMiddleware, mainController.register);
 // Rutas accesibles solo con login (usuarios)
 router.get('/user-route', authMiddleware, mainController.userRoute);
 router.get('/profile/:username', authMiddleware, mainController.profile);
-router.get('/logout', authMiddleware, mainController.logout);
 router.get('/carrito', authMiddleware, mainController.carrito);
 router.get('/newproduct', authMiddleware, mainController.altaproducto);
 router.get('/editproduct/:id', authMiddleware, mainController.editProducto); 
 router.post('/producto/eliminar/:id', authMiddleware, mainController.procesarEliminar);
 
 // Otras rutas...
+router.get('/logout', mainController.logout);
 router.post('/user/login', mainController.procesarLogin);
 router.post('/user/register', mainController.procesarRegister);
 router.post('/productos/crear', mainController.procesarCreate);

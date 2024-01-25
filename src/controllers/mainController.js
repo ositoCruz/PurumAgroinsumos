@@ -39,7 +39,7 @@ const controller = {
         // Lógica para la ruta de usuarios (accesible solo con login)
         res.render('user-route');
     },
-    
+
     index: (req, res) => {
         // Lee el archivo JSON de productos
         const productsData = getProducts();
@@ -64,13 +64,17 @@ const controller = {
     },
     procesarLogin: (req, res) => {
         try {
-            const { username, password } = req.body;
+            const { username, password, remember } = req.body;
             const existingUser = getUserByUsername(username);
             if (existingUser) {
                 const isPasswordCorrect = bcrypt.compareSync(password, existingUser.password);
                 if (isPasswordCorrect) {
                     req.session.user = existingUser;
                     req.session.username = existingUser.username;
+                     // Si el usuario marcó "recordarme", establecer una cookie
+                    if (remember) {
+                        res.cookie('remember', 'true', { maxAge: 604800000 }); // 7 días en milisegundos
+                    }
                     res.redirect(`/profile/${username}`);
 
                 } else {
@@ -295,3 +299,4 @@ const controller = {
 }
 
 module.exports = controller;
+module.exports.getUserByUsername = getUserByUsername;
