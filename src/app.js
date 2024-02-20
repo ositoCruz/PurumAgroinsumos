@@ -7,10 +7,10 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 
-const mainRoutes = require('./src/routes/mainRoutes');
-const mainController = require('./src/controllers/mainController');
+const mainRoutes = require('./routes/mainRoutes');
+const mainController = require('./controllers/mainController');
 
-const { authMiddleware, guestMiddleware, rememberMiddleware } = require('./src/middlewares/authMiddleware');
+const { authMiddleware, guestMiddleware, rememberMiddleware } = require('./middlewares/authMiddleware');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -100,11 +100,11 @@ app.post('/producto/editar/:id', upload.single('productImage'), (req, res) => {
 });
 app.post('/producto/eliminar/:id', mainController.procesarEliminar);
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join('./public')));
 
 // Configurar EJS como motor de plantillas
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'src/views'));
+app.set('views', path.join(__dirname, '/views'));
 
 app.use('/', mainRoutes);
 const PORT = process.env.PORT || 3000;

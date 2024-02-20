@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include('partials/head.ejs') %>
+    <%- include("partials/head") %>
 <body>
-    <%- include('partials/header.ejs') %>
-    <%- include('partials/search.ejs') %>
+    <%- include('partials/header') %>
+    <%- include('partials/search') %>
     <main>
         <section class="articulos-principales">
             <% const lastThreeProducts = products.slice(Math.max(products.length - 3, 0)); %>
@@ -24,6 +24,6 @@
             
         </section>
     </main>
-    <%- include('partials/footer.ejs') %>
+    <%- include('partials/footer') %>
 </body>
 </html>

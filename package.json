@@ -15,8 +15,8 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "start": "app.js",
-    "test": "test.js"
+    "start": "node src/app.js",
+    "test": "nodemon src/app.js"
   },
   "author": "",
   "license": "ISC",
