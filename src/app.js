@@ -7,10 +7,10 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 
-const mainRoutes = require('./routes/mainRoutes');
-const mainController = require('./controllers/mainController');
+const mainRoutes = require('./src/routes/mainRoutes');
+const mainController = require('./src/controllers/mainController');
 
-const { authMiddleware, guestMiddleware, rememberMiddleware } = require('./middlewares/authMiddleware');
+const { authMiddleware, guestMiddleware, rememberMiddleware } = require('./src/middlewares/authMiddleware');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -104,7 +104,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Configurar EJS como motor de plantillas
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '/views'));
+app.set('views', path.join(__dirname, 'src/views'));
 
 app.use('/', mainRoutes);
 const PORT = process.env.PORT || 3000;
