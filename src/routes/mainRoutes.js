@@ -6,6 +6,8 @@ const { guestMiddleware, authMiddleware } = require('../middlewares/authMiddlewa
 
 //rutas accesibles por cualquiera
 router.get('/', mainController.index);
+
+  
 router.get('/products', mainController.products);
 router.get('/details/:id', mainController.detailsProduct);
 

@@ -12,6 +12,7 @@
             <div class="div-products">
                 <table>
                     <thead>
+                        <th>Categoria</th>
                         <th>Imagen</th>
                         <th>Nombre</th>
                         <th>Descripcion</th>
@@ -20,17 +21,18 @@
                         <th>Acciones</th>
                     </thead>
                     <tbody>
-                        <% products.forEach(product => { %>
+                        <% productosdata.forEach(product => { %>
                             <tr>
-                                <td><img src="/images/<%= product.image %>" alt="<%= product.name %>" class="product-image"></td>
-                                <td><%= product.name %></td>
-                                <td><%= product.description %></td>
-                                <td>$<%= product.price %></td>
-                                <td><%= product.stock %></td>
+                                <td></td>
+                                <td><img src="/images/<%= product.producto_imagen %>" alt="<%= product.producto_imagen %>" class="product-image"></td>
+                                <td><%= product.producto_descripcion %></td>
+                                <td><%= product.producto_detalle %></td>
+                                <td>$<%= product.producto_precio %></td>
+                                <td><%= product.producto_stock %></td>
                                 <td class="product_acciones">
-                                    <a href="/details/<%= product.id %>"><button class="productacc"><i class="fa-solid fa-circle-info"></i></button></a>
-                                    <a href="/editproduct/<%= product.id %>"><button class="productacc"><i class="fa-solid fa-square-pen"></i></button></a>
-                                    <form action="/producto/eliminar/<%= product.id %>" method="post" onsubmit="return confirm('¿Estás seguro de eliminar este producto?');">
+                                    <a href="/details/<%= product.producto_id %>"><button class="productacc"><i class="fa-solid fa-circle-info"></i></button></a>
+                                    <a href="/editproduct/<%= product.producto_id %>"><button class="productacc"><i class="fa-solid fa-square-pen"></i></button></a>
+                                    <form action="/producto/eliminar/<%= product.producto_id %>" method="post" onsubmit="return confirm('¿Estás seguro de eliminar este producto?');">
                                         <button class="productacc" type="submit" class="btn-delete-product"><i class="fa-solid fa-trash-can"></i></button>
                                     </form>
                                 </td>

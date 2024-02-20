@@ -6,18 +6,18 @@
     <%- include('partials/search') %>
     <main>
         <section class="articulos-principales">
-            <% const lastThreeProducts = products.slice(Math.max(products.length - 3, 0)); %>
-            <% lastThreeProducts.forEach(product => { %>
+            <% const lastThreeProducts = productosdata.slice(Math.max(productosdata.length - 3, 0)); %>
+            <% productosdata.forEach(producto => { %>
                 <div class="articulo-item">
-                    <img src="/images/<%= product.image %>" alt="<%= product.name %>" class="product-image">
-                    <h3><%= product.name %></h3>
-                    <p><%= product.description %></p>
-                    <p>Precio: $<%= product.price %></p>
-                    <p>Stock: $<%= product.stock %></p>
+                    <img src="/images/<%= producto.producto_imagen %>" alt="<%= producto.producto_imagen %>" class="product-image">
+                    <h3><%= producto.producto_descripcion %></h3>
+                    <p><%= producto.producto_detalle %></p>
+                    <p>Precio: $<%= producto.producto_precio %></p>
+                    <p>Stock: <%= producto.producto_stock %></p>
                     
                     <div class="articulo-options">
-                        <a href="/details/<%= product.id %>"><i class="fa-solid fa-circle-info"></i></a>
-                        <a href="/editproduct/<%= product.id %>"><i class="fa-solid fa-square-pen"></i></i></a>
+                        <a href="/details/<%= producto.producto_id %>"><i class="fa-solid fa-circle-info"></i></a>
+                        <a href="/editproduct/<%= producto.producto_id %>"><i class="fa-solid fa-square-pen"></i></i></a>
                     </div>
                 </div>
             <% }); %>

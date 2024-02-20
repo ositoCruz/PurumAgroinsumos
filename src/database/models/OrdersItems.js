@@ -1,6 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    let alias = 'order_item';
-    let cols = {
+    const OrdersItems = sequelize.define('OrdersItems', {
         producto_id: {
             type: DataTypes.INTEGER,
             allowNull: false
@@ -9,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        order_item_id: {
+        orderItem_id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
@@ -22,23 +21,18 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.FLOAT,
             allowNull: false
         }
-    };
-    let config = {
-        timestamps: false
-    };
+    });
 
-    const orderItem = sequelize.define(alias, cols, config); 
-
-    orderItem.associate = function(models) {
-        orderItem.belongsTo(models.Producto, {
-            as: 'producto',
-            foreignKey: 'producto_id'
+    OrdersItems.associate = models => {
+        OrdersItems.belongsTo(models.Productos, {
+            foreignKey: 'producto_id',
+            as: 'producto'
         });
-        orderItem.belongsTo(models.Order, {
-            as: 'order',
-            foreignKey: 'order_id'
+        OrdersItems.belongsTo(models.Orders, {
+            foreignKey: 'order_id',
+            as: 'order'
         });
     };
 
-    return orderItem;
+    return OrdersItems;
 };

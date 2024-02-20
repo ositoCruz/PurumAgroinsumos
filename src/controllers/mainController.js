@@ -5,7 +5,19 @@ const bcrypt = require('bcrypt');
 
 const productsFilePath = path.join(__dirname, '../data/product.json');
 const usersFilePath = path.join(__dirname, '../data/users.json');
-const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+const db = require('../database/models');
+const sequelize = db.sequelize;
+const { Op } = require("sequelize");
+const moment = require('moment');
+
+// modelos
+const Categorias = db.Categorias;
+const Orders = db.Orders;
+const OrdersItems = db.OrdersItems;
+const OrdersStatus = db.OrdersStatus;
+const Productos = db.Productos;
+const Users = db.Users;
 
 function getProducts() {
     return JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
@@ -40,17 +52,15 @@ const controller = {
         res.render('user-route');
     },
 
-    index: (req, res) => {
-        // Lee el archivo JSON de productos
-        const productsData = getProducts();
-        // Pasa los datos de productos a la vista
-        return res.render('index', { products: productsData.products });
+    index: async (req, res) => {
+        const productosdata = await db.Productos.findAll();
+        return res.render('index', { productosdata })
     },
-    products: (req, res) => {
+    products: async (req, res) => {
         // Lee el archivo JSON de productos
-        const productsData = getProducts();
+        const productosdata = await db.Productos.findAll();
         // Pasa los datos de productos a la vista
-        return res.render('products/products', { products: productsData.products });
+        return res.render('products/products', { productosdata });
     },
     profile: (req, res) => {
         const username = req.params.username;

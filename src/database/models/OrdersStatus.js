@@ -1,15 +1,16 @@
 module.exports = (sequelize, DataTypes) => {
-    const Categorias = sequelize.define('Categorias', {
-        categoria_id: {
+    const OrdersStatus = sequelize.define('OrdersStatus', {
+        orderStatus_id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
-        categoria_descripcion: {
-            type: DataTypes.STRING(150),
+        orderStatus_descripcion: {
+            type: DataTypes.STRING(50),
             allowNull: true
         }
     });
 
-    return Categorias;
+    return OrdersStatus;
 };
+

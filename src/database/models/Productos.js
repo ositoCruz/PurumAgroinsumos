@@ -1,6 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    let alias = 'Productos';
-    let cols = {
+    const Productos = sequelize.define('Productos', {
         producto_id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -29,22 +28,15 @@ module.exports = (sequelize, DataTypes) => {
         producto_imagen: {
             type: DataTypes.CHAR(250),
             allowNull: true
-        },
-        categoria_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false
         }
-    };
-    let config = {
-        timestamps: false
-    };
+    }, {
+        timestamps: false // Agregar esta opción para desactivar los timestamps
+    });
 
-    const Productos = sequelize.define(alias, cols, config); 
-
-    Productos.associate = function(models) {
+    Productos.associate = models => {
         Productos.belongsTo(models.Categorias, {
-            as: 'categorias',
-            foreignKey: 'categoria_id'
+            foreignKey: 'categoria_id',
+            as: 'categoria'
         });
     };
 
