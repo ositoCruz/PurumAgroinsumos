@@ -181,66 +181,67 @@ const controller = {
         // const product = getProductById(productId); 
         return res.render('products/editProduct', { product });
     },
-    
-    procesarCreate: (req, res) => {
+
+
+    procesarCreate : async (req, res) => {
         try {
             const { name, description, category, price, stock } = req.body;
             const productImage = req.file;
-            // Verifica si el archivo product.json existe, si no, crea una estructura inicial
-            if (!fs.existsSync(productsFilePath)) {
-                const initialData = { products: [] };
-                fs.writeFileSync(productsFilePath, JSON.stringify(initialData, null, 2));
-            }
-            // Lee el contenido actual del archivo JSON
-            const productsData = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-            // Crea un nuevo objeto de producto
-            const newProduct = {
-                id: productsData.products.length + 1, // Asigna un ID único (puedes usar alguna lógica específica)
-                name,
-                description,
-                category,
-                price,
-                stock,
-                image: productImage.filename,
-            };
-            // Agrega el nuevo producto al array de productos
-            productsData.products.push(newProduct);
-            // Escribe el nuevo contenido al archivo JSON
-            fs.writeFileSync(productsFilePath, JSON.stringify(productsData, null, 2));
-            res.redirect('/products');
+    
+            // Crea un nuevo registro de producto en la base de datos
+            await Productos.create({
+                producto_descripcion: name,
+                producto_detalle: description,
+                categoria_id: category,
+                producto_precio: price,
+                producto_stock: stock,
+                producto_imagen: productImage.filename // Asume que productImage.filename contiene el nombre de la imagen
+            });
+    
+            // Redirige a la página de productos después de crear el nuevo registro
+            return res.redirect('/products');
         } catch (error) {
             console.error('Error al procesar la creación del producto:', error);
             res.status(500).send('Error interno del servidor');
         }
     },
-
-    //OPCION 3 PROCESAR EDIT:
-    procesarEdit : function (req, res) {
-        let productId = req.params.id;
-        const { descripcion, detalle, category, precio, stock } = req.body;
-        const productoImagen = req.file;
-
-        //FALTA AGREGAR LA LOGICA DE LA IMAGEN :P
     
-        // Verifica si productoImagen está definido, y si lo está, obtén el nombre de archivo
-        let producto_imagen = productoImagen ? productoImagen.filename : null;
-        
-        Productos.update(
-            {
-                producto_descripcion: descripcion,
-                producto_detalle: detalle,
-                categoria_id: category,
-                producto_precio: precio,
-                producto_stock: stock,
-                producto_imagen: producto_imagen // Actualiza solo si hay una nueva imagen
-            },
-            {
-                where: { producto_id: productId } // Asegúrate de usar el campo correcto para la condición where
-            })
-            .then(() => {
-                return res.redirect('/products');
-            })
-            .catch(error => res.send(error));
+    
+    //OPCION 3 PROCESAR EDIT:
+    procesarEdit : async function  (req, res) {
+        try {
+            const productId = req.params.id;
+            const { descripcion, detalle, category, precio, stock } = req.body;
+            const productoImagen = req.file;
+    
+            // Verifica si productoImagen está definido, y si lo está, obtén el nombre de archivo
+            let producto_imagen = null;
+            if (productoImagen) {
+                producto_imagen = productoImagen.filename;
+                // Aquí puedes agregar la lógica para manejar la actualización de la imagen del producto
+                // Por ejemplo, puedes eliminar la imagen anterior y guardar la nueva imagen en su lugar
+            }
+    
+            // Actualiza el producto en la base de datos
+            await Productos.update(
+                {
+                    producto_descripcion: descripcion,
+                    producto_detalle: detalle,
+                    categoria_id: category,
+                    producto_precio: precio,
+                    producto_stock: stock,
+                    producto_imagen: producto_imagen // Actualiza solo si hay una nueva imagen
+                },
+                {
+                    where: { producto_id: productId } // Asegúrate de usar el campo correcto para la condición where
+                });
+    
+            // Redirige a la página de productos después de la actualización
+            return res.redirect('/products');
+        } catch (error) {
+            console.error('Error al procesar la edición del producto:', error);
+            res.status(500).send('Error interno del servidor');
+        }
     },
 
     procesarEliminar: function (req,res) {
