@@ -166,17 +166,19 @@ const controller = {
     altaproducto: (req, res) => {
         return res.render('products/createProduct');
     },
-    detailsProduct: (req, res) => {
+    detailsProduct: async (req, res) => {
         const productId = req.params.id;
         // Aquí deberías obtener la información del producto según el id
-        const product = getProductById(productId); 
+        const product = await db.Productos.findByPk(productId);
+        // const product = getProductById(productId); 
         // Renderiza la vista productDetail.ejs y pasa el objeto del producto
         res.render('products/productDetail', { product });
     },
-    editProducto: (req, res) => {
+    editProducto: async (req, res) => {
         const productId = req.params.id;
         // Aquí deberías obtener la información del producto según el id
-        const product = getProductById(productId); 
+        const product = await db.Productos.findByPk(productId);
+        // const product = getProductById(productId); 
         return res.render('products/editProduct', { product });
     },
     
@@ -212,99 +214,143 @@ const controller = {
         }
     },
 
-    procesarEdit: (req, res) => {
-        try {
-            const productId = req.params.id;
-            const { name, description, category, price, stock } = req.body;
-            const productImage = req.file;
-    
-            // Obtiene la información actual del producto
-            const product = getProductById(productId);
+    //OPCION 3 PROCESAR EDIT:
+    procesarEdit : function (req, res) {
+        let productId = req.params.id;
+        const { descripcion, detalle, category, precio, stock } = req.body;
+        const productoImagen = req.file;
 
-            // Actualiza los datos del producto
-            product.name = name;
-            product.description = description;
-            product.category = category;
-            product.price = price;
-            product.stock = stock;
+        //FALTA AGREGAR LA LOGICA DE LA IMAGEN :P
     
-            // Actualiza la imagen si se proporciona una nueva
-            if (productImage) {
-                // Asigna el nombre de la nueva imagen al producto
-                product.image = `productImage-${Date.now()}${path.extname(productImage.originalname)}`;
-                const newImagePath = path.join(__dirname, '../public/images/', product.image);
-                fs.renameSync(productImage.path, newImagePath);
-            }
-    
-            // Lee el contenido actual del archivo JSON
-            const productsData = getProducts();
-    
-            // Busca el índice del producto en el array
-            const productIndex = productsData.products.findIndex(item => item.id === parseInt(productId));
-    
-            if (productIndex !== -1) {
-                // Actualiza el producto en el array de productos
-                productsData.products[productIndex] = product;
-    
-                // Escribe el nuevo contenido al archivo JSON
-                fs.writeFileSync(productsFilePath, JSON.stringify(productsData, null, 2));
-    
-                res.redirect('/products');
-            } else {
-                console.error('Producto no encontrado en el array de productos');
-                res.status(500).send('Error interno del servidor');
-            }
-        } catch (error) {
-            console.error('Error al procesar la edición del producto:', error);
-            res.status(500).send('Error interno del servidor');
-        }
-
+        // Verifica si productoImagen está definido, y si lo está, obtén el nombre de archivo
+        let producto_imagen = productoImagen ? productoImagen.filename : null;
+        
+        Productos.update(
+            {
+                producto_descripcion: descripcion,
+                producto_detalle: detalle,
+                categoria_id: category,
+                producto_precio: precio,
+                producto_stock: stock,
+                producto_imagen: producto_imagen // Actualiza solo si hay una nueva imagen
+            },
+            {
+                where: { producto_id: productId } // Asegúrate de usar el campo correcto para la condición where
+            })
+            .then(() => {
+                return res.redirect('/products');
+            })
+            .catch(error => res.send(error));
     },
 
-    procesarEliminar: (req, res) => {
-        try {
-            const productId = req.params.id;
+    procesarEliminar: function (req,res) {
+        let productId = req.params.id;
+        Productos
+        .destroy({where: {producto_id: productId}, force: true}) // force: true es para asegurar que se ejecute la acción
+        .then(()=>{
+            return res.redirect('/products')})
+        .catch(error => res.send(error)) 
+    }
+
+
+
+
+
+//OPCION 1 PROCESAREDIT NO FUNCIONA (TODAVIA)
+    // procesarEdit: async (req, res) => {
+    //     try {
+    //         const productId = req.params.id;
+    //         const { descripcion, detalle, category, precio, stock } = req.body;
+    //         const productImage = req.file;
     
-            // Obtiene la información actual del producto
-            const product = getProductById(productId);
+    //         // Obtiene la información actual del producto
+    //         const product = await db.Productos.findByPk(productId);
+
+    //         // Actualiza los datos del producto
+    //         product.producto_descripcion = descripcion;
+    //         product.producto_detalle = detalle;
+    //         product.categoria_id = category;
+    //         product.producto_precio = precio;
+    //         product.producto = stock;
     
-            // Verifica si hay una imagen asociada al producto antes de intentar eliminarla
-            if (product && product.image) {
-                const imagePath = path.join(__dirname, '../public/images/', product.image);
+    //         // Actualiza la imagen si se proporciona una nueva
+    //         if (productImage) {
+    //             // Asigna el nombre de la nueva imagen al producto
+    //             product.producto_imagen = `productImage-${Date.now()}${path.extname(productImage.originalname)}`;
+    //             const newImagePath = path.join(__dirname, '../public/images/', product.producto_imagen);
+    //             fs.renameSync(productImage.path, newImagePath);
+    //         }
     
-                // Verifica si el archivo existe antes de intentar eliminarlo
-                if (fs.existsSync(imagePath)) {
-                    fs.unlinkSync(imagePath);
-                    console.log(`Archivo eliminado: ${imagePath}`);
-                } else {
-                    console.log(`El archivo no existe: ${imagePath}`);
-                }
-            }
+    //         // Lee el contenido actual del archivo JSON
+    //         const productosdata = await db.Productos.findAll();
+
+    //         // Busca el índice del producto en el array
+    //         const productIndex = productosdata.findIndex(item => item.producto_id === parseInt(productId));
+
+            
+    //         if (productIndex !== -1) {
+    //             // Actualiza el producto en el array de productos
+    //             productosdata[productIndex] = product;
     
-            // Lee el contenido actual del archivo JSON
-            const productsData = getProducts();
+    //             // Escribe el nuevo contenido al archivo JSON
+    //             fs.writeFileSync(productsFilePath, JSON.stringify(productosdata, null, 2));
     
-            // Busca el índice del producto en el array
-            const productIndex = productsData.products.findIndex(item => item.id === parseInt(productId));
+    //             res.redirect('/products');
+    //         } else {
+    //             console.error('Producto no encontrado en el array de productos');
+    //             res.status(500).send('Error interno del servidor');
+    //         }
+    //     } catch (error) {
+    //         console.error('Error al procesar la edición del producto:', error);
+    //         res.status(500).send('Error interno del servidor');
+    //     }
+
+    // },
+
+    // procesarEliminar: (req, res) => {
+    //     try {
+    //         const productId = req.params.id;
     
-            if (productIndex !== -1) {
-                // Elimina el producto del array de productos
-                productsData.products.splice(productIndex, 1);
+    //         // Obtiene la información actual del producto
+    //         const product = getProductById(productId);
     
-                // Escribe el nuevo contenido al archivo JSON
-                fs.writeFileSync(productsFilePath, JSON.stringify(productsData, null, 2));
+    //         // Verifica si hay una imagen asociada al producto antes de intentar eliminarla
+    //         if (product && product.image) {
+    //             const imagePath = path.join(__dirname, '../public/images/', product.image);
     
-                console.log(`Producto eliminado: ${productId}`);
-                res.redirect('/products');
-            } else {
-                console.error('Producto no encontrado en el array de productos');
-                res.status(500).send('Error interno del servidor');
-            }
-        } catch (error) {
-            console.error('Error al procesar la eliminación del producto:', error);
-            res.status(500).send('Error interno del servidor');
-        }
-    },
+    //             // Verifica si el archivo existe antes de intentar eliminarlo
+    //             if (fs.existsSync(imagePath)) {
+    //                 fs.unlinkSync(imagePath);
+    //                 console.log(`Archivo eliminado: ${imagePath}`);
+    //             } else {
+    //                 console.log(`El archivo no existe: ${imagePath}`);
+    //             }
+    //         }
+    
+    //         // Lee el contenido actual del archivo JSON
+    //         const productsData = getProducts();
+    
+    //         // Busca el índice del producto en el array
+    //         const productIndex = productsData.products.findIndex(item => item.id === parseInt(productId));
+    
+    //         if (productIndex !== -1) {
+    //             // Elimina el producto del array de productos
+    //             productsData.products.splice(productIndex, 1);
+    
+    //             // Escribe el nuevo contenido al archivo JSON
+    //             fs.writeFileSync(productsFilePath, JSON.stringify(productsData, null, 2));
+    
+    //             console.log(`Producto eliminado: ${productId}`);
+    //             res.redirect('/products');
+    //         } else {
+    //             console.error('Producto no encontrado en el array de productos');
+    //             res.status(500).send('Error interno del servidor');
+    //         }
+    //     } catch (error) {
+    //         console.error('Error al procesar la eliminación del producto:', error);
+    //         res.status(500).send('Error interno del servidor');
+    //     }
+    // },
 
 }
 
