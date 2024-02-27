@@ -23,7 +23,7 @@
                     <tbody>
                         <% productosdata.forEach(product => { %>
                             <tr>
-                                <td></td>
+                                <td><%= product.categoria.categoria_descripcion %></td>
                                 <td><img src="/images/<%= product.producto_imagen %>" alt="<%= product.producto_imagen %>" class="product-image"></td>
                                 <td><%= product.producto_descripcion %></td>
                                 <td><%= product.producto_detalle %></td>

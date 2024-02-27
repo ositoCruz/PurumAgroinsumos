@@ -8,8 +8,16 @@ module.exports = (sequelize, DataTypes) => {
         categoria_descripcion: {
             type: DataTypes.STRING(150),
             allowNull: true
-        }
-    });
-
+        },
+    }, { timestamps: false});
+ Categorias.associate = models => {
+        Categorias.hasMany(models.Productos, {
+            foreignKey: 'categoria_id',
+            as: 'productos'
+        });
+    };
     return Categorias;
 };
+
+
+

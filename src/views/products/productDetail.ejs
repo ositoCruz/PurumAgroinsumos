@@ -11,7 +11,7 @@
             <div class="product-page">
                 <h2><%= product.producto_descripcion %></h2>
                 <p>Descripción: <%= product.producto_detalle %></p>
-                <p>Categoría: <%= product.categoria_id %></p>
+                <p>Categoría: <%= product.categoria.categoria_descripcion %></p>
                 <p>Precio: <%= product.producto_precio %></p>
                 <p>Stock: <%= product.producto_stock %></p>
                 <img src="/images/<%= product.producto_imagen %>" alt="<%= product.producto_name %>">
@@ -20,7 +20,7 @@
             <button onclick="agregarAlCarrito()" class="cart">Agregar al Carrito</button>
 
             <div class="related-products">
-                <h2>Productos Relacionados</h2>
+                <h2> Agregar aqui Productos Relacionados</h2>
             </div>
         </section>
     </main>

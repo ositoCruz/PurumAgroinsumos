@@ -58,7 +58,7 @@ const controller = {
     },
     products: async (req, res) => {
         // Lee el archivo JSON de productos
-        const productosdata = await db.Productos.findAll();
+        const productosdata = await db.Productos.findAll({include: "categoria"});
         // Pasa los datos de productos a la vista
         return res.render('products/products', { productosdata });
     },
@@ -166,14 +166,19 @@ const controller = {
     altaproducto: (req, res) => {
         return res.render('products/createProduct');
     },
+
+
     detailsProduct: async (req, res) => {
         const productId = req.params.id;
         // Aquí deberías obtener la información del producto según el id
-        const product = await db.Productos.findByPk(productId);
+        const product = await db.Productos.findByPk(productId, {include: "categoria"});
         // const product = getProductById(productId); 
         // Renderiza la vista productDetail.ejs y pasa el objeto del producto
-        res.render('products/productDetail', { product });
+         res.render('products/productDetail', { product });
+       
     },
+
+
     editProducto: async (req, res) => {
         const productId = req.params.id;
         // Aquí deberías obtener la información del producto según el id
