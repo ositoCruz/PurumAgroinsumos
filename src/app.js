@@ -1,20 +1,24 @@
 const express = require('express');
 const app = express();
-
 const multer = require('multer');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const upload= require('../src/middlewares/MulterMiddleware');
+const uploadUser= require('../src/middlewares/MulterMiddleware');
 
-const mainRoutes = require('./routes/mainRoutes');
+const mainRoutes = require("./routes/mainRoutes");
+const productsRoutes = require("./routes/productsRoutes");
+const usersRoutes = require("./routes/usersRoutes");
+
+
 const mainController = require('./controllers/mainController');
 
 const { authMiddleware, guestMiddleware, rememberMiddleware } = require('./middlewares/authMiddleware');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
 
 app.use(cookieParser());
 app.use(session({
@@ -23,40 +27,6 @@ app.use(session({
     saveUninitialized: true
 }));
 
-// Configuración de Multer
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    // Define la carpeta principal según el tipo de imagen
-    let mainFolder = 'public/images/';
-
-    // Añade la subcarpeta según el campo 'type' de la solicitud
-    if ( req.body.type === 'user') {
-      mainFolder += 'users/';
-    } 
-    if ( req.body.type === 'product') {
-      mainFolder += 'products/';
-    }
-    cb(null, mainFolder);
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    const fileExtension = path.extname(file.originalname);
-    cb(null, file.fieldname + '-' + uniqueSuffix + fileExtension);
-  },
-});
-
-const storageUser = multer.diskStorage({
-  destination: function (req, file, cb) {
-    // Define la carpeta principal según el tipo de imagen
-    let mainFolder = 'public/images/users';
-    cb(null, mainFolder);
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    const fileExtension = path.extname(file.originalname);
-    cb(null, file.fieldname + '-' + uniqueSuffix + fileExtension);
-  },
-});
 
 // Agrega el middleware de recordar al usuario
 app.use(rememberMiddleware);
@@ -74,8 +44,7 @@ app.use((req, res, next) => {
   next();
 });
 
-const upload = multer({ storage: storage });
-const uploadUser = multer({ storage: storageUser });
+
 
 app.post('/user/register', uploadUser.single('profileImage'), (req, res) => {
   req.body.type = 'user';
@@ -106,8 +75,57 @@ app.use(express.static(path.join('./public')));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
 
+/*Rutas Principales*/
 app.use('/', mainRoutes);
+
+/*Rutas Para productos*/
+app.use('/products', productsRoutes);
+
+/*Rutas Para usuarios*/
+app.use('/users', usersRoutes);
+
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`click para dirigirte al sitio: http://localhost:${PORT}/`);
 });
+
+
+// Configuración de Multer
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     // Define la carpeta principal según el tipo de imagen
+//     let mainFolder = 'public/images/';
+
+//     // Añade la subcarpeta según el campo 'type' de la solicitud
+//     if ( req.body.type === 'user') {
+//       mainFolder += 'users/';
+//     } 
+//     if ( req.body.type === 'product') {
+//       mainFolder += 'products/';
+//     }
+//     cb(null, mainFolder);
+//   },
+//   filename: function (req, file, cb) {
+//     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+//     const fileExtension = path.extname(file.originalname);
+//     cb(null, file.fieldname + '-' + uniqueSuffix + fileExtension);
+//   },
+// });
+
+// const storageUser = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     // Define la carpeta principal según el tipo de imagen
+//     let mainFolder = 'public/images/users';
+//     cb(null, mainFolder);
+//   },
+//   filename: function (req, file, cb) {
+//     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+//     const fileExtension = path.extname(file.originalname);
+//     cb(null, file.fieldname + '-' + uniqueSuffix + fileExtension);
+//   },
+// });
+
+
+// const upload = multer({ storage: storage });
+// const uploadUser = multer({ storage: storageUser });

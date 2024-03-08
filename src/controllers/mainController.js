@@ -85,7 +85,7 @@ const controller = {
                     if (remember) {
                         res.cookie('remember', 'true', { maxAge: 604800000 }); // 7 días en milisegundos
                     }
-                    res.redirect(`/profile/${username}`);
+                    res.redirect(`/users/profile/${username}`);
 
                 } else {
                     res.redirect('/login');
@@ -156,7 +156,7 @@ const controller = {
             if (err) {
                 console.error('Error al cerrar sesión:', err);
             } else {
-                res.redirect('/login');
+                res.redirect('/users/login');
             }
         });
     },    
@@ -256,6 +256,9 @@ const controller = {
         .then(()=>{
             return res.redirect('/products')})
         .catch(error => res.send(error)) 
+    },
+    aboutController: (req,res)=>{
+        res.render(("about"))
     }
 
 

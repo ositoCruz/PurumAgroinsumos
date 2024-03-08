@@ -46,8 +46,14 @@
       "email": "mjj_pc@hotmail.com",
       "password": "$2b$10$s.ce1Rtk8fI2j6UshDxUneR3L8wRlkFYQVZF/K5bznnkAqqo.uczi",
       "image": "profileImage-1708978543177-525711006.png"
+    },
+    {
+      "id": 7,
+      "fullname": "Georgina Sanmat",
+      "username": "gina123",
+      "email": "gina.sanmat@gmail.com",
+      "password": "$2b$10$AriQQefx/tNsIvYQgvkaRObVI9/81PVNl9wasGLW7snWP6i686vO.",
+      "image": "profileImage-1709912362060-933168321.png"
     }
   ]
 }
-
-
