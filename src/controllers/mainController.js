@@ -1,15 +1,16 @@
 const fs = require('fs');
 const path = require('path');
-
+const {validationResult} = require ('express-validator');
 const bcrypt = require('bcrypt');
 
 const productsFilePath = path.join(__dirname, '../data/product.json');
 const usersFilePath = path.join(__dirname, '../data/users.json');
-
+const createValidations= require('../middlewares/createValidations')
 const db = require('../database/models');
 const sequelize = db.sequelize;
 const { Op } = require("sequelize");
 const moment = require('moment');
+const { log } = require('console');
 
 // modelos
 const Categorias = db.Categorias;
@@ -85,13 +86,13 @@ const controller = {
                     if (remember) {
                         res.cookie('remember', 'true', { maxAge: 604800000 }); // 7 días en milisegundos
                     }
-                    res.redirect(`/profile/${username}`);
+                    res.redirect(`/users/profile/${username}`);
 
                 } else {
-                    res.redirect('/login');
+                    res.redirect('/users/login');
                 }
             } else {
-                res.redirect('/login');
+                res.redirect('/users/login');
             }
         } catch(error) {
             console.error('Error al procesar el login:', error);
@@ -143,7 +144,7 @@ const controller = {
                     fs.writeFileSync(usersFilePath, JSON.stringify(usersData, null, 2));
 
                     // Redirige después de un registro exitoso
-                    res.redirect('/login');
+                    res.redirect('/users/login');
                 }
             }
         } catch (error) {
@@ -156,7 +157,7 @@ const controller = {
             if (err) {
                 console.error('Error al cerrar sesión:', err);
             } else {
-                res.redirect('/login');
+                res.redirect('/users/login');
             }
         });
     },    
@@ -187,9 +188,9 @@ const controller = {
         return res.render('products/editProduct', { product });
     },
 
-
     procesarCreate : async (req, res) => {
-        try {
+        const errors= validationResult(req);
+		if(errors.isEmpty()){
             const { name, description, category, price, stock } = req.body;
             const productImage = req.file;
     
@@ -205,48 +206,77 @@ const controller = {
     
             // Redirige a la página de productos después de crear el nuevo registro
             return res.redirect('/products');
-        } catch (error) {
-            console.error('Error al procesar la creación del producto:', error);
-            res.status(500).send('Error interno del servidor');
         }
+        else{
+            
+            return res.render('products/createProduct' , {errors: errors.mapped(), old:req.body})
+           
+        }
+    
+        
     },
+    // procesarCreate : async (req, res) => {
+    //     // const errors= validationResult(req);
+    //     try{
+    //         const { name, description, category, price, stock } = req.body;
+    //         const productImage = req.file;
+    //         // if(errors.isEmpty()){
+    //         // Crea un nuevo registro de producto en la base de datos
+    //         await Productos.create({
+    //             producto_descripcion: name,
+    //             producto_detalle: description,
+    //             categoria_id: category,
+    //             producto_precio: price,
+    //             producto_stock: stock,
+    //             producto_imagen: productImage.filename // Asume que productImage.filename contiene el nombre de la imagen
+    //         });
+    // console.log(errors);
+    //         // Redirige a la página de productos después de crear el nuevo registro
+    //         return res.redirect('/products');
+    //     }
+    //         // else {res.render("./products/createProduct"), {errors: errors.mapped(), old:req.body}}
+    // catch (error){
+    //      res.status(500).send('Error interno del servidor');}
+    // },
     
     
     //OPCION 3 PROCESAR EDIT:
     procesarEdit : async function  (req, res) {
-        try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            // Si hay errores de validación, renderiza nuevamente el formulario de edición con los errores
             const productId = req.params.id;
-            const { descripcion, detalle, category, precio, stock } = req.body;
-            const productoImagen = req.file;
-    
-            // Verifica si productoImagen está definido, y si lo está, obtén el nombre de archivo
-            let producto_imagen = null;
-            if (productoImagen) {
-                producto_imagen = productoImagen.filename;
-                // Aquí puedes agregar la lógica para manejar la actualización de la imagen del producto
-                // Por ejemplo, puedes eliminar la imagen anterior y guardar la nueva imagen en su lugar
-            }
-    
-            // Actualiza el producto en la base de datos
-            await Productos.update(
-                {
-                    producto_descripcion: descripcion,
-                    producto_detalle: detalle,
-                    categoria_id: category,
-                    producto_precio: precio,
-                    producto_stock: stock,
-                    producto_imagen: producto_imagen // Actualiza solo si hay una nueva imagen
-                },
-                {
-                    where: { producto_id: productId } // Asegúrate de usar el campo correcto para la condición where
-                });
-    
-            // Redirige a la página de productos después de la actualización
-            return res.redirect('/products');
-        } catch (error) {
-            console.error('Error al procesar la edición del producto:', error);
-            res.status(500).send('Error interno del servidor');
+            const product = await db.Productos.findByPk(productId);
+            return res.render('products/editProduct', { product, errors: errors.mapped(), old: req.body });
         }
+        const productId = req.params.id;
+        const { name, descripcion, category, price, stock } = req.body;
+        const productoImagen = req.file;
+
+        // Verifica si productoImagen está definido, y si lo está, obtén el nombre de archivo
+        let producto_imagen = null;
+        if (productoImagen) {
+            producto_imagen = productoImagen.filename;
+            // Aquí puedes agregar la lógica para manejar la actualización de la imagen del producto
+            // Por ejemplo, puedes eliminar la imagen anterior y guardar la nueva imagen en su lugar
+        }
+
+        // Actualiza el producto en la base de datos
+        await Productos.update(
+            {
+                producto_descripcion: name,
+                producto_detalle: descripcion,
+                categoria_id: category,
+                producto_precio: price,
+                producto_stock: stock,
+                producto_imagen: producto_imagen // Actualiza solo si hay una nueva imagen
+            },
+            {
+                where: { producto_id: productId } // Asegúrate de usar el campo correcto para la condición where
+            });
+
+        // Redirige a la página de productos después de la actualización
+        return res.redirect('/products');
     },
 
     procesarEliminar: function (req,res) {
@@ -256,6 +286,9 @@ const controller = {
         .then(()=>{
             return res.redirect('/products')})
         .catch(error => res.send(error)) 
+    },
+    aboutController: (req,res)=>{
+        res.render(("about"))
     }
 
 

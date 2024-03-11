@@ -1,5 +1,5 @@
-const { getUserByUsername } = require('../controllers/mainController');
 
+const { getUserByUsername } = require('../data/services/userServices');
 const guestMiddleware = (req, res, next) => {
     if (req.session.user) {
         return res.redirect(`/profile/${req.session.username}`);
@@ -8,7 +8,7 @@ const guestMiddleware = (req, res, next) => {
 };
 const authMiddleware = (req, res, next) => {
     if (!req.session.user) {
-        return res.redirect('/login');
+        return res.redirect('/users/login');
     }
     next();
 };

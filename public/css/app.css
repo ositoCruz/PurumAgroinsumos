@@ -186,6 +186,21 @@ footer {
     font-size: 25px;
 }
 
+
+
+.form-validationError {
+    font-size: 11px;
+    display: flex;
+    color: red;
+    border: 0px;
+    padding: 5%;
+}
+
+.input-error
+{
+border: 1px solid red;
+}
+
 /*----------------------------------------*/
 
 @media (max-width: 720px) {

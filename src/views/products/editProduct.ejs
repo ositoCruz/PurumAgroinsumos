@@ -4,35 +4,49 @@
 <body>
     <%- include('../partials/header.ejs') %>
     <main>
-        
-        <form action="/producto/editar/<%= product.producto_id %>" method="post" enctype="multipart/form-data">
+        <form action="/products/editproduct/<%= product.producto_id %>" method="post" enctype="multipart/form-data">
             <div class="div-form-create">
                 <h2>EDITAR PRODUCTO</h2>
                 <div>
-                    <label for="descripcion">Nombre</label>
-                    <input type="text" placeholder="<%= product.producto_descripcion %>" value="<%= product.producto_descripcion %>" name="descripcion" id="descripcion" >
+                    <label for="name">Nombre</label>
+                    <input class= <%= locals.errors && errors.name ? "input-error" : null %> type="text" id="name" name="name" placeholder="Nombre 5 caracteres" value="<%= typeof old !== 'undefined' && old.name ? old.name : '' %>">
+                    <% if (locals.errors && errors.name){ %>
+                    <span class="form-validationError"> <%= errors.name.msg %> </span>
+                    <% } %>
                 </div>
                 <div>
-                    <label for="detalle">Descripcion</label>
-                    <input type="text" placeholder="<%= product.producto_detalle %>" name="detalle" id="detalle" value="<%= product.producto_detalle %>">
+                    <label for="description">Descripcion</label>
+                    <input class= <%= locals.errors && errors.descripcion ? "input-error" : null %> type="text" id="descripcion" name="descripcion" placeholder="descripcion 20 caracteres" value="<%= typeof old !== 'undefined' && old.descripcion ? old.descripcion : '' %>"> 
+                    <% if (locals.errors && errors.descripcion){ %>
+                        <span class="form-validationError">
+                            <%= errors.descripcion.msg %>
+                        </span>
+                    <% } %>
                 </div>
                 <div>
-                    <label for="category">Categoria</label>
-                    <select name="category" id="category" required>
+                    <label for="category">Categoría</label>
+                    <select name="category" id="category">
                         <option value="">Selecciona una categoría</option>
                         <option value="1">Insecticida</option>
                         <option value="2">Herbicida</option>
                         <option value="3">Pesticida</option>
-                        <option value="4">Solucion</option>
+                        <option value="4">Solución</option>
                     </select>
+                    <% if (locals.errors && errors.category){ %>
+                        <span class="form-validationError"> <%= errors.category.msg %> </span>
+                    <% } %>
                 </div>
                 <div>
-                    <label for="precio">Precio</label>
-                    <input type="number" placeholder="<%= product.producto_precio %>" name="precio" id="precio" value="<%= product.producto_precio %>">
+                    <label for="price">Precio</label>
+                    <input type="number" class= <%= locals.errors && errors.price ? "input-error" : null %>  id="price" name="price" placeholder="Ingrese el Precio" value="<%= typeof old !== 'undefined' && old.price ? old.price : '' %>"> <% if (locals.errors && errors.price){ %>
+                    <span class="form-validationError"> <%= errors.price.msg %> </span>
+                    <% } %>
                 </div>
                 <div>
-                    <label for="stock">Stock</label>
-                    <input type="number" placeholder="<%= product.producto_stock %>" name="stock" id="stock" value="<%= product.producto_stock %>">
+                    <label for="stock" >Stock</label>
+                    <input type="number" class= <%= locals.errors && errors.stock ? "input-error" : null %>  id="stock" name="stock" placeholder="Ingrese el stock" value="<%= typeof old !== 'undefined' && old.stock ? old.stock : '' %>"> <% if (locals.errors && errors.stock){ %>
+                    <span class="form-validationError"> <%= errors.stock.msg %> </span>
+                    <% } %>
                 </div>
                 <div>
                     <img src="/images/<%= product.producto_imagen %>" alt="">
