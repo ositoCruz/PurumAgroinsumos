@@ -209,7 +209,7 @@ const controller = {
         }
         else{
             
-            return res.render('products/editProduct' , {errors: errors.mapped(), old:req.body})
+            return res.render('products/createProduct' , {errors: errors.mapped(), old:req.body})
            
         }
     
