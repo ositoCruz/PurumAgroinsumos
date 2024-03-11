@@ -54,6 +54,22 @@
       "email": "gina.sanmat@gmail.com",
       "password": "$2b$10$AriQQefx/tNsIvYQgvkaRObVI9/81PVNl9wasGLW7snWP6i686vO.",
       "image": "profileImage-1709912362060-933168321.png"
+    },
+    {
+      "id": 8,
+      "fullname": "santiago",
+      "username": "santiruu",
+      "email": "",
+      "password": "$2b$10$EBtDn0dzIWLr0VrQqfqEUe0jNSMQU1xGMsBCbvvbAssfkguZXSLv.",
+      "image": "profileImage-1710026861478-961598408.png"
+    },
+    {
+      "id": 9,
+      "fullname": "",
+      "username": "",
+      "email": "",
+      "password": "$2b$10$/7VTkJPnnmHMavDyCUVz4ek.gSKz9BajSnYr4C7WOeokV/zaYA/am",
+      "image": "profileImage-1710026975162-904118837.png"
     }
   ]
 }

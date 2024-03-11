@@ -7,6 +7,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const upload= require('../src/middlewares/MulterMiddleware');
 const uploadUser= require('../src/middlewares/MulterMiddleware');
+const methodOverride = require("method-override");
 
 const mainRoutes = require("./routes/mainRoutes");
 const productsRoutes = require("./routes/productsRoutes");
@@ -16,7 +17,9 @@ const usersRoutes = require("./routes/usersRoutes");
 const mainController = require('./controllers/mainController');
 
 const { authMiddleware, guestMiddleware, rememberMiddleware } = require('./middlewares/authMiddleware');
-
+const { validationResult } = require('express-validator');
+const createValidations = require('./middlewares/createValidations');
+app.use(methodOverride("_method"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -39,7 +42,7 @@ app.use((req, res, next) => {
   next();
 });
 app.use((req, res, next) => {
-  console.log('Middleware res.locals.user:', res.locals.user);
+  // console.log('Middleware res.locals.user:', res.locals.user);
   res.locals.user = req.session.user || null;
   next();
 });
@@ -56,18 +59,18 @@ app.post('/user/login', (req, res) => {
   mainController.procesarLogin(req, res);
 });
 
-app.post('/productos/crear', upload.single('productImage'), (req, res) => {
-  // Establece el tipo de imagen como 'product' en la solicitud
-  req.body.type = 'product';
-  console.log('Procesando creación de producto...');
-  mainController.procesarCreate(req, res);
-});
-app.post('/producto/editar/:id', upload.single('productImage'), (req, res) => {
-  req.body.type = 'product';
-  console.log('Procesando edición de producto...');
-  mainController.procesarEdit(req, res);
-});
-app.post('/producto/eliminar/:id', mainController.procesarEliminar);
+// app.post('/productos/crear', upload.single('productImage'), (req, res) => {
+//   // Establece el tipo de imagen como 'product' en la solicitud
+//   req.body.type = 'product';
+//   console.log('Procesando creación de producto...');
+//   mainController.procesarCreate(req, res);
+// });
+// app.post('/producto/editar/:id', upload.single('productImage'), (req, res) => {
+//   req.body.type = 'product';
+//   console.log('Procesando edición de producto...');
+//   mainController.procesarEdit(req, res);
+// });
+// app.post('/producto/eliminar/:id', mainController.procesarEliminar);
 
 app.use(express.static(path.join('./public')));
 

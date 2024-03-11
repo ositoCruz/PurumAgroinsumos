@@ -5,7 +5,7 @@ let registerValidations= [
     check('username').notEmpty().withMessage("El Apellido no puede estar Vacio"), 
     check('email').notEmpty().withMessage("El email no puede estar Vacio"), 
     check('email').isEmail().withMessage("El email ingresado es invalido"),
-    check('password').isLength({min: 6}).withMessage("La contraseña debe tener minimo 6 caracteres"),
+    // check('password').isLength({min: 6}).withMessage("La contraseña debe tener minimo 6 caracteres"),
     // check('confirm_password').isLength({min: 6}).withMessage("La confirmacion de la contraseña debe tener minimo 6 caracteres"),
     // check('confirm_password').custom((value, {req})=>  {
     //     if(!req.body.password == value){

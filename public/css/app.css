@@ -190,10 +190,10 @@ footer {
 
 .form-validationError {
     font-size: 11px;
-    display: block;
+    display: flex;
     color: red;
     border: 0px;
-    padding: 0%;
+    padding: 5%;
 }
 
 .input-error
