@@ -20,26 +20,26 @@ const OrdersStatus = db.OrdersStatus;
 const Productos = db.Productos;
 const Users = db.Users;
 
-function getProducts() {
-    return JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-}
-function getProductById(productId) {
-    // Lee el archivo JSON de productos
-    const productsData = getProducts();
-    // Busca el producto por ID
-    const product = productsData.products.find(item => item.id === parseInt(productId));
-    return product;
-}
-function getUsers() {
-    return JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
-}
-function getUserByUsername(username) {
-    // Lee el archivo JSON de productos
-    const usersData = getUsers();
-    // Busca el producto por ID
-    const user = usersData.users.find(item => item.username === username);
-    return user;
-}
+// function getProducts() {
+//     return JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+// }
+// function getProductById(productId) {
+//     // Lee el archivo JSON de productos
+//     const productsData = getProducts();
+//     // Busca el producto por ID
+//     const product = productsData.products.find(item => item.id === parseInt(productId));
+//     return product;
+// }
+// function getUsers() {
+//     return JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
+// }
+// function getUserByUsername(username) {
+//     // Lee el archivo JSON de productos
+//     const usersData = getUsers();
+//     // Busca el producto por ID
+//     const user = usersData.users.find(item => item.username === username);
+//     return user;
+// }
 
 
 const controller = {  
@@ -63,20 +63,25 @@ const controller = {
         // Pasa los datos de productos a la vista
         return res.render('products/products', { productosdata });
     },
-    profile: (req, res) => {
+    profile: async(req, res) => {
         const username = req.params.username;
         // Aquí deberías obtener la información del producto según el id
-        const profile = getUserByUsername(username); 
+        const profile = await db.Users.findOne({ where: { username:username } }); 
         // Renderiza la vista productDetail.ejs y pasa el objeto del producto
         return res.render('users/profile', { profile });
     },
     login: (req, res) => {
         return res.render('users/login')
     },
-    procesarLogin: (req, res) => {
-        try {
+    procesarLogin: async (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            // Si hay errores de validación, renderiza nuevamente el formulario de registro con los errores
+            return res.render('users/login', { errors: errors.mapped(), old:req.body });
+        }
             const { username, password, remember } = req.body;
-            const existingUser = getUserByUsername(username);
+            const existingUser = await db.Users.findOne({ where: { username:username } });
+            console.log(existingUser);
             if (existingUser) {
                 const isPasswordCorrect = bcrypt.compareSync(password, existingUser.password);
                 if (isPasswordCorrect) {
@@ -94,64 +99,53 @@ const controller = {
             } else {
                 res.redirect('/users/login');
             }
-        } catch(error) {
-            console.error('Error al procesar el login:', error);
-            res.status(500).send('Error interno del servidor');
-        }
+        
     },
     register: (req, res) => {
         return res.render('users/register')
     },
-    procesarRegister: (req, res) => {
+
+    procesarRegister: async (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            // Si hay errores de validación, renderiza nuevamente el formulario de registro con los errores
+            return res.render('users/register', { errors: errors.mapped(), old:req.body });
+        }
+        // Si no hay errores de validación, procede con el registro del usuario
+        const { fullname, username, email, password } = req.body;
+        const profileImage = req.file;
+    
         try {
-            const { fullname, username, email, password, confirmPassword } = req.body;
-            const profileImage = req.file;
-        
-            // Verifica si el archivo users.json existe, si no, crea una estructura inicial
-            if (!fs.existsSync(usersFilePath)) {
-                const initialData = { users: [] };
-                fs.writeFileSync(usersFilePath, JSON.stringify(initialData, null, 2));
-            }
-        
-            // Verificar si el usuario ya existe
-            const existingUser = getUserByUsername(username);
+            // Verifica si el usuario ya existe
+            const existingUser = await db.Users.findOne({ where: { username: username } });
             if (existingUser) {
                 return res.status(400).send('El usuario ya existe.');
-            } else {
-                if (password !== confirmPassword) {
-                    return res.status(400).send('Las contraseñas no coinciden.');
-                } else {
-                    // Aplicar el método hashSync para encriptar el password
-                    const hashedPassword = bcrypt.hashSync(password, 10);
-                    // Establece el tipo de imagen como 'user'
-                    profileImage.type = 'user';
-                    // Lee el contenido actual del archivo JSON
-                    const usersData = getUsers();
-                    
-                    const newUser = {
-                        id: usersData.users.length + 1,
-                        fullname,
-                        username,
-                        email,
-                        password: hashedPassword,
-                        image: profileImage.filename,
-                    };
-
-                    // Agrega el nuevo usuario al array de usuarios
-                    usersData.users.push(newUser);
-
-                    // Escribe el nuevo contenido al archivo JSON
-                    fs.writeFileSync(usersFilePath, JSON.stringify(usersData, null, 2));
-
-                    // Redirige después de un registro exitoso
-                    res.redirect('/users/login');
-                }
             }
+    
+            // Aplicar el método hashSync para encriptar el password
+            const hashedPassword = bcrypt.hashSync(password, 10);
+    
+            // Crear el nuevo usuario en la base de datos
+            await db.Users.create({
+                user_fullName: fullname,
+                username: username,
+                user_email: email,
+                password: hashedPassword,
+                user_imagen: profileImage.filename
+            });
+    
+            // Redirigir al usuario a la página de inicio de sesión
+            res.redirect('/users/login');
         } catch (error) {
-          console.error('Error al procesar la creación del usuario:', error);
-          res.status(500).send('Error interno del servidor');
+            // Manejar cualquier error que ocurra durante el proceso de registro
+            console.error('Error al registrar usuario:', error);
+            res.status(500).send('Se produjo un error al procesar el registro.');
         }
+        
     },
+
+           
+          
     logout: (req, res) => {
         req.session.destroy(err => {
             if (err) {
@@ -191,13 +185,13 @@ const controller = {
     procesarCreate : async (req, res) => {
         const errors= validationResult(req);
 		if(errors.isEmpty()){
-            const { name, description, category, price, stock } = req.body;
+            const { name, descripcion, category, price, stock } = req.body;
             const productImage = req.file;
     
             // Crea un nuevo registro de producto en la base de datos
             await Productos.create({
                 producto_descripcion: name,
-                producto_detalle: description,
+                producto_detalle: descripcion,
                 categoria_id: category,
                 producto_precio: price,
                 producto_stock: stock,
@@ -394,4 +388,4 @@ const controller = {
 }
 
 module.exports = controller;
-module.exports.getUserByUsername = getUserByUsername;
+

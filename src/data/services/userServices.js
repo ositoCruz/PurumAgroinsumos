@@ -1,57 +1,57 @@
-const fs = require('fs');
-const path = require('path');
+// const fs = require('fs');
+// const path = require('path');
 
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 
-const productsFilePath = path.join(__dirname, '../product.json');
-const usersFilePath = path.join(__dirname, '../users.json');
-
-
-const usersService = {
-  users: JSON.parse(fs.readFileSync(usersFilePath, "utf-8")),
+// const productsFilePath = path.join(__dirname, '../product.json');
+// const usersFilePath = path.join(__dirname, '../users.json');
 
 
-  getUsers: function () {
-         return this.users;
-     },
+// const usersService = {
+//   users: JSON.parse(fs.readFileSync(usersFilePath, "utf-8")),
 
-//      //  getOneEmail: function (email) {
-//     let user = this.users.find((elem) => elem.email == email);
+
+//   getUsers: function () {
+//          return this.users;
+//      },
+
+// //      //  getOneEmail: function (email) {
+// //     let user = this.users.find((elem) => elem.email == email);
+// //     return user;
+// //   },
+//      getUserByUsername: function(username){
+//         // const usersData = this.getUsers();
+//         let user = this.users.find((elem) => elem.username.toLowerCase() === lowerCaseUsername);
 //     return user;
-//   },
-     getUserByUsername: function(username){
-        // const usersData = this.getUsers();
-        let user = this.users.find((elem) => elem.username.toLowerCase() === lowerCaseUsername);
-    return user;
-        console.log(user);
-     },
+//         console.log(user);
+//      },
 
 
-    //  procesarLogin: (username, password, remember) => {
-    //     const existingUser = this.getUserByUsername;
-    //     if (existingUser) {
-    //       const isPasswordCorrect = bcrypt.compareSync(password, existingUser.password);
-    //       if (isPasswordCorrect) {
-    //         return { success: true, user: existingUser, remember };
-    //       } else {
-    //         return { success: false, error: 'Contraseña incorrecta' };
-    //       }
-    //     } else {
-    //       return { success: false, error: 'Usuario no encontrado' };
-    //     }
-    //   }
+//     //  procesarLogin: (username, password, remember) => {
+//     //     const existingUser = this.getUserByUsername;
+//     //     if (existingUser) {
+//     //       const isPasswordCorrect = bcrypt.compareSync(password, existingUser.password);
+//     //       if (isPasswordCorrect) {
+//     //         return { success: true, user: existingUser, remember };
+//     //       } else {
+//     //         return { success: false, error: 'Contraseña incorrecta' };
+//     //       }
+//     //     } else {
+//     //       return { success: false, error: 'Usuario no encontrado' };
+//     //     }
+//     //   }
     
 
 
 
 
-    //  function getProductById(productId) {
-    //     // Lee el archivo JSON de productos
-    //     const productsData = getProducts();
-    //     // Busca el producto por ID
-    //     const product = productsData.products.find(item => item.id === parseInt(productId));
-    //     return product;
-    // }
+//     //  function getProductById(productId) {
+//     //     // Lee el archivo JSON de productos
+//     //     const productsData = getProducts();
+//     //     // Busca el producto por ID
+//     //     const product = productsData.products.find(item => item.id === parseInt(productId));
+//     //     return product;
+//     // }
 
 
 
@@ -148,7 +148,7 @@ const usersService = {
 //     user.password = userNuevo.password;
 //     //this.products[indice]= producto;
 //     fs.writeFileSync(usersFilePath, JSON.stringify(this.users), "utf-8");
-//   },
-};
+// //   },
+// };
 
-module.exports = usersService;
+// module.exports = usersService;
