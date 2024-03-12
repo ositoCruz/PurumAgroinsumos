@@ -49,15 +49,15 @@ app.use((req, res, next) => {
 
 
 
-app.post('/user/register', uploadUser.single('profileImage'), (req, res) => {
-  req.body.type = 'user';
-  console.log('Procesando creación del usuario...');
-  mainController.procesarRegister(req, res);
-});
-app.post('/user/login', (req, res) => {
-  console.log('Procesando login del usuario...');
-  mainController.procesarLogin(req, res);
-});
+// app.post('/user/register', uploadUser.single('profileImage'), (req, res) => {
+//   req.body.type = 'user';
+//   console.log('Procesando creación del usuario...');
+//   mainController.procesarRegister(req, res);
+// });
+// app.post('/user/login', (req, res) => {
+//   console.log('Procesando login del usuario...');
+//   mainController.procesarLogin(req, res);
+// });
 
 // app.post('/productos/crear', upload.single('productImage'), (req, res) => {
 //   // Establece el tipo de imagen como 'product' en la solicitud

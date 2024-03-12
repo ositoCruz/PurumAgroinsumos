@@ -24,8 +24,10 @@ module.exports = (sequelize, DataTypes) => {
         user_imagen: {
             type: DataTypes.CHAR(250),
             allowNull: true
+        }}, {
+            timestamps: false // Agregar esta opción para desactivar los timestamps
         }
-    });
+    );
 
     return Users;
 };
