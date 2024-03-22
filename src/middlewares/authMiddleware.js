@@ -8,7 +8,7 @@ const Users = db.Users;
 // const { getUserByUsername } = require('../data/services/userServices');
 const guestMiddleware = (req, res, next) => {
     if (req.session.user) {
-        return res.redirect(`/profile/${req.session.username}`);
+        return res.redirect('profile/'+req.session.username);
     }
     next();
 };

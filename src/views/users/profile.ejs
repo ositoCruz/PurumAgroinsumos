@@ -16,6 +16,13 @@
                 <h2>E-mail: <%= user.user_email %></h2>
                 <img src="/images/<%= user.user_imagen %>" alt="<%= user.fullname %>">
             </div>
+            
+            <div class="botones">
+                <a href="/users/edituser/<%=user.user_id %>" class="buttonDecoration secondary">EDITAR DATOS</a>
+                <a href="/users/userlist" class="buttonDecoration secondary">Panel de control</a>
+                
+                    
+                
 
         </section>
     </main>

@@ -181,6 +181,13 @@ const controller = {
         // const product = getProductById(productId); 
         return res.render('products/editProduct', { product });
     },
+    editUser: async (req, res) => {
+        const userId = req.params.id;
+        // Aquí deberías obtener la información del producto según el id
+        const user = await db.Users.findByPk(userId);
+        // const product = getProductById(productId); 
+        return res.render('users/editUsers', { user });
+    },
 
     procesarCreate : async (req, res) => {
         const errors= validationResult(req);
@@ -208,6 +215,12 @@ const controller = {
         }
     
         
+    },
+    userList: async (req, res) => {
+        // Lee el archivo JSON de productos
+        const users = await db.Users.findAll();
+        // Pasa los datos de productos a la vista
+        return res.render('users/usersList', { users });
     },
     // procesarCreate : async (req, res) => {
     //     // const errors= validationResult(req);
@@ -273,6 +286,134 @@ const controller = {
         return res.redirect('/products');
     },
 
+    edit: async (req, res) => {
+        try {
+            const { id } = req.params;
+            const user = await db.Users.findByPk(id);
+            res.render('users/editUsers', { user });
+        } catch (error) {
+            console.error('Error al mostrar el formulario de edición de usuario:', error);
+            res.status(500).send('Internal Server Error');
+        }
+    },
+    update: async (req, res) => {
+        try {
+            
+            const { id } = req.params;
+            const { fullname, username, email, password } = req.body;
+            const userImage = req.file;
+    
+            let user_imagen = null;
+            if (userImage) {
+                user_imagen = userImage.filename;
+                // Lógica para manejar la actualización de la imagen del usuario
+            }
+            const hashedPassword = bcrypt.hashSync(password, 10);
+    
+            await Users.update({  
+                user_fullName: fullname,
+                username: username,
+                user_email: email,
+                password: hashedPassword,
+                user_imagen: user_imagen
+            }, { where: { user_id: id } });
+    
+            req.session.destroy(err => {
+                if (err) {
+                    console.error('Error al cerrar la sesión:', err);
+                    res.status(500).send('Internal Server Error');
+                } else {
+                    // alert("Los datos del usuario han sido modificados, por favor reinicia la sesion");
+                    res.redirect('/users/login');
+                }
+            });
+            // res.redirect('/users/profile/' + req.session.username);
+        } catch (error) {
+            console.error('Error al actualizar el usuario:', error);
+            res.status(500).send('Internal Server Error');
+        }
+    },
+
+    // edit: async (req, res) => {
+    //     try {
+    //       const { id } = req.params;
+    //       const user = await db.Users.findByPk(id);
+    //       res.render('users/editUsers');
+    //     } catch (error) {
+    //       console.error('Error al mostrar el formulario de edición de usuario:', error);
+    //       res.status(500).send('Internal Server Error');
+    //     }
+    //   },
+      
+    //   update: async (req, res) => {
+    //     try {
+    //       const { id } = req.params;
+    //       const { fullname, username, email, password } = req.body;
+    //       console.log(fullname,username,email,password);
+    //       const userImagen = req.file;
+
+    //     // Verifica si productoImagen está definido, y si lo está, obtén el nombre de archivo
+    //     let user_imagen = null;
+    //     if (userImagen) {
+    //         user_imagen =userImagen.filename;
+    //         // Aquí puedes agregar la lógica para manejar la actualización de la imagen del producto
+    //         // Por ejemplo, puedes eliminar la imagen anterior y guardar la nueva imagen en su lugar
+    //     }
+    //       await db.User.update({  
+    //         user_fullName: fullname,
+    //         username: username,
+    //         user_email: email,
+    //         password: password,
+    //         user_imagen: user_imagen }, { where: { id } });
+    //       res.redirect('profile/'+req.session.username);
+    //     } catch (error) {
+    //       console.error('Error al actualizar el usuario:', error);
+    //       res.status(500).send('Internal Server Error');
+    //     }
+    //   },
+
+
+
+    // procesarEditUser : async function  (req, res) {
+    //     // const errors = validationResult(req);
+    //     // if (!errors.isEmpty()) {
+    //     //     // Si hay errores de validación, renderiza nuevamente el formulario de edición con los errores
+    //     //     const userId = req.params.id;
+    //     //     const user = await db.Users.findByPk(userId);
+    //     //     return res.render('users/editUsers', { user, errors: errors.mapped(), old: req.body });
+    //     // }
+    //     const userId = req.params.id;
+    //     const { fullname, username, email, password } = req.body;
+    //     const userImagen = req.file;
+
+    //     // Verifica si productoImagen está definido, y si lo está, obtén el nombre de archivo
+    //     let user_imagen = null;
+    //     if (userImagen) {
+    //         user_imagen =userImagen.filename;
+    //         // Aquí puedes agregar la lógica para manejar la actualización de la imagen del producto
+    //         // Por ejemplo, puedes eliminar la imagen anterior y guardar la nueva imagen en su lugar
+    //     }
+
+    //     // Actualiza el producto en la base de datos
+    //     await Users.update(
+    //         {
+    //             user_fullName: fullname,
+    //             username: username,
+    //             user_email: email,
+    //             password: password,
+    //             // producto_stock: stock,
+    //             user_imagen: user_imagen // Actualiza solo si hay una nueva imagen
+    //         },
+    //         {
+    //             where: { user_id: userId } // Asegúrate de usar el campo correcto para la condición where
+    //         });
+
+    //     // Redirige a la página de productos después de la actualización
+    //     res.redirect("/users/profile/"+userId); //cambiar a profile
+    // },
+
+
+
     procesarEliminar: function (req,res) {
         let productId = req.params.id;
         Productos
@@ -283,8 +424,21 @@ const controller = {
     },
     aboutController: (req,res)=>{
         res.render(("about"))
-    }
+    },
 
+    
+    userProcesarEliminar: function (req,res) {
+        let userId = req.params.id;
+        Users
+        .destroy({where: {user_id: userId}, force: true}) // force: true es para asegurar que se ejecute la acción
+        .then(()=>{
+            return res.redirect('/users/userlist')})
+        .catch(error => res.send(error)) 
+    },
+    
+    aboutController: (req,res)=>{
+        res.render(("about"))
+    },
 
 
 

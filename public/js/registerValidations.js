@@ -68,21 +68,36 @@ window.onload = function() {
     userImageInput.addEventListener('change', () => {
         const allowedExtensions = /\.(jpg|jpeg|png)$/i;
         if (!allowedExtensions.test(userImageInput.value)) {
-            alert("El archivo de imagen debe tener una extensión válida (JPG, JPEG, PNG).");
+            showError(userImageInput, "El archivo de imagen debe tener una extensión válida (JPG, JPEG, PNG).");
             userImageInput.value = ""; // Borra el valor del campo
         }
     });
 
-     // Función para mostrar un mensaje de error y resaltar el campo
-     function showError(inputElement, errorMessage) {
+    // Función para mostrar un mensaje de error y resaltar el campo
+    function showError(inputElement, errorMessage) {
+        // Obtener el elemento span para el mensaje de error
+        let errorSpan = inputElement.nextElementSibling;
+        if (!errorSpan || !errorSpan.classList.contains("error-message")) {
+            // Si no existe, crear un nuevo elemento span
+            errorSpan = document.createElement("span");
+            errorSpan.classList.add("error-message");
+            inputElement.parentNode.insertBefore(errorSpan, inputElement.nextSibling);
+        }
+        // Mostrar el mensaje de error
+        errorSpan.textContent = errorMessage;
+        // Resaltar el campo
         inputElement.classList.add("is-invalid");
-        inputElement.classList.remove("is-valid");
-        alert(errorMessage);
     }
 
     // Función para eliminar el mensaje de error y restablecer el estilo del campo
     function clearError(inputElement) {
-        inputElement.classList.add("is-valid");
+        // Obtener el elemento span para el mensaje de error
+        let errorSpan = inputElement.nextElementSibling;
+        if (errorSpan && errorSpan.classList.contains("error-message")) {
+            // Si existe, eliminarlo
+            errorSpan.parentNode.removeChild(errorSpan);
+        }
+        // Restablecer el estilo del campo
         inputElement.classList.remove("is-invalid");
     }
 };

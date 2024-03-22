@@ -18,7 +18,6 @@
     box-sizing: border-box;
     font-family: var(--font-family);
     font-size: 12px;
-    
 }
 
 body {
@@ -27,12 +26,11 @@ body {
     justify-content: space-between;
     align-items: center;
     height: auto;
-    min-height: 100vh; /* Agrega esto para asegurar que el cuerpo tenga al menos la altura de la ventana gráfica (viewport height) */
+    min-height: 100vh;
     margin: 0;
     flex-direction: column;
 }
 
-/*HEADER*/
 header {
     align-items: center;
     display: flex;
@@ -54,6 +52,7 @@ header {
     align-items: center;
     margin-left: 20px;
 }
+
 .img-logo {
     height: auto;
     width: 80px;
@@ -72,7 +71,6 @@ header {
     gap: 12px;
 }
 
-
 .menu ul li a {
     font-weight: bold;
     text-decoration: none;
@@ -86,9 +84,6 @@ header {
     text-decoration: none;
 }
 
-
-
-/*buscador*/
 .search {
     align-items: center;
     display: flex;
@@ -120,6 +115,7 @@ header {
     cursor: pointer;
     margin: 5px;
 }
+
 .btn-new-product {
     background-color: var(--verde);
     color: #fff;
@@ -128,6 +124,7 @@ header {
     cursor: pointer;
     text-align: center;
 }
+
 .btn-new-product a {
     color: #fff;
     cursor: pointer;
@@ -144,7 +141,6 @@ main {
     gap: 15px;
 }
 
-/*FOOTER*/
 footer {
     background-color: var(--verde);
     width: 100%;  
@@ -164,6 +160,7 @@ footer {
     width: 150px;
     height: 150px;
 }
+
 .footer-section-contact {
     display: flex;
     flex-direction: column;
@@ -175,6 +172,7 @@ footer {
     gap: 15px;
     margin: 15px;
 }
+
 .footer-section-socials a{
     font-size: 20px;
     text-decoration: none;
@@ -186,8 +184,6 @@ footer {
     font-size: 25px;
 }
 
-
-
 .form-validationError {
     font-size: 11px;
     display: block;
@@ -196,42 +192,28 @@ footer {
     padding: 5%;
 }
 
-.input-error
-{
-border: 1px solid red;
+.input-error {
+    border: 1px solid red;
 }
 
-
 .is-valid {
-  
-    background-color: #36a672;
-  }
-  
-  .is-invalid {
-    background-color: #c64550;
-   
-  }
-  
-  .alert-warning{
+    background-color: #43a63680;
+}
+
+.is-invalid {
+    background-color: #e9263641;
+}
+
+.alert-warning {
     color:#842029;
     background-color: #F8D7DA;
     text-align: center;
     border-radius: 10px;
-  }
-
-/*----------------------------------------*/
-
-@media (max-width: 720px) {
- header, .top-header, .search, .menu ul {
-    align-items: center;
-    flex-direction: column;
- }   
 }
 
-
-
-
-
-
-
-
+@media (max-width: 720px) {
+    header, .top-header, .search, .menu ul {
+        align-items: center;
+        flex-direction: column;
+    }   
+}

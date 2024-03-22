@@ -3,6 +3,7 @@
 <%- include('../partials/head.ejs') %>
 <body>
 <%- include('../partials/header.ejs') %>
+<link rel="stylesheet" href="../css/register.css" />
 <div class="signin-container">
     <h1>Bienvenidos a Purum</h1>
     <form action="/users" method="post" enctype="multipart/form-data" class="form-register">
@@ -23,7 +24,7 @@
         </div>
         <div class="form-register-item">
             <label for="email">Correo electrónico</label>
-            <input type="email" id="email" name="email" placeholder="Correo electrónico" value="<%= typeof old !== 'undefined' && old.email ? old.email : '' %>">
+            <input id="email" name="email" placeholder="Correo electrónico" value="<%= typeof old !== 'undefined' && old.email ? old.email : '' %>">
             <% if (locals.errors && errors.email){ %>
             <span class="form-validationError"> <%= errors.email.msg %> </span>
             <% } %>

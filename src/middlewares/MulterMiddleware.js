@@ -26,7 +26,7 @@ const storage = multer.diskStorage({
   const storageUser = multer.diskStorage({
     destination: function (req, file, cb) {
       // Define la carpeta principal según el tipo de imagen
-      let mainFolder = 'public/images/users';
+      let mainFolder = 'public/images/users/';
       cb(null, mainFolder);
     },
     filename: function (req, file, cb) {

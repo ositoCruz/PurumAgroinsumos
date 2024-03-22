@@ -23,36 +23,42 @@ window.onload = function() {
         } 
     });
 
-    
-
     // Validación para el campo de contraseña
     passwordInput.addEventListener('blur', () => {
         if (passwordInput.value.trim() === "") {            
             showError(passwordInput, "La contraseña no puede estar vacía");
+        } else if (passwordInput.value.length < 8) {
+            showError(passwordInput, "La contraseña debe tener al menos 8 caracteres");
         } else {
             clearError(passwordInput);
         } 
     });
 
-    passwordInput.addEventListener('blur', ()=> {
-        if (passwordInput.value.length < 8) {
-            showError(passwordInput, "La contraseña debe tener al menos 8 caracteres");
-          }else {
-            clearError(passwordInput);
-        } 
-
-    })
-
     // Función para mostrar un mensaje de error y resaltar el campo
     function showError(inputElement, errorMessage) {
+        // Obtener el elemento span para el mensaje de error
+        let errorSpan = inputElement.nextElementSibling;
+        if (!errorSpan || !errorSpan.classList.contains("error-message")) {
+            // Si no existe, crear un nuevo elemento span
+            errorSpan = document.createElement("span");
+            errorSpan.classList.add("error-message");
+            inputElement.parentNode.insertBefore(errorSpan, inputElement.nextSibling);
+        }
+        // Mostrar el mensaje de error
+        errorSpan.textContent = errorMessage;
+        // Resaltar el campo
         inputElement.classList.add("is-invalid");
-        inputElement.classList.remove("is-valid");
-        alert(errorMessage);
     }
 
     // Función para eliminar el mensaje de error y restablecer el estilo del campo
     function clearError(inputElement) {
-        inputElement.classList.add("is-valid");
+        // Obtener el elemento span para el mensaje de error
+        let errorSpan = inputElement.nextElementSibling;
+        if (errorSpan && errorSpan.classList.contains("error-message")) {
+            // Si existe, eliminarlo
+            errorSpan.parentNode.removeChild(errorSpan);
+        }
+        // Restablecer el estilo del campo
         inputElement.classList.remove("is-invalid");
     }
 };
