@@ -8,11 +8,12 @@ const bodyParser = require('body-parser');
 const upload= require('../src/middlewares/MulterMiddleware');
 const uploadUser= require('../src/middlewares/MulterMiddleware');
 const methodOverride = require("method-override");
+const cors= require('cors');
 
 const mainRoutes = require("./routes/mainRoutes");
 const productsRoutes = require("./routes/productsRoutes");
 const usersRoutes = require("./routes/usersRoutes");
-
+const apiRoutes= require("./routes/apiRoutes");
 
 const mainController = require('./controllers/mainController');
 
@@ -22,6 +23,7 @@ const createValidations = require('./middlewares/createValidations');
 app.use(methodOverride("_method"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors());
 
 app.use(cookieParser());
 app.use(session({
@@ -83,6 +85,7 @@ app.use('/', mainRoutes);
 
 /*Rutas Para productos*/
 app.use('/products', productsRoutes);
+app.use('/api', apiRoutes);
 
 /*Rutas Para usuarios*/
 app.use('/users', usersRoutes);

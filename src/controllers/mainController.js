@@ -193,6 +193,7 @@ const controller = {
         const errors= validationResult(req);
 		if(errors.isEmpty()){
             const { name, descripcion, category, price, stock } = req.body;
+            
             const productImage = req.file;
     
             // Crea un nuevo registro de producto en la base de datos
