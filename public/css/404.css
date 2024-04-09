@@ -1,19 +1,42 @@
+/* Estilos generales */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
     background-color: #f4f4f4;
-   
+    margin: 0; /* Asegura que no haya margen en el borde del cuerpo */
+    padding: 0; /* Asegura que no haya relleno en el borde del cuerpo */
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    max-width: 1200px; /* Limita el ancho máximo del contenedor */
 }
 
 h1 {
     color: #d9534f;
+    font-size: 2rem; /* Ajusta el tamaño de la fuente para dispositivos móviles */
 }
 
 p {
     color: #333;
+    font-size: 1rem; /* Ajusta el tamaño de la fuente para dispositivos móviles */
+    line-height: 1.6; /* Ajusta el espaciado entre líneas */
+    margin-bottom: 20px; /* Agrega espacio inferior */
 }
 
 img {
     max-width: 100%;
     height: auto;
+}
+
+/* Estilos para dispositivos móviles */
+@media screen and (max-width: 576px) {
+    h1 {
+        font-size: 1.5rem; /* Reduce el tamaño de la fuente para dispositivos móviles */
+    }
+
+    p {
+        font-size: 0.9rem; /* Reduce el tamaño de la fuente para dispositivos móviles */
+    }
 }

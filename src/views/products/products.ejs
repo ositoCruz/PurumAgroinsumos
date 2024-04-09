@@ -1,49 +1,63 @@
 <!DOCTYPE html>
-<html lang="es">
-<%- include('../partials/head.ejs') %>
-<body>
-    <%- include('../partials/header.ejs') %>
-    <%- include('../partials/search.ejs') %>
+<html lang="en">
+    <%- include('../partials/head.ejs') %>
+    <body>
+        <%- include('../partials/header.ejs') %>
+        <%- include('../partials/search.ejs') %>
+        <link rel="stylesheet" href="/css/artPrincipales.css">
+        <link rel="stylesheet" href="/css/reciente.css">
+     
     <main>
-        <section class="productos">
-            <div class="div_title">
-                <h1>Lista de Productos</h1>
-            </div>
-            <div class="div-products">
-                <table>
-                    <thead>
-                        <th>Categoria</th>
-                        <th>Imagen</th>
-                        <th>Nombre</th>
-                        <th>Descripcion</th>
-                        <th>Precio</th>
-                        <th>Stock</th>
-                        <th>Acciones</th>
-                    </thead>
-                    <tbody>
-                        <% productosdata.forEach(product => { %>
-                            <tr>
-                                <td><%= product.categoria.categoria_descripcion %></td>
-                                <td><img src="/images/<%= product.producto_imagen %>" alt="<%= product.producto_imagen %>" class="product-image"></td>
-                                <td><%= product.producto_descripcion %></td>
-                                <td><%= product.producto_detalle %></td>
-                                <td>$<%= product.producto_precio %></td>
-                                <td><%= product.producto_stock %></td>
-                                <td class="product_acciones">
-                                    <a href="/products/details/<%= product.producto_id %>"><button class="productacc"><i class="fa-solid fa-circle-info"></i></button></a>
-                                    <a href="/products/editproduct/<%= product.producto_id %>"><button class="productacc"><i class="fa-solid fa-square-pen"></i></button></a>
-                                    <form action="/products/producto/eliminar/<%= product.producto_id %>" method="post" onsubmit="return confirm('¿Estás seguro de eliminar este producto?');">
-                                        <button class="productacc" type="submit" class="btn-delete-product"><i class="fa-solid fa-trash-can"></i></button>
-                                    </form>
-                                </td>
-                            </tr>
-                        <% }); %>
-                    </tbody>
-                </table>
+        <section class="articulos-principales">
+            <% 
+            const productosAleatorios = productosdata.sort(() => Math.random() - 0.5);
+            productosAleatorios.forEach(producto => { 
+        %>
+                <div class="articulo-item">
+                    <a href="/products/details/<%= producto.producto_id %>">
+                    <img src="/images/<%= producto.producto_imagen %>" alt="<%= producto.producto_imagen %>" class="product-image">
+                    <h3><%= producto.producto_descripcion %></h3>
+                    <p><%= producto.producto_detalle %></p>
+                    <p>Precio: $<%= producto.producto_precio %></p>
+                    <p>Stock: <%= producto.producto_stock %></p>
+                </a>
+                
+                <% if (user && user.rol_id==2) { %>
+                    <div class="articulo-options">
+                        <a href="/products/details/<%= producto.producto_id %>"><i class="fa-solid fa-circle-info"></i></a>
+                        <a href="/products/editproduct/<%= producto.producto_id %>"><i class="fa-solid fa-square-pen"></i></i></a>
+                    </div>
+                    <% } %>
+                </div>
+               
+                   
+            <% }); %>
+            
+        </section>
+        <section class="recientes">
+            <h2>Agregados recientemente:</h2>
+            <div class="recientes-items">
+                <% productosRecientes.forEach(producto => { %>
+                    <div class="reciente-item">
+                        <a href="/products/details/<%= producto.producto_id %>">
+                        <img src="/images/<%= producto.producto_imagen %>" alt="<%= producto.producto_imagen %>" class="product-image">
+                        <h3><%= producto.producto_descripcion %></h3>
+                        <p><%= producto.producto_detalle %></p>
+                        <p>Precio: $<%= producto.producto_precio %></p>
+                        <p>Stock: <%= producto.producto_stock %></p>
+                        </a>
+                        <% if (user && user.rol_id==2) { %>
+                            <div class="articulo-options">
+                                <a href="/products/details/<%= producto.producto_id %>"><i class="fa-solid fa-circle-info"></i></a>
+                                <a href="/products/editproduct/<%= producto.producto_id %>"><i class="fa-solid fa-square-pen"></i></i></a>
+                            </div>
+                            <% } %>
+                    </div>
+                <% }); %>
             </div>
         </section>
-    </main>
 
+    </main>
     <%- include('../partials/footer.ejs') %>
 </body>
 </html>

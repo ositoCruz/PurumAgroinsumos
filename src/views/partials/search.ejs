@@ -1,9 +1,11 @@
+<link rel="stylesheet" href="/css/search.css">
+
 <div class="search">
     <form action="#" method="GET" class="form-search">
         <input type="text" placeholder="Buscar">
         <button class="btn-search" type="submit"><i class="fa fa-search"></i></button>
     </form>
-    <% if (user) { %>
+    <% if (user && user.rol_id==2) { %>
         <button class="btn-new-product"><a href="/products/newproduct">AÑADIR PRODUCTO</a></button>
     <% } %>
     

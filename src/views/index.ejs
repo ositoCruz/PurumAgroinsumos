@@ -1,29 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include("partials/head") %>
+    <link rel="stylesheet" href="/css/landin.css">
 <body>
-    <%- include('partials/header') %>
-    <%- include('partials/search') %>
-    <main>
-        <section class="articulos-principales">
-            <% const lastThreeProducts = productosdata.slice(Math.max(productosdata.length - 3, 0)); %>
-            <% productosdata.forEach(producto => { %>
-                <div class="articulo-item">
-                    <img src="/images/<%= producto.producto_imagen %>" alt="<%= producto.producto_imagen %>" class="product-image">
-                    <h3><%= producto.producto_descripcion %></h3>
-                    <p><%= producto.producto_detalle %></p>
-                    <p>Precio: $<%= producto.producto_precio %></p>
-                    <p>Stock: <%= producto.producto_stock %></p>
-                    
-                    <div class="articulo-options">
-                        <a href="/products/details/<%= producto.producto_id %>"><i class="fa-solid fa-circle-info"></i></a>
-                        <a href="/products/editproduct/<%= producto.producto_id %>"><i class="fa-solid fa-square-pen"></i></i></a>
-                    </div>
-                </div>
-            <% }); %>
+    <main id="cruz">
+        <div class="promo">
+            <br>
+            <h1>¿Estas listo para crecer fuerte?</h1>
+            <br><br>
+            <p>Purum te acompaña paso a paso</p>
+            <br>
+            <a href="http://localhost:3000/products">
+                <button type="button">Empieza hoy</button>
+            </a>
+        </div>
+        <video muted autoplay loop>
+            <source src="/video/introfinal2.mp4"
+            type="video/mp4">
+        </video>
+       <div class="capa"></div>
             
-        </section>
+       
     </main>
-    <%- include('partials/footer') %>
 </body>
 </html>

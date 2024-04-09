@@ -1,0 +1,74 @@
+/* Estilos para el encabezado */
+
+header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+}
+
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.img-logo {
+    height: auto;
+    width: 80px;
+}
+
+.burger-menu nav {
+    display: flex;
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.menu ul li a {
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--black);
+    padding: 8px 15px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.menu ul li a:hover {
+    color: var(--verde);
+    text-decoration: none;
+}
+
+@media screen and (max-width: 720px) {
+    header, .top-header, .search {
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .menu ul {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .menu ul li {
+        margin: 0;
+        text-align: center;
+        margin-top: 5px; /* Espacio entre elementos */
+        margin-bottom: 5px; /* Espacio entre elementos */
+    }
+}

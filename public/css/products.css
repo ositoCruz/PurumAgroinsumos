@@ -7,39 +7,43 @@
     width: 90%;
     margin: 5%;
 }
+
 .div-products {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    
+    justify-content: space-around; /* Añade espacio alrededor de los elementos */
 }
+
 .div_item_product {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     border: 1px solid black;
     padding: 10px;
-    width: 20%;
-    height: 400px;
+    width: 30%; /* Ajusta el ancho de los elementos para dispositivos más pequeños */
+    margin-bottom: 20px; /* Añade espacio entre los elementos */
+    border-radius: 10px; /* Añade bordes redondeados */
 }
+
 .product-image {
     height: 100px;
     width: 100px;
+    margin-bottom: 10px; /* Añade espacio entre la imagen y el resto del contenido */
 }
+
 .product_acciones {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    gap: 1px;
+    gap: 5px; /* Ajusta el espacio entre los elementos */
 }
-.productacc{
-    font-size: 10px;
-    width: auto;
-    height: auto;
+
+.productacc {
+    font-size: 12px; /* Ajusta el tamaño del texto */
     text-align: center;
 }
 
-.productacc i{
-    font-size: 10px;
-   
+.productacc i {
+    font-size: 16px; /* Ajusta el tamaño de los íconos */
 }

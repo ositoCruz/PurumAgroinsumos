@@ -58,7 +58,7 @@ header {
     width: 80px;
 }
 
-.burger-menu nav{
+.burger-menu nav {
     display: flex;
 }
 
@@ -210,10 +210,91 @@ footer {
     text-align: center;
     border-radius: 10px;
 }
+.recientes {
+    margin-top: 40px;
+}
 
+.recientes h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.recientes-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.reciente-item {
+    width: 300px;
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+.reciente-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.reciente-item img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.reciente-item h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.reciente-item p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+@media screen and (max-width: 576px) {
+    .reciente-item {
+        width: calc(100% - 40px);
+    }
+}
 @media (max-width: 720px) {
-    header, .top-header, .search, .menu ul {
+    header, .top-header, .search {
         align-items: center;
-        flex-direction: column;
+         flex-direction: column;
+         .reciente-item {
+            width: calc(50% - 40px);
+        }
     }   
+
+    .menu ul {
+        
+       flex-direction: inherit;
+        justify-content: center;
+    }
+
+    .menu ul li {
+        margin: 0px;
+        text-align: center;
+        margin-top: 0%;
+        margin-bottom: 0%;
+    }
+
+    .search .form-search input[type="text"] {
+        width: 100%;
+    }
+
+    .top-header {
+        padding: 10px 0;
+        border-bottom: 1px solid var(--verde);
+    }
 }

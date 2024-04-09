@@ -1,0 +1,92 @@
+/* Estilo para el contenedor principal */
+/* Estilo para el contenedor principal */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#cruz {
+    min-height: 100vh;
+    position: relative;
+     overflow: hidden;
+}
+
+/* Estilo para el video de fondo */
+video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centrar vertical y horizontalmente */
+    min-width: 100%; /* Asegurar que el video cubra todo el contenedor */
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1; /* Mover el video detrás del contenido */
+}
+
+/* Estilo para la capa superpuesta */
+.capa {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #35803f;
+    opacity: 0.5;
+    mix-blend-mode: overlay;
+}
+
+/* Estilo para el contenido promocional */
+/* Estilo para el contenido promocional */
+.promo {
+    padding: 10vh 5vw; /* Espaciado vertical y horizontal */
+    text-align: center; /* Alinear el contenido al centro */
+    position: relative;
+    z-index: 2;
+    margin: 10vh auto; /* Agregar márgenes para centrar el contenido */
+}
+
+/* Estilo para el título (h1) dentro de .promo */
+.promo h1 {
+    font-size: 3rem; /* Tamaño de fuente más grande para el título */
+    color: #fff; /* Color blanco */
+    margin-bottom: 20px; /* Añadir espacio entre el título y el párrafo */
+}
+
+/* Estilo para el párrafo (p) dentro de .promo */
+.promo p {
+    font-size: 1.5rem; /* Tamaño de fuente para el párrafo */
+    color: #fff; /* Color blanco */
+    margin-bottom: 20px; /* Añadir espacio entre párrafos */
+}
+
+/* Estilo para el botón dentro de .promo */
+.promo button {
+    padding: 15px 30px; /* Aumentar el tamaño del botón */
+    font-size: 1.2rem; /* Tamaño de fuente */
+    background-color: #2cab28; /* Color de fondo verde */
+    color: #fff; /* Color del texto blanco */
+    border: 2px solid #2cab28; /* Añadir borde al botón */
+    border-radius: 5px; /* Redondear los bordes del botón */
+    cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
+    transition: background-color 0.3s, color 0.3s; /* Agregar transición suave al color de fondo y texto */
+}
+
+/* Estilo para el botón cuando se pasa el cursor sobre él */
+.promo button:hover {
+    background-color: #258c24; /* Color de fondo verde más oscuro */
+    color: #fff; /* Color del texto blanco */
+}
+
+/* Estilos para hacerlo completamente receptivo */
+@media (max-width: 768px) {
+    .promo h1 {
+        font-size: 2.5rem; /* Reducir el tamaño de fuente del título en pantallas más pequeñas */
+    }
+    .promo p {
+        font-size: 1.2rem; /* Reducir el tamaño de fuente del párrafo en pantallas más pequeñas */
+    }
+    .promo button {
+        font-size: 1rem; /* Reducir el tamaño de fuente del botón en pantallas más pequeñas */
+    }
+}

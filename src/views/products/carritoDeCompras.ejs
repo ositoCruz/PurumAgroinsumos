@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
+<head>
     <%- include('../partials/head.ejs') %>
+</head>
 <body>
-    <%- include ('../partials/header.ejs') %>
-    <!-- Contenido del carrito de compras -->
+    <%- include('../partials/header.ejs') %>
+    <link rel="stylesheet" href="../../css/carritoDeCompras.css">
     <main>
-        <!-- Tabla que muestra los productos en el carrito -->
         <div class="shop">
             <table>
                 <thead>
@@ -17,11 +18,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Ejemplo de un producto en el carrito -->
                     <tr>
                         <td>
-                            <img class="producto" src="https://previews.123rf.com/images/setory/setory1901/setory190100049/126340532-icono-de-fertilizante-vectorial-para-centro-de-jardiner%C3%ADa-de-productos-de-dise%C3%B1o-y-jardiner%C3%ADa.jpg" alt="Fertilizante" class="product-image">
-                           <p>Fertilizante</p>
+                            <div class="product-info">
+                                <img class="producto" src="https://previews.123rf.com/images/setory/setory1901/setory190100049/126340532-icono-de-fertilizante-vectorial-para-centro-de-jardiner%C3%ADa-de-productos-de-dise%C3%B1o-y-jardiner%C3%ADa.jpg" alt="Fertilizante">
+                                <p>Fertilizante</p>
+                            </div>
                         </td>
                         <td>$20.00</td>
                         <td>
@@ -31,12 +33,12 @@
                             <button class="btn-delete">Eliminar</button>
                         </td>
                     </tr>
-    
-                    <!-- Otro producto en el carrito -->
                     <tr>
                         <td>
-                            <img class="producto" src="https://w7.pngwing.com/pngs/684/649/png-transparent-herbicide-glyphosate-weed-control-lawn-killer-price-root-pest-control-lawn.png" alt="Producto 2" class="product-image">
-                            <p>Herbicida</p>
+                            <div class="product-info">
+                                <img class="producto" src="https://w7.pngwing.com/pngs/684/649/png-transparent-herbicide-glyphosate-weed-control-lawn-killer-price-root-pest-control-lawn.png" alt="Herbicida">
+                                <p>Herbicida</p>
+                            </div>
                         </td>
                         <td>$30.00</td>
                         <td>
@@ -48,7 +50,6 @@
                     </tr>
                 </tbody>
             </table>
-            <!-- Resumen del carrito -->
             <div class="cart-summary">
                 <h2>Resumen del Carrito</h2>
                 <div class="total">
@@ -61,7 +62,6 @@
             </div>
         </div>   
     </main>
-
-    <%- include ('../partials/footer.ejs') %>
+    <%- include('../partials/footer.ejs') %>
 </body>
 </html>

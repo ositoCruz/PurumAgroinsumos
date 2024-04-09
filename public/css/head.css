@@ -1,0 +1,33 @@
+/* Estilos para la cabecera del documento */
+
+:root {
+    --gris-oscuro: #666;
+    --verde: #35803f;
+    --verde-claro: #6af24f;
+    --black: #000;
+    --white: #fff;
+
+    --font-family: 'Roboto', sans-serif;
+    --size-cuerpo: 12px;
+    --size-titulares: 24px;
+    --size-precios: 18px;
+    --size-descuentos: 16px;
+    --size-descripcion: 16px;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: var(--font-family);
+    font-size: 12px;
+}
+
+body {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+    min-height: 100vh;
+    margin: 0;
+    flex-direction: column;
+}

@@ -4,26 +4,39 @@
 <%- include('../partials/head.ejs') %>
 <body>
     <%- include('../partials/header.ejs') %>
+    <link rel="stylesheet" href="/css/profile.css">
     <main>
         <section class="profile-detail">
             <h1>Bienvenido, <%= user.username %></h1>
 
-            <h1>DATOS DEL USUARIO</h1>
+            <h2>DATOS DEL USUARIO:</h2>
 
-            <div class="product-page">
-                <h2>Nombre: <%= user.user_fullName %></h2>
-                <h2>Usuario: <%= user.username %></h2>
-                <h2>E-mail: <%= user.user_email %></h2>
-                <img src="/images/<%= user.user_imagen %>" alt="<%= user.fullname %>">
+            <div class="user-details">
+                <div class="user-detail">
+                    <h3>Nombre:</h3>
+                    <p><%= user.user_fullName %></p>
+                </div>
+                <div class="user-detail">
+                    <h3>Usuario:</h3>
+                    <p><%= user.username %></p>
+                </div>
+                <div class="user-detail">
+                    <h3>E-mail:</h3>
+                    <p><%= user.user_email %></p>
+                </div>
+                <div class="user-image-container">
+                    <img class="user-image" src="/images/<%= user.user_imagen %>" alt="<%= user.fullname %>">
+                </div>
             </div>
             
-            <div class="botones">
-                <a href="/users/edituser/<%=user.user_id %>" class="buttonDecoration secondary">EDITAR DATOS</a>
-                <a href="/users/userlist" class="buttonDecoration secondary">Panel de control</a>
-                
-                    
-                
-
+            <div class="buttons">
+                <a href="/users/edituser/<%=user.user_id %>" class="button primary">EDITAR MI PERFIL</a>
+               
+                <% if (user.rol_id==2) { %>
+                <a href="/users/userlist" class="button secondary">Panel de control de usuarios</a>
+                <a href="#" class="button secondary">Dashboard</a>
+               <% } %>
+            </div>
         </section>
     </main>
 

@@ -1,0 +1,80 @@
+/* Estilos para el cuerpo y el contenido principal */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+main {
+    padding: 20px;
+}
+
+/* Estilo para el formulario de edición de usuario */
+.edit-user-form {
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para los encabezados dentro del formulario */
+.edit-user-form h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Estilos para los campos de entrada y etiquetas */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Estilo para la imagen de perfil previa */
+.user-image-preview {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.user-image-preview img {
+    max-width: 200px;
+    height: auto;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+}
+
+/* Estilo para el botón de guardar */
+.btn-new-user {
+    background-color: #119925;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-new-user:hover {
+    background-color: #2c6b03;
+}
+
+/* Estilos para los mensajes de validación */
+.form-validation-error {
+    color: #ff0000;
+}

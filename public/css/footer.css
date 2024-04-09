@@ -1,0 +1,47 @@
+/* Estilos para el pie de página */
+
+footer {
+    background-color: var(--verde);
+    width: 100%;
+}
+
+.footer-content {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px;
+    width: 90%;
+    margin: 5%;
+}
+
+.footer-section-img img {
+    width: 150px;
+    height: 150px;
+}
+
+.footer-section-contact {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-section-socials {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin: 15px;
+}
+
+.footer-section-socials a {
+    font-size: 20px;
+    text-decoration: none;
+    color: var(--black);
+}
+span{
+    color: white;
+}
+
+.footer-section-socials a:hover {
+    color: var(--white);
+    font-size: 25px;
+}

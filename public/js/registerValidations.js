@@ -38,7 +38,7 @@ window.onload = function() {
     // Validación para el campo de correo electrónico
     emailInput.addEventListener('blur', () => {
         if (emailInput.value.trim() == "") {            
-            showError(emailInput, "El correo electrónico no puede estar vacío");
+            showError(emailInput, "El correo email no puede estar vacío");
         } else {
             clearError(emailInput);
         } 

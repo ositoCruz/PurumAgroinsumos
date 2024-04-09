@@ -20,26 +20,7 @@ const OrdersStatus = db.OrdersStatus;
 const Productos = db.Productos;
 const Users = db.Users;
 
-// function getProducts() {
-//     return JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-// }
-// function getProductById(productId) {
-//     // Lee el archivo JSON de productos
-//     const productsData = getProducts();
-//     // Busca el producto por ID
-//     const product = productsData.products.find(item => item.id === parseInt(productId));
-//     return product;
-// }
-// function getUsers() {
-//     return JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
-// }
-// function getUserByUsername(username) {
-//     // Lee el archivo JSON de productos
-//     const usersData = getUsers();
-//     // Busca el producto por ID
-//     const user = usersData.users.find(item => item.username === username);
-//     return user;
-// }
+
 
 
 const controller = {  
@@ -54,14 +35,28 @@ const controller = {
     },
 
     index: async (req, res) => {
-        const productosdata = await db.Productos.findAll();
-        return res.render('index', { productosdata })
+        
+        return res.render('index')
     },
     products: async (req, res) => {
         // Lee el archivo JSON de productos
+        const productosdata = await db.Productos.findAll({
+            limit: 6
+        });
+        const productosRecientes = await db.Productos.findAll({
+            order: [['createdAt', 'DESC']],
+            limit: 3
+        });
+
+        return res.render('products/products', { productosdata, productosRecientes })
+    },
+    
+
+    productsList: async (req, res) => {
+        // Lee el archivo JSON de productos
         const productosdata = await db.Productos.findAll({include: "categoria"});
         // Pasa los datos de productos a la vista
-        return res.render('products/products', { productosdata });
+        return res.render('products/productsList', { productosdata });
     },
     profile: async(req, res) => {
         const username = req.params.username;
@@ -131,7 +126,8 @@ const controller = {
                 username: username,
                 user_email: email,
                 password: hashedPassword,
-                user_imagen: profileImage.filename
+                user_imagen: profileImage.filename,
+                rol_id: 1
             });
     
             // Redirigir al usuario a la página de inicio de sesión
@@ -223,29 +219,7 @@ const controller = {
         // Pasa los datos de productos a la vista
         return res.render('users/usersList', { users });
     },
-    // procesarCreate : async (req, res) => {
-    //     // const errors= validationResult(req);
-    //     try{
-    //         const { name, description, category, price, stock } = req.body;
-    //         const productImage = req.file;
-    //         // if(errors.isEmpty()){
-    //         // Crea un nuevo registro de producto en la base de datos
-    //         await Productos.create({
-    //             producto_descripcion: name,
-    //             producto_detalle: description,
-    //             categoria_id: category,
-    //             producto_precio: price,
-    //             producto_stock: stock,
-    //             producto_imagen: productImage.filename // Asume que productImage.filename contiene el nombre de la imagen
-    //         });
-    // console.log(errors);
-    //         // Redirige a la página de productos después de crear el nuevo registro
-    //         return res.redirect('/products');
-    //     }
-    //         // else {res.render("./products/createProduct"), {errors: errors.mapped(), old:req.body}}
-    // catch (error){
-    //      res.status(500).send('Error interno del servidor');}
-    // },
+   
     
     
     //OPCION 3 PROCESAR EDIT:
@@ -335,85 +309,7 @@ const controller = {
         }
     },
 
-    // edit: async (req, res) => {
-    //     try {
-    //       const { id } = req.params;
-    //       const user = await db.Users.findByPk(id);
-    //       res.render('users/editUsers');
-    //     } catch (error) {
-    //       console.error('Error al mostrar el formulario de edición de usuario:', error);
-    //       res.status(500).send('Internal Server Error');
-    //     }
-    //   },
-      
-    //   update: async (req, res) => {
-    //     try {
-    //       const { id } = req.params;
-    //       const { fullname, username, email, password } = req.body;
-    //       console.log(fullname,username,email,password);
-    //       const userImagen = req.file;
-
-    //     // Verifica si productoImagen está definido, y si lo está, obtén el nombre de archivo
-    //     let user_imagen = null;
-    //     if (userImagen) {
-    //         user_imagen =userImagen.filename;
-    //         // Aquí puedes agregar la lógica para manejar la actualización de la imagen del producto
-    //         // Por ejemplo, puedes eliminar la imagen anterior y guardar la nueva imagen en su lugar
-    //     }
-    //       await db.User.update({  
-    //         user_fullName: fullname,
-    //         username: username,
-    //         user_email: email,
-    //         password: password,
-    //         user_imagen: user_imagen }, { where: { id } });
-    //       res.redirect('profile/'+req.session.username);
-    //     } catch (error) {
-    //       console.error('Error al actualizar el usuario:', error);
-    //       res.status(500).send('Internal Server Error');
-    //     }
-    //   },
-
-
-
-    // procesarEditUser : async function  (req, res) {
-    //     // const errors = validationResult(req);
-    //     // if (!errors.isEmpty()) {
-    //     //     // Si hay errores de validación, renderiza nuevamente el formulario de edición con los errores
-    //     //     const userId = req.params.id;
-    //     //     const user = await db.Users.findByPk(userId);
-    //     //     return res.render('users/editUsers', { user, errors: errors.mapped(), old: req.body });
-    //     // }
-    //     const userId = req.params.id;
-    //     const { fullname, username, email, password } = req.body;
-    //     const userImagen = req.file;
-
-    //     // Verifica si productoImagen está definido, y si lo está, obtén el nombre de archivo
-    //     let user_imagen = null;
-    //     if (userImagen) {
-    //         user_imagen =userImagen.filename;
-    //         // Aquí puedes agregar la lógica para manejar la actualización de la imagen del producto
-    //         // Por ejemplo, puedes eliminar la imagen anterior y guardar la nueva imagen en su lugar
-    //     }
-
-    //     // Actualiza el producto en la base de datos
-    //     await Users.update(
-    //         {
-    //             user_fullName: fullname,
-    //             username: username,
-    //             user_email: email,
-    //             password: password,
-    //             // producto_stock: stock,
-    //             user_imagen: user_imagen // Actualiza solo si hay una nueva imagen
-    //         },
-    //         {
-    //             where: { user_id: userId } // Asegúrate de usar el campo correcto para la condición where
-    //         });
-
-    //     // Redirige a la página de productos después de la actualización
-    //     res.redirect("/users/profile/"+userId); //cambiar a profile
-    // },
-
-
+   
 
     procesarEliminar: function (req,res) {
         let productId = req.params.id;
@@ -441,104 +337,6 @@ const controller = {
         res.render(("about"))
     },
 
-
-
-
-//OPCION 1 PROCESAREDIT NO FUNCIONA (TODAVIA)
-    // procesarEdit: async (req, res) => {
-    //     try {
-    //         const productId = req.params.id;
-    //         const { descripcion, detalle, category, precio, stock } = req.body;
-    //         const productImage = req.file;
-    
-    //         // Obtiene la información actual del producto
-    //         const product = await db.Productos.findByPk(productId);
-
-    //         // Actualiza los datos del producto
-    //         product.producto_descripcion = descripcion;
-    //         product.producto_detalle = detalle;
-    //         product.categoria_id = category;
-    //         product.producto_precio = precio;
-    //         product.producto = stock;
-    
-    //         // Actualiza la imagen si se proporciona una nueva
-    //         if (productImage) {
-    //             // Asigna el nombre de la nueva imagen al producto
-    //             product.producto_imagen = `productImage-${Date.now()}${path.extname(productImage.originalname)}`;
-    //             const newImagePath = path.join(__dirname, '../public/images/', product.producto_imagen);
-    //             fs.renameSync(productImage.path, newImagePath);
-    //         }
-    
-    //         // Lee el contenido actual del archivo JSON
-    //         const productosdata = await db.Productos.findAll();
-
-    //         // Busca el índice del producto en el array
-    //         const productIndex = productosdata.findIndex(item => item.producto_id === parseInt(productId));
-
-            
-    //         if (productIndex !== -1) {
-    //             // Actualiza el producto en el array de productos
-    //             productosdata[productIndex] = product;
-    
-    //             // Escribe el nuevo contenido al archivo JSON
-    //             fs.writeFileSync(productsFilePath, JSON.stringify(productosdata, null, 2));
-    
-    //             res.redirect('/products');
-    //         } else {
-    //             console.error('Producto no encontrado en el array de productos');
-    //             res.status(500).send('Error interno del servidor');
-    //         }
-    //     } catch (error) {
-    //         console.error('Error al procesar la edición del producto:', error);
-    //         res.status(500).send('Error interno del servidor');
-    //     }
-
-    // },
-
-    // procesarEliminar: (req, res) => {
-    //     try {
-    //         const productId = req.params.id;
-    
-    //         // Obtiene la información actual del producto
-    //         const product = getProductById(productId);
-    
-    //         // Verifica si hay una imagen asociada al producto antes de intentar eliminarla
-    //         if (product && product.image) {
-    //             const imagePath = path.join(__dirname, '../public/images/', product.image);
-    
-    //             // Verifica si el archivo existe antes de intentar eliminarlo
-    //             if (fs.existsSync(imagePath)) {
-    //                 fs.unlinkSync(imagePath);
-    //                 console.log(`Archivo eliminado: ${imagePath}`);
-    //             } else {
-    //                 console.log(`El archivo no existe: ${imagePath}`);
-    //             }
-    //         }
-    
-    //         // Lee el contenido actual del archivo JSON
-    //         const productsData = getProducts();
-    
-    //         // Busca el índice del producto en el array
-    //         const productIndex = productsData.products.findIndex(item => item.id === parseInt(productId));
-    
-    //         if (productIndex !== -1) {
-    //             // Elimina el producto del array de productos
-    //             productsData.products.splice(productIndex, 1);
-    
-    //             // Escribe el nuevo contenido al archivo JSON
-    //             fs.writeFileSync(productsFilePath, JSON.stringify(productsData, null, 2));
-    
-    //             console.log(`Producto eliminado: ${productId}`);
-    //             res.redirect('/products');
-    //         } else {
-    //             console.error('Producto no encontrado en el array de productos');
-    //             res.status(500).send('Error interno del servidor');
-    //         }
-    //     } catch (error) {
-    //         console.error('Error al procesar la eliminación del producto:', error);
-    //         res.status(500).send('Error interno del servidor');
-    //     }
-    // },
 
 }
 

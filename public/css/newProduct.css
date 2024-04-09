@@ -4,13 +4,15 @@
     flex-direction: column;
     padding: 10px;
     max-width: 400px;
-    margin: 10px;
+    margin: 10px auto; /* Centra el formulario horizontalmente */
 }
-.div-form-create div{
+
+.div-form-create div {
     align-items: center;
     display: flex;
     justify-content: space-evenly;
 }
+
 .div-form-create h2, .div-button-submit {
     text-align: center;
 }
@@ -30,4 +32,9 @@
     border-radius: 5px;
     cursor: pointer;
 }
-  
+
+@media (max-width: 720px) {
+    .div-form-create {
+        width: 80%; /* Ajusta el ancho del formulario al 80% del contenedor principal */
+    }
+}
