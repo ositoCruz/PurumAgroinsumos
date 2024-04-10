@@ -4,9 +4,16 @@
     <form action="#" method="GET" class="form-search">
         <input type="text" placeholder="Buscar">
         <button class="btn-search" type="submit"><i class="fa fa-search"></i></button>
-    </form>
-    <% if (user && user.rol_id==2) { %>
-        <button class="btn-new-product"><a href="/products/newproduct">AÑADIR PRODUCTO</a></button>
-    <% } %>
-    
 </div>
+</form>
+<% if (user) { %> 
+    <div class="dropdown-content" id="categoriaDropdownContent">
+        <% categorias.forEach(categoria => { %>
+            <a href="/products/category/<%= categoria.categoria_id %>"><%= categoria.categoria_descripcion %></a>
+        <% }); %>   
+    </div>
+<% } %>
+<% if (user && user.rol_id==2) { %>
+    <br>
+    <button class="btn-new-product"><a href="/products/newproduct">AÑADIR PRODUCTO</a></button>
+<% } %>

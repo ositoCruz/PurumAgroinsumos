@@ -1,0 +1,114 @@
+/* Estilos generales */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Encabezado */
+a{
+    text-decoration: none;
+}
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+/* Título de la página */
+
+.div_title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.div_title h1 {
+    color: #333;
+}
+
+/* Tabla de usuarios */
+
+.div-products {
+    margin: 0 auto;
+    max-width: 100%;
+    overflow-x: auto; /* Permitir desplazamiento horizontal en dispositivos pequeños */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+/* Imagen de usuario */
+
+.product-image {
+    max-width: 100px;
+    height: auto;
+    border-radius: 50%;
+}
+
+/* Acciones */
+
+.product_acciones {
+    text-align: center;
+}
+
+.productacc {
+    background-color: #4CAF50; /* Verde */
+    border: none;
+    color: white;
+    padding: 4px 8px; /* Ajusta el tamaño del padding */
+    text-align: center;
+    text-decoration: none;
+    display: block; /* Cambia a bloque para colocar uno debajo del otro */
+    font-size: 12px; /* Ajusta el tamaño de la fuente */
+    margin: 4px auto; /* Centra los botones */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.productacc:hover {
+    background-color: #45a049; /* Verde más oscuro */
+}
+
+/* Responsive */
+
+@media screen and (max-width: 768px) {
+    th, td {
+        padding: 6px;
+    }
+
+    .product-image {
+        max-width: 80px;
+    }
+
+    .productacc {
+        padding: 3px 6px; /* Ajusta el tamaño del padding */
+        font-size: 10px; /* Ajusta el tamaño de la fuente */
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .product-image {
+        max-width: 60px;
+    }
+
+    .productacc {
+        padding: 2px 4px; /* Ajusta el tamaño del padding */
+        font-size: 8px; /* Ajusta el tamaño de la fuente */
+    }
+}

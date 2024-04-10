@@ -20,5 +20,8 @@ router.get('/editproduct/:id', authMiddleware,adminAuthMiddleware.noLoggedAdmin,
 router.post('/editproduct/:id', upload.single('productImage'), createValidations,adminAuthMiddleware.noLoggedAdmin, mainController.procesarEdit);
 
 router.post('/producto/eliminar/:id', authMiddleware,adminAuthMiddleware.noLoggedAdmin, mainController.procesarEliminar);
+// router.get('/productList', adminAuthMiddleware.noLoggedAdmin, mainController.productsList);
 
+/*Filtro de categorias*/
+router.get('/category/:id', authMiddleware, mainController.productsList); 
 module.exports = router;

@@ -3,25 +3,28 @@
 <%- include('../partials/head.ejs') %>
 <body>
     <%- include('../partials/header.ejs') %>
-    <%- include('../partials/search.ejs') %>
+    <link rel="stylesheet" href="/css/productList.css">
     <main>
         <section class="productos">
             <div class="div_title">
-                <h1>Lista de Productos</h1>
+                <h1>Lista de productos de la categoria seleccionada: </h1>
             </div>
             <div class="div-products">
-                <table>
-                    <thead>
-                        <th>Categoria</th>
-                        <th>Imagen</th>
-                        <th>Nombre</th>
-                        <th>Descripcion</th>
-                        <th>Precio</th>
-                        <th>Stock</th>
-                        <th>Acciones</th>
-                    </thead>
-                    <tbody>
-                        <% productosdata.forEach(product => { %>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Categoria</th>
+                                <th>Imagen</th>
+                                <th>Nombre</th>
+                                <th>Descripcion</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% productosdata.forEach(product => { %>
                             <tr>
                                 <td><%= product.categoria.categoria_descripcion %></td>
                                 <td><img src="/images/<%= product.producto_imagen %>" alt="<%= product.producto_imagen %>" class="product-image"></td>
@@ -29,17 +32,24 @@
                                 <td><%= product.producto_detalle %></td>
                                 <td>$<%= product.producto_precio %></td>
                                 <td><%= product.producto_stock %></td>
+                                <% if (user && user.rol_id==1) { %>
+                                    <td>   <a href="/carrito"><button><i class="fa-solid fa-basket-shopping"></i></button></a></td>   
+                                    <% }; %>
+                                <% if (user && user.rol_id==2) { %> 
+                                    
                                 <td class="product_acciones">
                                     <a href="/products/details/<%= product.producto_id %>"><button class="productacc"><i class="fa-solid fa-circle-info"></i></button></a>
                                     <a href="/products/editproduct/<%= product.producto_id %>"><button class="productacc"><i class="fa-solid fa-square-pen"></i></button></a>
                                     <form action="/products/producto/eliminar/<%= product.producto_id %>" method="post" onsubmit="return confirm('¿Estás seguro de eliminar este producto?');">
-                                        <button class="productacc" type="submit" class="btn-delete-product"><i class="fa-solid fa-trash-can"></i></button>
+                                        <button class="productacc btn-delete-product" type="submit"><i class="fa-solid fa-trash-can"></i></button>
                                     </form>
                                 </td>
+                                <% }; %>
                             </tr>
-                        <% }); %>
-                    </tbody>
-                </table>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </section>
     </main>

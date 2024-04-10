@@ -1,77 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
-  <%- include('../partials/head.ejs') %>
-  <body>
+<html lang="es">
+<head>
+    <%- include('../partials/head.ejs') %>
+    <link rel="stylesheet" href="/css/newProduct.css">
+</head>
+<body>
     <%- include('../partials/header.ejs') %>
+
     <main>
-      <form
-        action="/products"
-        method="post"
-        enctype="multipart/form-data"
-        class="formulario"
-      >
-        <div class="div-form-create">
-          <h2>NUEVO PRODUCTO</h2>
-          <div>
-            <label for="name">Nombre</label>
-            <div>
-              <input class="<%= locals.errors && errors.name ? 'input-error' : null %>" type="text" id="name" name="name" placeholder="Nombre 5 caracteres" value="<%= typeof old !== 'undefined' && old.name ? old.name : '' %>">
-              <% if (locals.errors && errors.name) { %>
-                <span class="form-validationError"><%= errors.name.msg %></span>
-              <% } %>
+        <form action="/products" method="post" enctype="multipart/form-data" class="formulario">
+            <div class="div-form-create">
+                <h2>NUEVO PRODUCTO</h2>
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input class="<%= locals.errors && errors.name ? 'input-error' : null %>" type="text" id="name" name="name" placeholder="Nombre (mínimo 5 caracteres)" value="<%= typeof old !== 'undefined' && old.name ? old.name : '' %>">
+                    <% if (locals.errors && errors.name) { %>
+                        <span class="form-validation-error"><%= errors.name.msg %></span>
+                    <% } %>
+                </div>
+                <div class="form-group">
+                    <label for="descripcion">Descripción</label>
+                    <input class="<%= locals.errors && errors.descripcion ? 'input-error' : null %>" type="text" id="descripcion" name="descripcion" placeholder="Descripción (mínimo 20 caracteres)" value="<%= typeof old !== 'undefined' && old.descripcion ? old.descripcion : '' %>">
+                    <% if (locals.errors && errors.descripcion) { %>
+                        <span class="form-validation-error"><%= errors.descripcion.msg %></span>
+                    <% } %>
+                </div>
+                <div class="form-group">
+                    <label for="category">Categoría</label>
+                    <select class="<%= locals.errors && errors.category ? 'input-error' : null %>" name="category" id="category">
+                        <option value="">Selecciona una categoría</option>
+                        <option value="1">Insecticida</option>
+                        <option value="2">Herbicida</option>
+                        <option value="3">Pesticida</option>
+                        <option value="4">Solución</option>
+                    </select>
+                    <% if (locals.errors && errors.category) { %>
+                        <span class="form-validation-error"><%= errors.category.msg %></span>
+                    <% } %>
+                </div>
+                <div class="form-group">
+                    <label for="price">Precio</label>
+                    <input class="<%= locals.errors && errors.price ? 'input-error' : null %>" type="number" id="price" name="price" placeholder="Precio">
+                    <% if (locals.errors && errors.price) { %>
+                        <span class="form-validation-error"><%= errors.price.msg %></span>
+                    <% } %>
+                </div>
+                <div class="form-group">
+                    <label for="stock">Stock</label>
+                    <input class="<%= locals.errors && errors.stock ? 'input-error' : null %>" type="number" id="stock" name="stock" placeholder="Stock">
+                    <% if (locals.errors && errors.stock) { %>
+                        <span class="form-validation-error"><%= errors.stock.msg %></span>
+                    <% } %>
+                </div>
+                <div class="form-group">
+                    <label for="productImage">Seleccionar imagen:</label>
+                    <input type="file" id="productImage" name="productImage" accept="image/*">
+                    <% if (locals.errors && errors.productImage) { %>
+                        <span class="form-validation-error"><%= errors.productImage.msg %></span>
+                    <% } %>
+                </div>
+                <div class="div-button-submit">
+                    <button type="submit" class="btn-new-product">GUARDAR</button>
+                </div>
             </div>
-          </div>
-          <div>
-            <label for="descripcion">Descripción</label>
-            <input class="<%= locals.errors && errors.descripcion ? 'input-error' : null %>" type="text" id="descripcion" name="descripcion" placeholder="Descripción 20 caracteres" value="<%= typeof old !== 'undefined' && old.descripcion ? old.descripcion : '' %>">
-            <% if (locals.errors && errors.descripcion) { %>
-              <span class="form-validationError"><%= errors.descripcion.msg %></span>
-            <% } %>
-          </div>
-          <div>
-            <label for="category">Categoría</label>
-            <select class="<%= locals.errors && errors.category ? 'input-error' : null %>" name="category" id="category">
-              <option value="">Selecciona una categoría</option>
-              <option value="1">Insecticida</option>
-              <option value="2">Herbicida</option>
-              <option value="3">Pesticida</option>
-              <option value="4">Solución</option>
-            </select>
-            <% if (locals.errors && errors.category) { %>
-              <span class="form-validationError"><%= errors.category.msg %></span>
-            <% } %>
-          </div>
-          <div>
-            <label for="price">Precio</label>
-            <input class="<%= locals.errors && errors.price ? 'input-error' : null %>" type="number" id="price" name="price" placeholder="Ingrese el Precio" value="<%= typeof old !== 'undefined' && old.price ? old.price : '' %>">
-            <% if (locals.errors && errors.price) { %>
-              <span class="form-validationError"><%= errors.price.msg %></span>
-            <% } %>
-          </div>
-          <div>
-            <label for="stock">Stock</label>
-            <input class="<%= locals.errors && errors.stock ? 'input-error' : null %>" type="number" id="stock" name="stock" placeholder="Ingrese el stock" value="<%= typeof old !== 'undefined' && old.stock ? old.stock : '' %>">
-            <% if (locals.errors && errors.stock) { %>
-              <span class="form-validationError"><%= errors.stock.msg %></span>
-            <% } %>
-          </div>
-          <div>
-            <label for="productImage">Seleccionar imagen:</label>
-            <input type="file" id="productImage" name="productImage" accept="image/*">
-            <% if (locals.errors && errors.productImage) { %>
-              <span class="form-validationError"><%= errors.productImage.msg %></span>
-            <% } %>
-          </div>
-          <div class="div-button-submit">
-            <button type="submit" class="btn-new-product">GUARDAR</button>
-          </div>
-        </div>
-      </form>
+        </form>
     </main>
+
     <%- include('../partials/footer.ejs') %>
-
-   
     <script src="/js/createValidations.js"></script>
-  </body>
+</body>
 </html>
-

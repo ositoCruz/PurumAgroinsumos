@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<%- include('../partials/head.ejs') %>
+<head>
+    <%- include('../partials/head.ejs') %>
+</head>
 <body>
     <%- include('../partials/header.ejs') %>
+    <link rel="stylesheet" href="/css/productDetail.css">
     <main>
         <section class="producto-detail">
             <h1>Detalles del Producto</h1>
@@ -16,16 +18,16 @@
                 <p>Stock: <%= product.producto_stock %></p>
                 <img src="/images/<%= product.producto_imagen %>" alt="<%= product.producto_name %>">
             </div>
+            <a href="/carrito" class="button primary">Agregar al Carrito</a>
+            <% if (user && user.id ==2) { %>
 
-            <button onclick="agregarAlCarrito()" class="cart">Agregar al Carrito</button>
-
-            <div class="related-products">
+            <%  } %>
+            <!-- <div class="related-products">
                 <h2> Agregar aqui Productos Relacionados</h2>
-            </div>
+            </div> -->
         </section>
     </main>
 
     <%- include('../partials/footer.ejs') %>
-
 </body>
 </html>

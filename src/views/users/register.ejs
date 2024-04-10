@@ -4,8 +4,10 @@
 <body>
 <%- include('../partials/header.ejs') %>
 <link rel="stylesheet" href="../css/login.css" />
-<div class="login-container"> <!-- Cambiado de signin-container a login-container -->
+<main>
     <h1>Bienvenidos a Purum</h1>
+<div class="login-container"> <!-- Cambiado de signin-container a login-container -->
+    
     <form action="/users" method="post" enctype="multipart/form-data" class="form-register">
         <h2>Te invitamos a ser parte</h2>
         <div class="login-item"> <!-- Cambiado de form-register-item a login-item -->
@@ -25,7 +27,9 @@
         </div>
         <div class="login-item"> <!-- Cambiado de form-register-item a login-item -->
             <label for="email">Email</label>
-            <input id="email" name="email" placeholder="Correo electrónico" value="<%= typeof old !== 'undefined' && old.email ? old.email : '' %>" class="input-error"> <!-- Agregada la clase input-error -->
+            <div class="input-group">
+                <input id="email" name="email" placeholder="Correo electrónico" value="<%= typeof old !== 'undefined' && old.email ? old.email : '' %>"> <!-- Agregada la clase input-error -->
+            </div>
             <% if (locals.errors && errors.email){ %>
             <span class="form-validationError"> <%= errors.email.msg %> </span>
             <% } %>
@@ -48,7 +52,7 @@
         </div>
         <div class="login-item"> <!-- Cambiado de form-register-item a login-item -->
             <label for="userImage">Imagen de perfil</label>
-            <input type="file" id="userImage" name="userImage" accept="image/*" class="input-error"> <!-- Agregada la clase input-error -->
+            <input type="file" id="userImage" name="userImage" accept="image/*"> <!-- Agregada la clase input-error -->
             <% if (locals.errors && errors.userImage){ %>
             <span class="form-validationError"> <%= errors.userImage.msg %> </span>
             <% } %>
@@ -60,7 +64,9 @@
     <br>
     <a href="/users/login">¿Ya tienes cuenta?</a>
 </div>
+</main>
 <%- include('../partials/footer.ejs') %>
 <script src="/js/registerValidations.js"></script>
 </body>
+
 </html>

@@ -39,25 +39,51 @@ const controller = {
         return res.render('index')
     },
     products: async (req, res) => {
-        // Lee el archivo JSON de productos
-        const productosdata = await db.Productos.findAll({
-            limit: 6
-        });
-        const productosRecientes = await db.Productos.findAll({
-            order: [['createdAt', 'DESC']],
-            limit: 3
-        });
+        try {
+            const productosdata = await db.Productos.findAll({
+                limit: 6
+            });
+            const productosRecientes = await db.Productos.findAll({
+                order: [['createdAt', 'DESC']],
+                limit: 3
+            });
+            const categorias = await db.Categorias.findAll(); // Obtener todas las categorías
 
-        return res.render('products/products', { productosdata, productosRecientes })
+            return res.render('products/products', { productosdata, productosRecientes, categorias });
+        } catch (error) {
+            console.error('Error al obtener productos:', error);
+            res.status(500).send('Error interno del servidor');
+        }
     },
-    
 
     productsList: async (req, res) => {
-        // Lee el archivo JSON de productos
-        const productosdata = await db.Productos.findAll({include: "categoria"});
-        // Pasa los datos de productos a la vista
-        return res.render('products/productsList', { productosdata });
+        try {
+            const  categoryId  = req.params.id; // Obtener el ID de la categoría de la URL
+            console.log(req.params.id)
+            const productosdata = await db.Productos.findAll({ 
+                where: { categoria_id: categoryId }, // Filtrar productos por categoría
+                include: "categoria"
+            });
+            return res.render('products/productsList', { productosdata });
+        } catch (error) {
+            console.error('Error al obtener productos por categoría:', error);
+            res.status(500).send('Error interno del servidor');
+        }
     },
+//    categoyList: async (req, res) => {
+//         try {
+//             const { categoryId } = req.params; 
+//             const productosdata = await db.Productos.findAll({ 
+//                 where: { categoria_id: categoryId }, 
+//                 include: "categoria"
+//             });
+//             return res.render('products/productsList', { productosdata });
+//         } catch (error) {
+//             console.error('Error al obtener productos por categoría:', error);
+//             res.status(500).send('Error interno del servidor');
+//         }
+//     },
+
     profile: async(req, res) => {
         const username = req.params.username;
         // Aquí deberías obtener la información del producto según el id
@@ -272,37 +298,37 @@ const controller = {
         }
     },
     update: async (req, res) => {
+        const defaultImagePath = '../../public/images/default-profile-image.jpg';
         try {
-            
             const { id } = req.params;
-            const { fullname, username, email, password } = req.body;
+            const { fullname, username, email } = req.body;
             const userImage = req.file;
     
             let user_imagen = null;
             if (userImage) {
                 user_imagen = userImage.filename;
                 // Lógica para manejar la actualización de la imagen del usuario
+            } else {
+                // Obtener la imagen actual del usuario de la base de datos
+                const currentUser = await Users.findByPk(id);
+                // Si el usuario tiene una imagen actual, conservarla
+                if (currentUser && currentUser.user_imagen) {
+                    user_imagen = currentUser.user_imagen;
+                } else {
+                    // Si no hay ninguna imagen actual y no se carga ninguna nueva, asigna la imagen predeterminada
+                    user_imagen = fs.existsSync(defaultImagePath) ? defaultImagePath : null;
+                }
             }
-            const hashedPassword = bcrypt.hashSync(password, 10);
-    
+           
             await Users.update({  
                 user_fullName: fullname,
                 username: username,
                 user_email: email,
-                password: hashedPassword,
                 user_imagen: user_imagen
             }, { where: { user_id: id } });
     
-            req.session.destroy(err => {
-                if (err) {
-                    console.error('Error al cerrar la sesión:', err);
-                    res.status(500).send('Internal Server Error');
-                } else {
-                    // alert("Los datos del usuario han sido modificados, por favor reinicia la sesion");
-                    res.redirect('/users/login');
-                }
-            });
-            // res.redirect('/users/profile/' + req.session.username);
+            // Redireccionar al usuario a su perfil
+            res.redirect('/users/profile/' + username);
         } catch (error) {
             console.error('Error al actualizar el usuario:', error);
             res.status(500).send('Internal Server Error');
