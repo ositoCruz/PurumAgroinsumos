@@ -18,8 +18,13 @@
                 <p>Stock: <%= product.producto_stock %></p>
                 <img src="/images/<%= product.producto_imagen %>" alt="<%= product.producto_name %>">
             </div>
-            <a href="/carrito" class="button primary">Agregar al Carrito</a>
-            <% if (user && user.id ==2) { %>
+            <% if (user && user.rol_id==1) { %>
+             <a href="/carrito" class="button primary">Agregar al Carrito</a>
+
+                <%  } %>
+            
+                <% if (user && user.rol_id==2) { %>
+                <a href="/products/editproduct/<%= product.producto_id %>" class="button primary">Editar este producto</a>
 
             <%  } %>
             <!-- <div class="related-products">

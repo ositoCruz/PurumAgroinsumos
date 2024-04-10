@@ -1,6 +1,6 @@
-const db = require("../database/models");
+const db = require("../../database/models");
+const usersService = {
 
-module.exports = {
   getAll: async function () {
     try {
       return await db.Users.findAll();

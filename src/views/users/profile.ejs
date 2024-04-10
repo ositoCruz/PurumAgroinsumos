@@ -9,8 +9,13 @@
         <section class="profile-detail">
             <h1>Bienvenido, <%= user.username %></h1>
 
-            <h2>DATOS DEL USUARIO:</h2>
+            <% if (user.rol_id==1) { %>
+                <h2>DATOS DEL USUARIO:</h2>
+                <% } %>
 
+            <% if (user.rol_id==2) { %>
+                <h2>DATOS DEL ADMINISTRADOR:</h2>
+                <% } %>
             <div class="user-details">
                 <div class="user-detail">
                     <h3>Nombre:</h3>
@@ -34,7 +39,7 @@
                
                 <% if (user.rol_id==2) { %>
                 <a href="/users/userlist" class="button secondary">Panel de control de usuarios</a>
-                <a href="#" class="button secondary">Dashboard</a>
+                <a href="http://localhost:5173/" class="button secondary">Dashboard</a>
                <% } %>
             </div>
         </section>

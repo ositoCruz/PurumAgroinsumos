@@ -110,7 +110,7 @@ h1 {
 .form-validationError {
   font-size: 11px;
   display: block;
-  color: rgba(255, 0, 0, 0.904);
+  color: rgb(255, 0, 0);
   border: 0px;
   padding: 5%;
 }
@@ -137,11 +137,11 @@ a:hover {
 
 /* Estilos para campos inválidos */
 .is-invalid {
-  background-color: #e9263641; /* Color de fondo para campos inválidos */
+  background-color: #e92636; /* Color de fondo para campos inválidos */
 }
 
 .alert-warning {
-  color: #842029;
+  color: #be0e1c;
   background-color: #f8d7da;
   text-align: center;
   border-radius: 10px;

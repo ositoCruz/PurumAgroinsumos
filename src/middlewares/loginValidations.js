@@ -10,7 +10,7 @@ const bcrypt = require('bcrypt');
 const validacionesLogin  = [
 
     check("username").notEmpty().withMessage("El usuario no puede ser vacío"),
-    check("password").isLength({ min: 6 }).withMessage("La contraseña debe tener un mínimo de 6 caracteres"),
+    // check("password").isLength({ min: 6 }).withMessage("La contraseña debe tener un mínimo de 6 caracteres"),
     check("username").custom(async (value, { req }) => {
         let user = await db.Users.findOne({ where: { username: value } }); 
         if (!user) {
